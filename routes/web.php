@@ -1,26 +1,32 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
-// Danish routes (default)
+// Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/kontakt', [ContactController::class, 'show'])->name('contact');
-Route::get('/afdelinger/{slug}', [DepartmentController::class, 'show'])->name('department.show');
+
+// News
 Route::get('/nyheder', [NewsController::class, 'index'])->name('news.index');
 Route::get('/nyheder/{slug}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/side/{slug}', [PageController::class, 'show'])->name('page.show');
 
-// English routes
-Route::prefix('en')->name('en.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/contact', [ContactController::class, 'show'])->name('contact');
-    Route::get('/departments/{slug}', [DepartmentController::class, 'show'])->name('department.show');
-    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
-    Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
-});
+// Departments
+Route::get('/afdelinger', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('/afdelinger/{slug}', [DepartmentController::class, 'show'])->name('departments.show');
+
+// Registration
+Route::get('/tilmeld', [RegistrationController::class, 'create'])->name('registration.create');
+Route::post('/tilmeld', [RegistrationController::class, 'store'])->name('registration.store');
+
+// Contact
+Route::get('/kontakt', [ContactController::class, 'create'])->name('contact');
+Route::post('/kontakt', [ContactController::class, 'store'])->name('contact.store');
+
+// Static / content pages
+Route::get('/om-klubben', [PageController::class, 'about'])->name('about');
+Route::get('/vedtaegter', [PageController::class, 'vedtaegter'])->name('vedtaegter');
