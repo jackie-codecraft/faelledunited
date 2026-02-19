@@ -8,4 +8,12 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Club colors — Sam will update hex values once confirmed from logo */
+    --color-club-green: #1a472a;
+    --color-club-green-dark: #132f1e;
+    --color-club-green-light: #235c38;
+    --color-club-gold: #c9a84c;
+    --color-club-gold-dark: #a8883a;
+    --color-club-gold-light: #dfc06a;
 }
