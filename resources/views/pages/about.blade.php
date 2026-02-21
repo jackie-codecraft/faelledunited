@@ -18,22 +18,9 @@
                 <div>
                     <h2 class="text-3xl font-bold text-[#1a472a] mb-4">{{ __('Vores historie') }}</h2>
                     <div class="w-16 h-1 bg-[#1a472a] rounded-full mb-6"></div>
-                    {{-- Placeholder — Sam to replace with real club history --}}
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Fælled United blev grundlagt af en gruppe engagerede forældre med en simpel vision:
-                        at skabe et trygt og inkluderende miljø, hvor børn kan dyrke sport og udvikle sig
-                        som mennesker — ikke bare som atleter.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Vi er en frivilligdrevet klub, og alt hvad vi gør, gøres med kærlighed til fællesskabet.
-                        Vores trænere, bestyrelsesmedlemmer og hjælpere giver af deres fritid, fordi de tror på,
-                        at sport giver børn noget for livet.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        I dag tilbyder vi fodbold og håndbold for børn fra de yngste årgange op til ungdomshold,
-                        og vi vokser hvert år. Uanset om dit barn drømmer om at spille på landsholdet eller bare
-                        vil have det sjovt med vennerne, er der plads til alle hos Fælled United.
-                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-4">{{ __('about.history.p1') }}</p>
+                    <p class="text-gray-600 leading-relaxed mb-4">{{ __('about.history.p2') }}</p>
+                    <p class="text-gray-600 leading-relaxed">{{ __('about.history.p3') }}</p>
                 </div>
                 <div class="rounded-2xl overflow-hidden h-64 md:h-80 shadow-lg">
                     <img src="{{ asset('images/club-photo.jpg') }}"
