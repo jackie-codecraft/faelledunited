@@ -42,6 +42,17 @@ class AdminPanelProvider extends PanelProvider
                 . '</div>'
             ))
             ->brandLogoHeight('2.25rem')
+            ->renderHook(
+                'panels::sidebar.nav.start',
+                fn () => new HtmlString(
+                    '<div x-cloak x-show="! $store.sidebar.isOpen" '
+                    . 'style="display:flex;justify-content:center;padding-bottom:1rem;margin-top:-1rem">'
+                    . '<img src="' . asset('images/logo.jpg') . '" '
+                    . 'style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2)" '
+                    . 'alt="Fælled United">'
+                    . '</div>'
+                )
+            )
 
             // ── Theme ───────────────────────────────────────────────────
             ->colors([
