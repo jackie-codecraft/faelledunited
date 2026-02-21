@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Tilmeld dig')
+@section('title', __('Tilmeld dig'))
 
 @section('content')
 
     <div class="bg-[#1a472a] text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-extrabold">Tilmeld dig</h1>
-            <p class="mt-2 text-gray-300">Udfyld formularen herunder for at tilmelde dit barn</p>
+            <h1 class="text-4xl font-extrabold">{{ __('Tilmeld dig') }}</h1>
+            <p class="mt-2 text-gray-300">{{ __('reg.subtitle') }}</p>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
                 <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <p class="font-bold text-lg">Tilmelding modtaget!</p>
+                <p class="font-bold text-lg">{{ __('Tilmelding modtaget!') }}</p>
             </div>
             <p class="text-sm">{{ session('success') }}</p>
         </div>
@@ -29,7 +29,7 @@
         {{-- Error summary --}}
         @if($errors->any())
         <div class="mb-6 bg-red-50 border border-red-200 rounded-xl p-4 text-red-700">
-            <p class="font-semibold mb-2">Ret venligst følgende fejl:</p>
+            <p class="font-semibold mb-2">{{ __('Ret venligst følgende fejl:') }}</p>
             <ul class="list-disc list-inside text-sm space-y-1">
                 @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -48,12 +48,12 @@
 
             {{-- Section: Barnets oplysninger --}}
             <div>
-                <h2 class="text-lg font-bold text-[#1a472a] mb-4 pb-2 border-b border-gray-100">Barnets oplysninger</h2>
+                <h2 class="text-lg font-bold text-[#1a472a] mb-4 pb-2 border-b border-gray-100">{{ __('Barnets oplysninger') }}</h2>
 
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="player_name">
-                            Barnets fulde navn <span class="text-red-500">*</span>
+                            {{ __('Barnets fulde navn') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
@@ -71,7 +71,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="date_of_birth">
-                            Fødselsdato <span class="text-red-500">*</span>
+                            {{ __('Fødselsdato') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="date"
@@ -88,7 +88,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="department_id">
-                            Afdeling <span class="text-red-500">*</span>
+                            {{ __('Afdeling') }} <span class="text-red-500">*</span>
                         </label>
                         <select
                             id="department_id"
@@ -98,10 +98,10 @@
                             @change="selectedAgeGroup = ''"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('department_id') border-red-400 @enderror"
                         >
-                            <option value="">Vælg afdeling...</option>
+                            <option value="">{{ __('Vælg afdeling...') }}</option>
                             @foreach($departments as $dept)
                             <option value="{{ $dept->id }}" {{ old('department_id', request('department') === $dept->slug ? $dept->id : '') == $dept->id ? 'selected' : '' }}>
-                                {{ $dept->name_da }}
+                                {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
                             </option>
                             @endforeach
                         </select>
@@ -112,7 +112,7 @@
 
                     <div x-show="selectedDepartment" x-transition>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="age_group_id">
-                            Årgang / Hold <span class="text-red-500">*</span>
+                            {{ __('Årgang / Hold') }} <span class="text-red-500">*</span>
                         </label>
                         <select
                             id="age_group_id"
@@ -121,7 +121,7 @@
                             :required="selectedDepartment !== ''"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('age_group_id') border-red-400 @enderror"
                         >
-                            <option value="">Vælg årgang...</option>
+                            <option value="">{{ __('Vælg årgang...') }}</option>
                             @foreach($ageGroups as $group)
                             <option
                                 value="{{ $group->id }}"
@@ -129,7 +129,7 @@
                                 x-show="selectedDepartment == '{{ $group->department_id }}'"
                                 {{ old('age_group_id') == $group->id ? 'selected' : '' }}
                             >
-                                {{ $group->label_da }}
+                                {{ app()->getLocale() === 'en' ? $group->label_en : $group->label_da }}
                             </option>
                             @endforeach
                         </select>
@@ -140,7 +140,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="current_club_experience">
-                            Tidligere klub / erfaring
+                            {{ __('Tidligere klub / erfaring') }}
                         </label>
                         <input
                             type="text"
@@ -156,12 +156,12 @@
 
             {{-- Section: Forældreoplysninger --}}
             <div>
-                <h2 class="text-lg font-bold text-[#1a472a] mb-4 pb-2 border-b border-gray-100">Forældreoplysninger</h2>
+                <h2 class="text-lg font-bold text-[#1a472a] mb-4 pb-2 border-b border-gray-100">{{ __('Forældreoplysninger') }}</h2>
 
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="parent_name">
-                            Forælders navn <span class="text-red-500">*</span>
+                            {{ __('Forælders navn') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
@@ -179,7 +179,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="parent_email">
-                            E-mail <span class="text-red-500">*</span>
+                            {{ __('E-mail') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="email"
@@ -197,7 +197,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="phone">
-                            Telefon <span class="text-red-500">*</span>
+                            {{ __('Telefon') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="tel"
@@ -215,7 +215,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="address">
-                            Adresse <span class="text-red-500">*</span>
+                            {{ __('Adresse') }} <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
@@ -233,7 +233,7 @@
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1" for="additional_info">
-                            Besked / yderligere information
+                            {{ __('Besked / yderligere information') }}
                         </label>
                         <textarea
                             id="additional_info"
@@ -258,7 +258,7 @@
                         class="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#1a472a] focus:ring-[#1a472a]"
                     >
                     <span class="text-sm text-gray-600">
-                        Jeg accepterer, at Fælled United må behandle ovenstående persondata med henblik på tilmelding.
+                        {{ __('reg.gdpr_consent') }}
                         <span class="text-red-500">*</span>
                     </span>
                 </label>
@@ -275,23 +275,17 @@
                         class="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#1a472a] focus:ring-[#1a472a]"
                     >
                     <span class="text-sm text-gray-600">
-                        Jeg giver tilladelse til, at klubben må bruge billeder af barnet til klubbens kommunikation (hjemmeside, sociale medier).
+                        {{ __('reg.photo_consent') }}
                     </span>
                 </label>
             </div>
-
-            {{-- Friendly Captcha placeholder --}}
-            {{-- TODO: Add Friendly Captcha widget here when sitekey is available
-                 <div class="frc-captcha" data-sitekey="YOUR_SITEKEY_HERE"></div>
-                 <script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.15/widget.module.min.js" async defer></script>
-            --}}
 
             <div class="pt-2">
                 <button
                     type="submit"
                     class="w-full px-8 py-4 bg-[#1a472a] text-white font-bold rounded-lg text-lg hover:bg-[#235c38] transition-colors shadow-md"
                 >
-                    Send tilmelding
+                    {{ __('Send tilmelding') }}
                 </button>
             </div>
         </form>

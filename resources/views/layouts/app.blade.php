@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da" class="scroll-smooth">
+<html lang="{{ app()->getLocale() }}" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,22 +30,35 @@
                 {{-- Desktop navigation --}}
                 <nav class="hidden md:flex items-center gap-1">
                     <a href="{{ route('home') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors {{ request()->routeIs('home') ? 'text-[#c9a84c]' : 'text-white' }}">
-                        Hjem
+                        {{ __('Hjem') }}
                     </a>
                     <a href="{{ route('news.index') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors {{ request()->routeIs('news.*') ? 'text-[#c9a84c]' : 'text-white' }}">
-                        Nyheder
+                        {{ __('Nyheder') }}
                     </a>
                     <a href="{{ route('departments.index') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors {{ request()->routeIs('departments.*') ? 'text-[#c9a84c]' : 'text-white' }}">
-                        Afdelinger
+                        {{ __('Afdelinger') }}
                     </a>
                     <a href="{{ route('about') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors {{ request()->routeIs('about') ? 'text-[#c9a84c]' : 'text-white' }}">
-                        Om klubben
+                        {{ __('Om klubben') }}
                     </a>
                     <a href="{{ route('contact') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors {{ request()->routeIs('contact') ? 'text-[#c9a84c]' : 'text-white' }}">
-                        Kontakt
+                        {{ __('Kontakt') }}
                     </a>
+
+                    {{-- Language switcher (desktop) --}}
+                    <div class="ml-2 flex items-center gap-0.5 border border-[#235c38] rounded-md overflow-hidden">
+                        <a href="{{ route('language.switch', 'da') }}"
+                           class="px-2.5 py-1.5 text-xs font-bold transition-colors {{ app()->getLocale() === 'da' ? 'bg-[#c9a84c] text-[#1a472a]' : 'text-gray-300 hover:bg-[#235c38] hover:text-white' }}">
+                            DA
+                        </a>
+                        <a href="{{ route('language.switch', 'en') }}"
+                           class="px-2.5 py-1.5 text-xs font-bold transition-colors {{ app()->getLocale() === 'en' ? 'bg-[#c9a84c] text-[#1a472a]' : 'text-gray-300 hover:bg-[#235c38] hover:text-white' }}">
+                            EN
+                        </a>
+                    </div>
+
                     <a href="{{ route('registration.create') }}" class="ml-3 px-4 py-2 bg-[#c9a84c] text-[#1a472a] rounded-md text-sm font-bold hover:bg-[#dfc06a] transition-colors">
-                        Tilmeld dig
+                        {{ __('Tilmeld dig') }}
                     </a>
                 </nav>
 
@@ -77,12 +90,25 @@
             class="md:hidden border-t border-[#235c38]"
         >
             <nav class="px-4 py-3 space-y-1">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">Hjem</a>
-                <a href="{{ route('news.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">Nyheder</a>
-                <a href="{{ route('departments.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">Afdelinger</a>
-                <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">Om klubben</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">Kontakt</a>
-                <a href="{{ route('registration.create') }}" class="block mt-2 px-4 py-2 bg-[#c9a84c] text-[#1a472a] rounded-md text-sm font-bold text-center hover:bg-[#dfc06a] transition-colors">Tilmeld dig</a>
+                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">{{ __('Hjem') }}</a>
+                <a href="{{ route('news.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">{{ __('Nyheder') }}</a>
+                <a href="{{ route('departments.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">{{ __('Afdelinger') }}</a>
+                <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">{{ __('Om klubben') }}</a>
+                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-[#c9a84c] transition-colors">{{ __('Kontakt') }}</a>
+                <a href="{{ route('registration.create') }}" class="block mt-2 px-4 py-2 bg-[#c9a84c] text-[#1a472a] rounded-md text-sm font-bold text-center hover:bg-[#dfc06a] transition-colors">{{ __('Tilmeld dig') }}</a>
+
+                {{-- Language switcher (mobile) --}}
+                <div class="flex items-center gap-2 pt-3 px-3 border-t border-[#235c38] mt-2">
+                    <span class="text-xs text-gray-400 mr-1">{{ __('Sprog') ?? 'Sprog' }}:</span>
+                    <a href="{{ route('language.switch', 'da') }}"
+                       class="px-3 py-1 text-xs font-bold rounded transition-colors {{ app()->getLocale() === 'da' ? 'bg-[#c9a84c] text-[#1a472a]' : 'text-gray-300 hover:text-white border border-[#235c38]' }}">
+                        🇩🇰 DA
+                    </a>
+                    <a href="{{ route('language.switch', 'en') }}"
+                       class="px-3 py-1 text-xs font-bold rounded transition-colors {{ app()->getLocale() === 'en' ? 'bg-[#c9a84c] text-[#1a472a]' : 'text-gray-300 hover:text-white border border-[#235c38]' }}">
+                        🇬🇧 EN
+                    </a>
+                </div>
             </nav>
         </div>
     </header>
@@ -104,11 +130,10 @@
                         <span class="font-bold text-lg">Fælled United</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Mere end en klub — en familie.<br>
-                        Fodbold og håndbold for børn i København.
+                        {{ __('Mere end en klub — en familie') }}<br>
+                        {{ __('Fodbold og håndbold for børn i København.') }}
                     </p>
                     <p class="text-gray-500 text-sm mt-3">
-                        {{-- Address placeholder — Sam to confirm --}}
                         Fælledparken, København Ø<br>
                         <a href="mailto:info@faelledunited.dk" class="hover:text-[#c9a84c] transition-colors">info@faelledunited.dk</a>
                     </p>
@@ -116,26 +141,24 @@
 
                 {{-- Quick links --}}
                 <div>
-                    <h3 class="font-semibold text-[#c9a84c] mb-4 uppercase text-xs tracking-wider">Links</h3>
+                    <h3 class="font-semibold text-[#c9a84c] mb-4 uppercase text-xs tracking-wider">{{ __('Links') }}</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">Hjem</a></li>
-                        <li><a href="{{ route('news.index') }}" class="hover:text-white transition-colors">Nyheder</a></li>
-                        <li><a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">Afdelinger</a></li>
-                        <li><a href="{{ route('about') }}" class="hover:text-white transition-colors">Om klubben</a></li>
-                        <li><a href="{{ route('vedtaegter') }}" class="hover:text-white transition-colors">Vedtægter</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors">Kontakt</a></li>
+                        <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">{{ __('Hjem') }}</a></li>
+                        <li><a href="{{ route('news.index') }}" class="hover:text-white transition-colors">{{ __('Nyheder') }}</a></li>
+                        <li><a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-white transition-colors">{{ __('Om klubben') }}</a></li>
+                        <li><a href="{{ route('vedtaegter') }}" class="hover:text-white transition-colors">{{ __('Vedtægter') }}</a></li>
+                        <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors">{{ __('Kontakt') }}</a></li>
                     </ul>
                 </div>
 
                 {{-- Social --}}
                 <div>
-                    <h3 class="font-semibold text-[#c9a84c] mb-4 uppercase text-xs tracking-wider">Følg os</h3>
+                    <h3 class="font-semibold text-[#c9a84c] mb-4 uppercase text-xs tracking-wider">{{ __('Følg os') }}</h3>
                     <div class="flex gap-3">
-                        {{-- Facebook placeholder — Sam to add real URL --}}
                         <a href="#" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-[#c9a84c] hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
                             f
                         </a>
-                        {{-- Instagram placeholder — Sam to add real URL --}}
                         <a href="#" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-[#c9a84c] hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
                             ig
                         </a>
@@ -144,8 +167,8 @@
             </div>
 
             <div class="border-t border-[#235c38] mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
-                <p>&copy; {{ date('Y') }} Fælled United. Alle rettigheder forbeholdes.</p>
-                <p>Bygget med ❤️ af frivillige forældre</p>
+                <p>{{ __('footer.copyright', ['year' => date('Y')]) }}</p>
+                <p>{{ __('footer.built_by') }}</p>
             </div>
         </div>
     </footer>
