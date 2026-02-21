@@ -155,7 +155,7 @@
                 </div>
                 <a href="{{ route('news.index') }}"
                    class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#1a472a] border-b-2 border-[#1a472a] pb-0.5 hover:text-[#4a7a58] hover:border-[#4a7a58] transition-colors">
-                    {{ __('Alle nyheder') }} →
+                    {{ __('Alle nyheder') }}
                 </a>
             </div>
 
