@@ -129,7 +129,7 @@
                                 value="{{ old('name') }}"
                                 required
                                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('name') border-red-400 @enderror"
-                                placeholder="Dit navn"
+                                placeholder="{{ __('Dit navn') }}"
                             >
                             @error('name')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -147,7 +147,7 @@
                                 value="{{ old('email') }}"
                                 required
                                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('email') border-red-400 @enderror"
-                                placeholder="din@email.dk"
+                                placeholder="{{ __('din@email.dk') }}"
                             >
                             @error('email')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -166,7 +166,7 @@
                             value="{{ old('subject') }}"
                             required
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('subject') border-red-400 @enderror"
-                            placeholder="fx. Spørgsmål om tilmelding"
+                            placeholder="{{ __('fx. Spørgsmål om tilmelding') }}"
                         >
                         @error('subject')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -183,7 +183,7 @@
                             rows="6"
                             required
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('message') border-red-400 @enderror"
-                            placeholder="Skriv din besked her..."
+                            placeholder="{{ __('Skriv din besked her...') }}"
                         >{{ old('message') }}</textarea>
                         @error('message')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
