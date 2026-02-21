@@ -22,7 +22,6 @@ class NewsPostResource extends Resource
     protected static ?int    $navigationSort = 1;
     protected static ?string $modelLabel = 'Post';
     protected static ?string $pluralModelLabel = 'Posts';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
