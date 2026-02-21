@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description', 'Fælled United — Mere end en klub, en familie. Fodbold og håndbold i København.')">
-    <title>@hasSection('title')@yield('title') — Fælled United@else Fælled United @endif
+    <title>@hasSection('title') @yield('title') — Fælled United @else Fælled United @endif</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-gray-800 font-sans antialiased">
