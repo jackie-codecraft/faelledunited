@@ -9,7 +9,13 @@ class SetAdminLocale
 {
     public function handle(Request $request, Closure $next): mixed
     {
-        app()->setLocale('en');
+        $locale = 'da'; // default
+
+        if ($user = $request->user()) {
+            $locale = $user->locale ?? 'da';
+        }
+
+        app()->setLocale(in_array($locale, ['da', 'en']) ? $locale : 'da');
 
         return $next($request);
     }

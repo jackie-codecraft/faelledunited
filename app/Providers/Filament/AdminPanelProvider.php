@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\EditProfile;
 use App\Http\Middleware\SetAdminLocale;
 use Illuminate\Support\HtmlString;
 use Filament\Http\Middleware\Authenticate;
@@ -30,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile(EditProfile::class)
             ->brandName('Fælled United')
             ->brandLogo(fn () => new HtmlString(
                 '<div style="display:flex;align-items:center;gap:0.65rem;min-width:0">'
