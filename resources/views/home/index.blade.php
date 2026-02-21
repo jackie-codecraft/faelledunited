@@ -223,6 +223,48 @@
     </section>
     @endif
 
+    {{-- MAILING LIST --}}
+    <section class="bg-[#111a13] py-14 border-y border-white/5">
+        <div class="max-w-2xl mx-auto px-4 text-center">
+            <p class="text-[#4a9b5e] text-xs font-bold uppercase tracking-[0.18em] mb-3">{{ __('Hold dig opdateret') }}</p>
+            <h2 class="font-display text-[clamp(2rem,4vw,3rem)] tracking-wide text-white leading-none mb-3">
+                {{ __('Tilmeld dig vores mailliste') }}
+            </h2>
+            <p class="text-white/45 text-sm leading-relaxed mb-7">
+                {{ __('mailing.homepage.body') }}
+            </p>
+
+            @if(session('mailing_success'))
+            <div class="inline-flex items-center gap-2 bg-[#1a472a]/60 border border-[#4a9b5e]/40 text-[#7dd3a8] text-sm font-semibold px-5 py-3 rounded-full">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+                {{ __('mailing.success') }}
+            </div>
+            @else
+            <form action="{{ route('mailing-list.store') }}" method="POST"
+                  class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                @csrf
+                <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="{{ __('Din e-mailadresse') }}"
+                    class="flex-1 px-4 py-3 rounded-lg bg-white/[0.07] border border-white/10 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a9b5e] focus:border-transparent"
+                >
+                <button type="submit"
+                        class="px-6 py-3 bg-white text-[#1a472a] font-bold rounded-lg text-sm hover:bg-gray-100 transition-colors shrink-0">
+                    {{ __('Tilmeld') }}
+                </button>
+            </form>
+            @if($errors->has('email'))
+            <p class="text-red-400 text-xs mt-2">{{ $errors->first('email') }}</p>
+            @endif
+            <p class="text-white/25 text-xs mt-4">{{ __('mailing.no_spam') }}</p>
+            @endif
+        </div>
+    </section>
+
     {{-- CTA BANNER --}}
     <section class="bg-[#0f2718] py-16 md:py-20">
         <div class="max-w-3xl mx-auto px-4 text-center">

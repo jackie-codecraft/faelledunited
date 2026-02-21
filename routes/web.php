@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
@@ -28,6 +29,9 @@ Route::post('/tilmeld', [RegistrationController::class, 'store'])->name('registr
 // Contact
 Route::get('/kontakt', [ContactController::class, 'create'])->name('contact');
 Route::post('/kontakt', [ContactController::class, 'store'])->name('contact.store');
+
+// Mailing list
+Route::post('/mailing-list', [MailingListController::class, 'store'])->name('mailing-list.store');
 
 // Static / content pages
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');

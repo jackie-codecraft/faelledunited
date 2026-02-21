@@ -54,6 +54,36 @@
                         {{ __('Gå til tilmelding') }}
                     </a>
                 </div>
+
+                {{-- Mailing list --}}
+                <div class="bg-[#0f2718] rounded-xl p-6 text-white">
+                    <h3 class="font-bold text-white mb-1">{{ __('Tilmeld dig vores mailliste') }}</h3>
+                    <p class="text-white/50 text-sm mb-4">{{ __('mailing.contact.body') }}</p>
+
+                    @if(session('mailing_success'))
+                    <div class="flex items-center gap-2 text-[#7dd3a8] text-sm font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ __('mailing.success') }}
+                    </div>
+                    @else
+                    <form action="{{ route('mailing-list.store') }}" method="POST" class="space-y-2">
+                        @csrf
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="{{ __('Din e-mailadresse') }}"
+                            class="w-full px-3 py-2.5 rounded-lg bg-white/[0.08] border border-white/10 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a9b5e]"
+                        >
+                        <button type="submit"
+                                class="w-full px-4 py-2.5 bg-white text-[#1a472a] font-bold rounded-lg text-sm hover:bg-gray-100 transition-colors">
+                            {{ __('Tilmeld') }}
+                        </button>
+                    </form>
+                    @endif
+                </div>
             </div>
 
             {{-- Contact form --}}
