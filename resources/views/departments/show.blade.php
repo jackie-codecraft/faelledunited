@@ -14,14 +14,9 @@
                 <span class="mx-2">/</span>
                 <span class="text-gray-200">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</span>
             </nav>
-            <div class="flex items-center gap-4">
-                <span class="text-5xl">
-                    @if($department->slug === 'fodbold') ⚽
-                    @elseif($department->slug === 'haandbold') 🤾
-                    @else 🏆
-                    @endif
-                </span>
-                <h1 class="text-4xl font-extrabold">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</h1>
+            <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-white/40 block mb-2">{{ __('Afdeling') }}</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</h1>
             </div>
         </div>
     </div>

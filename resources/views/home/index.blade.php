@@ -69,13 +69,9 @@
                 @foreach($departments as $dept)
                 <a href="{{ route('departments.show', $dept->slug) }}"
                    class="group bg-[#171f1a] border border-[#1e2e22] rounded-2xl overflow-hidden hover:border-white/20 transition-all">
-                    <div class="h-36 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-center justify-center">
-                        <span class="text-6xl">
-                            @if($dept->slug === 'fodbold') ⚽
-                            @elseif($dept->slug === 'haandbold') 🤾
-                            @else 🏆
-                            @endif
-                        </span>
+                    <div class="relative h-44 overflow-hidden"
+                         style="background-image: url('{{ asset('images/departments/' . $dept->slug . '.jpg') }}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/80 via-[#0a1a0f]/30 to-transparent"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition-colors">
