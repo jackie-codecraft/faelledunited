@@ -35,6 +35,8 @@ class AdminPanelProvider extends PanelProvider
                 'primary'   => Color::hex('#1a472a'),  // club green
                 'gray'      => Color::Zinc,
             ])
+            ->darkMode(true)
+            ->theme(asset('css/filament/admin/theme.css'))
 
             // ── Sidebar ─────────────────────────────────────────────────
             ->sidebarCollapsibleOnDesktop()

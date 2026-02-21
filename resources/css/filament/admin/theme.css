@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import '../../../../vendor/filament/filament/resources/css/base.css';
+
+@config 'tailwind.config.js';
+
+/* ─── Club green sidebar ────────────────────────────────────────────── */
+
+/* Sidebar wrapper — dark green always (light + dark mode) */
+.fi-sidebar {
+    background-color: #0a1a0f !important;
+    border-right: 1px solid rgba(74, 154, 94, 0.12) !important;
+}
+
+/* Sidebar header (brand / logo area) */
+.fi-sidebar-header {
+    background-color: #0a1a0f !important;
+    border-bottom: 1px solid rgba(74, 154, 94, 0.12) !important;
+    box-shadow: none !important;
+}
+
+/* Brand name text */
+.fi-sidebar-header .fi-logo {
+    color: #fff !important;
+}
+
+/* Navigation group labels */
+.fi-sidebar-group-label {
+    color: rgba(255, 255, 255, 0.35) !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.12em !important;
+}
+
+/* Nav item text */
+.fi-sidebar-item-button {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.fi-sidebar-item-button:hover {
+    background-color: rgba(74, 154, 94, 0.15) !important;
+    color: #fff !important;
+}
+
+/* Active nav item */
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background-color: rgba(26, 71, 42, 0.8) !important;
+    color: #fff !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button svg {
+    color: #4a9b5e !important;
+}
+
+/* Nav item icons */
+.fi-sidebar-item-button svg {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Collapse button (sidebar toggle) */
+.fi-sidebar-close-btn,
+button[x-on\:click="$store.sidebar.close()"] {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Group divider lines */
+.fi-sidebar-nav-groups {
+    border-color: rgba(74, 154, 94, 0.1) !important;
+}
+
+/* Sidebar collapse toggle icon */
+.fi-icon-btn.fi-sidebar-toggle-button {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.fi-icon-btn.fi-sidebar-toggle-button:hover {
+    background-color: rgba(74, 154, 94, 0.15) !important;
+    color: #fff !important;
+}
+
+/* ─── Dark mode — main content area ─────────────────────────────────── */
+
+/* Topbar in dark mode */
+.dark .fi-topbar {
+    background-color: #0d1117 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Ensure sidebar stays dark in dark mode too */
+.dark .fi-sidebar,
+.dark .fi-sidebar-header {
+    background-color: #071009 !important;
+}
+
+/* Dark mode: slightly lighten the nav items for contrast */
+.dark .fi-sidebar-item-button {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
