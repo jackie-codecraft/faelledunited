@@ -6,6 +6,9 @@
     <meta name="description" content="@yield('description', 'Fælled United — Mere end en klub, en familie. Fodbold og håndbold i København.')">
     <title>@hasSection('title') @yield('title') — Fælled United @else Fælled United @endif</title>
     <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-gray-800 font-sans antialiased">
@@ -21,7 +24,7 @@
                 {{-- Logo / Club name --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
                     <img src="{{ asset('images/logo.jpg') }}" alt="Fælled United" class="w-12 h-12 rounded-full object-cover ring-2 ring-white/30">
-                    <span class="font-bold text-xl tracking-tight group-hover:text-white/80 transition-colors">
+                    <span class="font-[family-name:var(--font-display)] text-2xl tracking-wide group-hover:text-white/80 transition-colors">
                         Fælled United
                     </span>
                 </a>

@@ -5,87 +5,127 @@
 @section('content')
 
     {{-- HERO --}}
-    <section class="relative bg-[#0f2718] text-white overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014]"></div>
-        <div class="absolute inset-0 opacity-5">
+    <section class="relative bg-[#0f2718] text-white overflow-hidden min-h-[540px] flex items-center">
+        {{-- Background pattern --}}
+        <div class="absolute inset-0 opacity-[0.035]">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <pattern id="hexPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <circle cx="40" cy="40" r="20" fill="none" stroke="white" stroke-width="1"/>
-                        <circle cx="0" cy="0" r="20" fill="none" stroke="white" stroke-width="1"/>
-                        <circle cx="80" cy="0" r="20" fill="none" stroke="white" stroke-width="1"/>
-                        <circle cx="0" cy="80" r="20" fill="none" stroke="white" stroke-width="1"/>
-                        <circle cx="80" cy="80" r="20" fill="none" stroke="white" stroke-width="1"/>
+                    <pattern id="dotPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="1.5" fill="white"/>
                     </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#hexPattern)"/>
+                <rect width="100%" height="100%" fill="url(#dotPattern)"/>
             </svg>
         </div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
-            <div class="flex justify-center mb-6">
-                <img src="{{ asset('images/logo.jpg') }}" alt="Fælled United" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover ring-4 ring-white/30 shadow-2xl">
-            </div>
-            <p class="text-white/60 font-semibold uppercase tracking-widest text-sm mb-4">{{ __('Velkommen til') }}</p>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                Fælled United
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
-                {{ __('Mere end en klub — en familie') }}
+        {{-- Ghost "FU" watermark --}}
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none
+                    font-display text-[clamp(160px,22vw,320px)] leading-none tracking-tight
+                    text-white/[0.04]">
+            FU
+        </div>
+
+        {{-- Pitch circle geometry --}}
+        <div class="absolute right-[6%] top-1/2 -translate-y-1/2
+                    w-[clamp(180px,24vw,340px)] h-[clamp(180px,24vw,340px)]
+                    rounded-full border border-white/[0.07] pointer-events-none">
+            <div class="absolute inset-6 rounded-full border border-white/[0.04]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                        w-3 h-3 rounded-full bg-white/10"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+            <p class="flex items-center gap-3 text-[#fbbf24] text-xs font-bold uppercase tracking-[0.18em] mb-5">
+                <span class="block w-8 h-0.5 bg-[#fbbf24] rounded-full"></span>
+                {{ __('Velkommen til') }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <h1 class="font-display text-[clamp(64px,10vw,120px)] leading-[0.92] tracking-wide text-white mb-6 max-w-2xl">
+                {{ __('Fælled') }}<br>
+                <span class="text-[#4a9b5e]">{{ __('United') }}</span>
+            </h1>
+            <p class="text-white/60 text-lg md:text-xl font-light max-w-md leading-relaxed mb-8">
+                {{ __('Mere end en klub — en familie. Fodbold og håndbold for børn og unge i Ørestad og omegn.') }}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
                 <a href="{{ route('registration.create') }}"
-                   class="px-8 py-4 bg-white text-[#1a472a] font-bold rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-lg">
-                    {{ __('Tilmeld dig nu') }}
+                   class="inline-block px-7 py-3.5 bg-white text-[#1a472a] font-bold rounded-lg text-sm hover:bg-gray-100 transition-colors shadow-lg">
+                    {{ __('Tilmeld dit barn') }}
                 </a>
                 <a href="{{ route('about') }}"
-                   class="px-8 py-4 border-2 border-white/40 text-white font-semibold rounded-lg text-lg hover:bg-white hover:text-[#1a472a] transition-colors">
-                    {{ __('Læs mere om os') }}
+                   class="inline-block px-7 py-3.5 border-2 border-white/25 text-white/85 font-semibold rounded-lg text-sm hover:bg-white hover:text-[#1a472a] transition-colors">
+                    {{ __('Læs om os') }}
                 </a>
             </div>
         </div>
     </section>
 
-    {{-- OM KLUBBEN (quick intro) --}}
-    <section class="bg-white py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-[#1a472a] mb-4">{{ __('Om Fælled United') }}</h2>
-            <div class="w-16 h-1 bg-[#1a472a] mx-auto mb-6 rounded-full"></div>
-            <p class="text-gray-600 text-lg leading-relaxed">
-                {{ __('home.about.body') }}
-            </p>
+    {{-- PILLARS STRIP --}}
+    <div class="bg-[#111a13] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7">
+            <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06]">
+                <div class="flex items-start gap-4 py-5 sm:py-0 sm:px-8 first:pl-0 last:pr-0">
+                    <span class="text-2xl mt-0.5 shrink-0">⚽</span>
+                    <div>
+                        <p class="font-semibold text-white text-sm mb-1">{{ __('For alle niveauer') }}</p>
+                        <p class="text-white/45 text-xs leading-relaxed">{{ __('Vi spiller for glæden. Ingen erfaring nødvendig — alle er velkomne.') }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 py-5 sm:py-0 sm:px-8 first:pl-0 last:pr-0">
+                    <span class="text-2xl mt-0.5 shrink-0">📍</span>
+                    <div>
+                        <p class="font-semibold text-white text-sm mb-1">{{ __('Lokalt i Ørestad') }}</p>
+                        <p class="text-white/45 text-xs leading-relaxed">{{ __('Træning og kampe tæt på hjemmet — i og omkring Fælledparken.') }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 py-5 sm:py-0 sm:px-8 first:pl-0 last:pr-0">
+                    <span class="text-2xl mt-0.5 shrink-0">💚</span>
+                    <div>
+                        <p class="font-semibold text-white text-sm mb-1">{{ __('Stærkt fællesskab') }}</p>
+                        <p class="text-white/45 text-xs leading-relaxed">{{ __('Mere end en klub. Et sted, hvor børn og familier mødes.') }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
     {{-- DEPARTMENTS --}}
-    <section class="bg-[#0f0f0f] py-16">
+    <section class="bg-[#0d1a10] py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-white mb-4">{{ __('Vores afdelinger') }}</h2>
-                <div class="w-16 h-1 bg-[#4a7a58] mx-auto rounded-full"></div>
+            <div class="mb-10">
+                <p class="text-[#4a9b5e] text-xs font-bold uppercase tracking-[0.18em] mb-2">{{ __('Vores sport') }}</p>
+                <h2 class="font-display text-[clamp(2.5rem,4vw,3.5rem)] tracking-wide text-white leading-none">
+                    {{ __('Afdelinger') }}
+                </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach($departments as $dept)
                 <a href="{{ route('departments.show', $dept->slug) }}"
-                   class="group bg-[#171f1a] border border-[#1e2e22] rounded-2xl overflow-hidden hover:border-white/20 transition-all">
-                    <div class="relative h-44 overflow-hidden"
-                         style="background-image: url('{{ asset('images/departments/' . $dept->slug . '.jpg') }}'); background-size: cover; background-position: center;">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/80 via-[#0a1a0f]/30 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition-colors">
+                   class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col justify-end">
+                    {{-- Photo background --}}
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]"
+                         style="background-image: url('{{ asset('images/departments/' . $dept->slug . '.jpg') }}')"></div>
+                    {{-- Gradient overlay --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/90 via-[#0a1a0f]/30 to-transparent"></div>
+                    {{-- Content --}}
+                    <div class="relative z-10 p-6 md:p-8">
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-[0.15em] text-white/60
+                                     border border-white/15 bg-white/[0.07] backdrop-blur-sm px-3 py-1 rounded-full mb-3">
+                            {{ $dept->slug === 'fodbold' ? '⚽' : '🤾' }}
+                            {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
+                        </span>
+                        <h3 class="font-display text-[2.75rem] tracking-wide leading-none text-white mb-2">
                             {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
                         </h3>
-                        <p class="text-gray-400 text-sm mb-4">
+                        <p class="text-white/55 text-sm leading-relaxed mb-5 max-w-xs">
                             {{ app()->getLocale() === 'en'
                                 ? ($dept->description_en ?: 'Click to learn more about our ' . strtolower($dept->name_en ?? $dept->name_da) . ' department.')
                                 : ($dept->description_da ?: 'Klik for at læse mere om vores ' . strtolower($dept->name_da) . '-afdeling.') }}
                         </p>
-                        <span class="inline-flex items-center text-white/70 font-semibold text-sm group-hover:text-white transition-colors">
-                            {{ __('Læs mere') }}
-                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-white/50 group-hover:text-white transition-colors">
+                            {{ __('Se hold og tilmelding') }}
+                            <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                             </svg>
                         </span>
                     </div>
@@ -95,7 +135,7 @@
 
             <div class="text-center mt-8">
                 <a href="{{ route('registration.create') }}"
-                   class="inline-block px-8 py-3 bg-white text-[#1a472a] font-bold rounded-lg hover:bg-gray-100 transition-colors shadow">
+                   class="inline-block px-7 py-3 bg-white text-[#1a472a] font-bold rounded-lg text-sm hover:bg-gray-100 transition-colors shadow">
                     {{ __('Tilmeld dit barn') }}
                 </a>
             </div>
@@ -104,58 +144,96 @@
 
     {{-- LATEST NEWS --}}
     @if($latestNews->count() > 0)
-    <section class="bg-white py-16">
+    <section class="bg-white py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-10">
+            <div class="flex items-end justify-between mb-10">
                 <div>
-                    <h2 class="text-3xl font-bold text-[#1a472a] mb-2">{{ __('Seneste nyheder') }}</h2>
-                    <div class="w-16 h-1 bg-[#1a472a] rounded-full"></div>
+                    <p class="text-[#1a472a] text-xs font-bold uppercase tracking-[0.18em] mb-2">{{ __('Seneste fra klubben') }}</p>
+                    <h2 class="font-display text-[clamp(2.5rem,4vw,3.5rem)] tracking-wide text-[#0f2718] leading-none">
+                        {{ __('Nyheder') }}
+                    </h2>
                 </div>
-                <a href="{{ route('news.index') }}" class="text-[#1a472a] font-semibold hover:text-[#4a7a58] transition-colors text-sm">
-                    {{ __('Alle nyheder') }}
+                <a href="{{ route('news.index') }}"
+                   class="text-[10px] font-bold uppercase tracking-[0.12em] text-[#1a472a] border-b-2 border-[#1a472a] pb-0.5 hover:text-[#4a7a58] hover:border-[#4a7a58] transition-colors">
+                    {{ __('Alle nyheder') }} →
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach($latestNews as $post)
-                <article class="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div class="h-40 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-4">
-                        @if($post->category)
-                        <span class="inline-block px-2 py-1 bg-[#fbbf24] text-[#0d2014] text-xs font-bold rounded">
-                            {{ $post->category->name_da }}
+            {{-- Bento grid: 1 wide featured + 2 stacked --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                {{-- Featured (first post) --}}
+                @if($latestNews->count() > 0)
+                @php $featured = $latestNews->first(); @endphp
+                <a href="{{ route('news.show', $featured->slug) }}"
+                   class="group md:col-span-2 bg-gray-50 rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300">
+                    <div class="h-52 md:h-64 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-5 shrink-0">
+                        @if($featured->category)
+                        <span class="inline-block px-2.5 py-1 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
+                            {{ $featured->category->name_da }}
                         </span>
                         @endif
                     </div>
-                    <div class="p-5">
-                        <p class="text-gray-400 text-xs mb-2">
-                            {{ ($post->published_at ?? $post->created_at)->isoFormat('D. MMMM YYYY') }}
+                    <div class="p-6 flex flex-col flex-1">
+                        <p class="text-gray-400 text-xs mb-2 font-medium tracking-wide">
+                            {{ ($featured->published_at ?? $featured->created_at)->isoFormat('D. MMMM YYYY') }}
                         </p>
-                        <h3 class="font-bold text-gray-900 mb-2 leading-snug group-hover:text-[#1a472a] transition-colors">
-                            <a href="{{ route('news.show', $post->slug) }}">{{ $post->title_da }}</a>
+                        <h3 class="font-bold text-gray-900 text-xl leading-snug mb-3 group-hover:text-[#1a472a] transition-colors">
+                            {{ $featured->title_da }}
                         </h3>
-                        @if($post->excerpt_da)
-                        <p class="text-gray-500 text-sm line-clamp-3">{{ $post->excerpt_da }}</p>
+                        @if($featured->excerpt_da)
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">{{ $featured->excerpt_da }}</p>
                         @endif
-                        <a href="{{ route('news.show', $post->slug) }}" class="mt-4 inline-block text-[#1a472a] font-semibold text-sm hover:text-[#4a7a58] transition-colors">
-                            {{ __('Læs mere') }} &rarr;
-                        </a>
+                        <span class="mt-auto text-[#1a472a] font-bold text-xs uppercase tracking-[0.08em] group-hover:text-[#4a7a58] transition-colors">
+                            {{ __('Læs mere') }} →
+                        </span>
                     </div>
-                </article>
-                @endforeach
+                </a>
+                @endif
+
+                {{-- Secondary posts (stacked) --}}
+                <div class="flex flex-col gap-4">
+                    @foreach($latestNews->skip(1)->take(2) as $post)
+                    <a href="{{ route('news.show', $post->slug) }}"
+                       class="group bg-gray-50 rounded-2xl overflow-hidden flex flex-col flex-1 hover:shadow-lg transition-all duration-300">
+                        <div class="h-28 bg-gradient-to-br from-[#1a472a] to-[#0a1a0f] flex items-end p-4 shrink-0">
+                            @if($post->category)
+                            <span class="inline-block px-2 py-0.5 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
+                                {{ $post->category->name_da }}
+                            </span>
+                            @endif
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <p class="text-gray-400 text-xs mb-1.5 font-medium">
+                                {{ ($post->published_at ?? $post->created_at)->isoFormat('D. MMMM YYYY') }}
+                            </p>
+                            <h3 class="font-bold text-gray-900 text-sm leading-snug mb-2 group-hover:text-[#1a472a] transition-colors flex-1">
+                                {{ $post->title_da }}
+                            </h3>
+                            <span class="text-[#1a472a] font-bold text-[10px] uppercase tracking-[0.08em] group-hover:text-[#4a7a58] transition-colors">
+                                {{ __('Læs mere') }} →
+                            </span>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+
             </div>
         </div>
     </section>
     @endif
 
     {{-- CTA BANNER --}}
-    <section class="bg-[#0f0f0f] py-14">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-extrabold text-white mb-4">{{ __('Klar til at komme i gang?') }}</h2>
-            <p class="text-gray-400 text-lg mb-8 font-medium">
+    <section class="bg-[#0f2718] py-16 md:py-20">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="font-display text-[clamp(2.5rem,5vw,4rem)] tracking-wide text-white mb-4 leading-none">
+                {{ __('Klar til at komme med?') }}
+            </h2>
+            <p class="text-white/50 text-lg mb-8 font-light leading-relaxed">
                 {{ __('home.cta.body') }}
             </p>
             <a href="{{ route('registration.create') }}"
-               class="inline-block px-10 py-4 bg-white text-[#1a472a] font-bold rounded-lg text-lg hover:bg-gray-100 transition-colors shadow-lg">
+               class="inline-block px-10 py-4 bg-white text-[#1a472a] font-bold rounded-lg text-sm hover:bg-gray-100 transition-colors shadow-lg">
                 {{ __('Tilmeld dig nu') }}
             </a>
         </div>
