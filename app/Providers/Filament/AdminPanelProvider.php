@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Illuminate\Support\HtmlString;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -29,6 +30,17 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Fælled United')
+            ->brandLogo(fn () => new HtmlString(
+                '<div style="display:flex;align-items:center;gap:0.65rem">'
+                . '<img src="' . asset('images/logo.jpg') . '" '
+                . 'style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2)" '
+                . 'alt="Fælled United">'
+                . '<span style="font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.04em;line-height:1">'
+                . 'Fælled United'
+                . '</span>'
+                . '</div>'
+            ))
+            ->brandLogoHeight('2.25rem')
 
             // ── Theme ───────────────────────────────────────────────────
             ->colors([
