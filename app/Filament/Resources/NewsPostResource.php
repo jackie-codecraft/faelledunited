@@ -17,9 +17,11 @@ class NewsPostResource extends Resource
 {
     protected static ?string $model = NewsPost::class;
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'Nyheder';
-    protected static ?string $modelLabel = 'Nyhed';
-    protected static ?string $pluralModelLabel = 'Nyheder';
+    protected static ?string $navigationLabel = 'Posts';
+    protected static ?string $navigationGroup = 'News';
+    protected static ?int    $navigationSort = 1;
+    protected static ?string $modelLabel = 'Post';
+    protected static ?string $pluralModelLabel = 'Posts';
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form

@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -27,9 +28,37 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Fælled United')
+
+            // ── Theme ───────────────────────────────────────────────────
             ->colors([
-                'primary' => Color::Amber,
+                'primary'   => Color::hex('#1a472a'),  // club green
+                'gray'      => Color::Zinc,
             ])
+
+            // ── Sidebar ─────────────────────────────────────────────────
+            ->sidebarCollapsibleOnDesktop()
+
+            // ── Navigation groups (ordered) ──────────────────────────────
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Club')
+                    ->icon('heroicon-o-building-office-2'),
+
+                NavigationGroup::make()
+                    ->label('News')
+                    ->icon('heroicon-o-newspaper'),
+
+                NavigationGroup::make()
+                    ->label('Members')
+                    ->icon('heroicon-o-users'),
+
+                NavigationGroup::make()
+                    ->label('Communications')
+                    ->icon('heroicon-o-chat-bubble-left-right'),
+            ])
+
+            // ── Resources / pages / widgets ──────────────────────────────
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

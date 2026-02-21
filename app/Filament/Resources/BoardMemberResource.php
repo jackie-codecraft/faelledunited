@@ -17,7 +17,10 @@ class BoardMemberResource extends Resource
 {
     protected static ?string $model = BoardMember::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationLabel = 'Board Members';
+    protected static ?string $navigationGroup = 'Club';
+    protected static ?int    $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
