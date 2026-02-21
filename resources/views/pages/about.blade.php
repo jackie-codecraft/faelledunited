@@ -35,10 +35,10 @@
                         vil have det sjovt med vennerne, er der plads til alle hos Fælled United.
                     </p>
                 </div>
-                <div class="bg-gradient-to-br from-[#1a472a] to-[#235c38] rounded-2xl h-64 md:h-80 flex items-center justify-center">
-                    <span class="text-white text-opacity-50 text-sm text-center px-4">
-                        Klubfoto kommer snart
-                    </span>
+                <div class="rounded-2xl overflow-hidden h-64 md:h-80 shadow-lg">
+                    <img src="{{ asset('images/club-photo.jpg') }}"
+                         alt="Fælled United"
+                         class="w-full h-full object-cover object-center">
                 </div>
             </div>
         </div>
