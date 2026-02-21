@@ -28,7 +28,7 @@
                             </svg>
                             <div>
                                 <p class="font-semibold text-gray-800">{{ __('Adresse') }}</p>
-                                <p>Fælledparken<br>2100 København Ø</p>
+                                <p>Ørestad<br>2300 København S</p>
                             </div>
                         </div>
 

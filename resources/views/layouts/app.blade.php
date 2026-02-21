@@ -136,7 +136,7 @@
                         {{ __('Fodbold og håndbold for børn i København.') }}
                     </p>
                     <p class="text-gray-500 text-sm mt-3">
-                        Fælledparken, København Ø<br>
+                        Ørestad, København S<br>
                         <a href="mailto:info@faelledunited.dk" class="hover:text-white transition-colors">info@faelledunited.dk</a>
                     </p>
                 </div>
