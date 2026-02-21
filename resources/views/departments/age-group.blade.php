@@ -5,15 +5,15 @@
 @section('content')
 
     {{-- Hero --}}
-    <div class="bg-[#1a472a] text-white py-12">
+    <div class="bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014] text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {{-- Breadcrumb --}}
             <nav class="text-sm text-gray-400 mb-4">
-                <a href="{{ route('home') }}" class="hover:text-[#c9a84c] transition-colors">{{ __('Hjem') }}</a>
+                <a href="{{ route('home') }}" class="hover:text-white transition-colors">{{ __('Hjem') }}</a>
                 <span class="mx-2">/</span>
-                <a href="{{ route('departments.index') }}" class="hover:text-[#c9a84c] transition-colors">{{ __('Afdelinger') }}</a>
+                <a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a>
                 <span class="mx-2">/</span>
-                <a href="{{ route('departments.show', $department->slug) }}" class="hover:text-[#c9a84c] transition-colors">{{ $department->name_da }}</a>
+                <a href="{{ route('departments.show', $department->slug) }}" class="hover:text-white transition-colors">{{ $department->name_da }}</a>
                 <span class="mx-2">/</span>
                 <span class="text-gray-200">{{ $ageGroup->label_da }}</span>
             </nav>
@@ -32,8 +32,8 @@
                     <p class="text-gray-300 text-lg">{{ $department->name_da }}</p>
                 </div>
 
-                {{-- Season badge --}}
-                <span class="px-4 py-2 bg-[#c9a84c] text-[#1a472a] rounded-full font-bold text-sm self-start mt-1">
+                {{-- Season badge — tertiary accent: visible special label --}}
+                <span class="px-4 py-2 bg-[#fbbf24] text-[#0d2014] rounded-full font-bold text-sm self-start mt-1">
                     {{ __('Sæson') }} {{ date('Y') }}/{{ date('y', strtotime('+1 year')) }}
                 </span>
             </div>
@@ -76,7 +76,7 @@
                         <div>
                             <p class="font-semibold text-gray-900 text-lg">{{ $ageGroup->coach_info['name'] }}</p>
                             @if(!empty($ageGroup->coach_info['email']))
-                            <a href="mailto:{{ $ageGroup->coach_info['email'] }}" class="text-[#1a472a] text-sm hover:text-[#c9a84c] transition-colors">
+                            <a href="mailto:{{ $ageGroup->coach_info['email'] }}" class="text-[#1a472a] text-sm hover:text-[#4a7a58] transition-colors">
                                 {{ $ageGroup->coach_info['email'] }}
                             </a>
                             @endif
@@ -131,7 +131,7 @@
                         <span>ℹ️</span>
                         {{ __('Om holdet') }}
                     </h2>
-                    <div class="w-10 h-1 bg-[#c9a84c] rounded-full mb-4"></div>
+                    <div class="w-10 h-1 bg-[#1a472a] rounded-full mb-4"></div>
                     <p class="text-gray-600 leading-relaxed">{{ $ageGroup->description_da }}</p>
                 </div>
                 @endif
@@ -142,17 +142,17 @@
             <div class="lg:col-span-1">
                 <div class="bg-[#1a472a] text-white rounded-2xl p-8 sticky top-24">
                     <h3 class="text-xl font-bold mb-2">{{ __('Tilmeld dit barn') }}</h3>
-                    <div class="w-10 h-1 bg-[#c9a84c] rounded-full mb-4"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full mb-4"></div>
                     <p class="text-gray-300 text-sm mb-6 leading-relaxed">
                         {{ __('Udfyld tilmeldingsformularen, og vi vender tilbage til dig hurtigst muligt. Det er gratis at tilmelde, og du forpligter dig ikke.') }}
                     </p>
                     <a href="{{ route('registration.create') }}?department={{ $department->slug }}&agegroup={{ $ageGroup->id }}"
-                       class="block w-full text-center px-6 py-3 bg-[#c9a84c] text-[#1a472a] font-bold rounded-lg hover:bg-[#dfc06a] transition-colors">
+                       class="block w-full text-center px-6 py-3 bg-white text-[#1a472a] font-bold rounded-lg hover:bg-gray-100 transition-colors">
                         {{ __('Tilmeld dig nu') }}
                     </a>
                     <div class="mt-6 pt-6 border-t border-[#235c38]">
                         <p class="text-gray-400 text-xs">{{ __('Spørgsmål? Skriv til os:') }}</p>
-                        <a href="mailto:info@faelledunited.dk" class="text-[#c9a84c] text-sm hover:underline">
+                        <a href="mailto:info@faelledunited.dk" class="text-white/80 text-sm hover:text-white hover:underline transition-colors">
                             info@faelledunited.dk
                         </a>
                     </div>
@@ -163,7 +163,7 @@
         {{-- Back link --}}
         <div class="mt-10 pt-8 border-t border-gray-200">
             <a href="{{ route('departments.show', $department->slug) }}"
-               class="inline-flex items-center text-[#1a472a] font-semibold hover:text-[#c9a84c] transition-colors">
+               class="inline-flex items-center text-[#1a472a] font-semibold hover:text-[#4a7a58] transition-colors">
                 <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>

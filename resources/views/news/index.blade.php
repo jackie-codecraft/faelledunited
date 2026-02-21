@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="bg-[#1a472a] text-white py-12">
+    <div class="bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014] text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold">{{ __('Nyheder') }}</h1>
             <p class="mt-2 text-gray-300">{{ __('Seneste nyt fra Fælled United') }}</p>
@@ -20,9 +20,10 @@
                 @if($post->featured_image)
                     <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title_da }}" class="h-48 w-full object-cover">
                 @else
-                    <div class="h-48 bg-gradient-to-br from-[#1a472a] to-[#235c38] flex items-end p-4">
+                    <div class="h-48 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-4">
                         @if($post->category)
-                        <span class="inline-block px-2 py-1 bg-[#c9a84c] text-[#1a472a] text-xs font-bold rounded">
+                        {{-- Tertiary accent: category badge is a genuine classifier, good use of #fbbf24 --}}
+                        <span class="inline-block px-2 py-1 bg-[#fbbf24] text-[#0d2014] text-xs font-bold rounded">
                             {{ $post->category->name_da }}
                         </span>
                         @endif
@@ -49,7 +50,7 @@
                     @endif
 
                     <a href="{{ route('news.show', $post->slug) }}"
-                       class="mt-auto inline-flex items-center text-[#1a472a] font-semibold text-sm hover:text-[#c9a84c] transition-colors">
+                       class="mt-auto inline-flex items-center text-[#1a472a] font-semibold text-sm hover:text-[#4a7a58] transition-colors">
                         {{ __('Læs mere') }}
                         <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

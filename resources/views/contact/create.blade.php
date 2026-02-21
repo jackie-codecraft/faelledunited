@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="bg-[#1a472a] text-white py-12">
+    <div class="bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014] text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold">{{ __('Kontakt os') }}</h1>
             <p class="mt-2 text-gray-300">{{ __('Vi svarer så hurtigt som muligt — typisk inden for 2 hverdage') }}</p>
@@ -22,7 +22,7 @@
 
                     <div class="space-y-4 text-sm text-gray-600">
                         <div class="flex items-start gap-3">
-                            <svg class="h-5 w-5 text-[#c9a84c] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-[#1a472a] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
@@ -33,12 +33,12 @@
                         </div>
 
                         <div class="flex items-start gap-3">
-                            <svg class="h-5 w-5 text-[#c9a84c] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-[#1a472a] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                             <div>
                                 <p class="font-semibold text-gray-800">{{ __('E-mail') }}</p>
-                                <a href="mailto:info@faelledunited.dk" class="text-[#1a472a] hover:text-[#c9a84c] transition-colors">
+                                <a href="mailto:info@faelledunited.dk" class="text-[#1a472a] hover:text-[#4a7a58] transition-colors">
                                     info@faelledunited.dk
                                 </a>
                             </div>
@@ -50,7 +50,7 @@
                     <h3 class="font-bold text-gray-800 mb-2">{{ __('Vil du tilmelde dit barn?') }}</h3>
                     <p class="text-gray-500 text-sm mb-4">{{ __('contact.reg_promo') }}</p>
                     <a href="{{ route('registration.create') }}"
-                       class="inline-block px-5 py-2.5 bg-[#c9a84c] text-[#1a472a] font-bold rounded-lg text-sm hover:bg-[#dfc06a] transition-colors">
+                       class="inline-block px-5 py-2.5 bg-[#1a472a] text-white font-bold rounded-lg text-sm hover:bg-[#0f2718] transition-colors">
                         {{ __('Gå til tilmelding') }}
                     </a>
                 </div>
@@ -163,7 +163,7 @@
                     <div class="pt-2">
                         <button
                             type="submit"
-                            class="w-full px-8 py-4 bg-[#1a472a] text-white font-bold rounded-lg text-lg hover:bg-[#235c38] transition-colors shadow-md"
+                            class="w-full px-8 py-4 bg-[#1a472a] text-white font-bold rounded-lg text-lg hover:bg-[#0f2718] transition-colors shadow-md"
                         >
                             {{ __('Send besked') }}
                         </button>

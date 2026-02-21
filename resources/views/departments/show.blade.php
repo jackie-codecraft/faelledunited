@@ -5,12 +5,12 @@
 @section('content')
 
     {{-- Department header --}}
-    <div class="bg-[#1a472a] text-white py-12">
+    <div class="bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014] text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="text-sm text-gray-400 mb-4">
-                <a href="{{ route('home') }}" class="hover:text-[#c9a84c] transition-colors">{{ __('Hjem') }}</a>
+                <a href="{{ route('home') }}" class="hover:text-white transition-colors">{{ __('Hjem') }}</a>
                 <span class="mx-2">/</span>
-                <a href="{{ route('departments.index') }}" class="hover:text-[#c9a84c] transition-colors">{{ __('Afdelinger') }}</a>
+                <a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a>
                 <span class="mx-2">/</span>
                 <span class="text-gray-200">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</span>
             </nav>
@@ -39,7 +39,7 @@
                         Om {{ $department->name_da }}-afdelingen
                     @endif
                 </h2>
-                <div class="w-12 h-1 bg-[#c9a84c] rounded-full mb-6"></div>
+                <div class="w-12 h-1 bg-[#1a472a] rounded-full mb-6"></div>
 
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
                     {{ app()->getLocale() === 'en'
@@ -54,7 +54,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @foreach($department->ageGroups as $group)
                     <a href="{{ route('departments.agegroups.show', [$department->slug, $group->slug]) }}"
-                       class="block bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-[#c9a84c] hover:shadow-md transition-all group">
+                       class="block bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-[#1a472a] hover:shadow-md transition-all group">
                         <div class="flex items-center justify-between">
                             <h4 class="font-semibold text-gray-800 group-hover:text-[#1a472a]">
                                 {{ app()->getLocale() === 'en' ? $group->label_en : $group->label_da }}
@@ -81,7 +81,7 @@
                         @if($group->training_schedule && !empty($group->training_schedule['days']))
                         <p class="text-xs text-gray-400 mt-1">📅 {{ $group->training_schedule['days'] }}</p>
                         @endif
-                        <span class="mt-3 inline-flex items-center text-xs font-semibold text-[#c9a84c] group-hover:underline">
+                        <span class="mt-3 inline-flex items-center text-xs font-semibold text-[#1a472a] group-hover:underline">
                             {{ __('Se hold') }}
                         </span>
                     </a>
@@ -99,17 +99,17 @@
             <div class="lg:col-span-1">
                 <div class="bg-[#1a472a] text-white rounded-2xl p-8 sticky top-24">
                     <h3 class="text-xl font-bold mb-2">{{ __('Tilmeld dit barn') }}</h3>
-                    <div class="w-10 h-1 bg-[#c9a84c] rounded-full mb-4"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full mb-4"></div>
                     <p class="text-gray-300 text-sm mb-6 leading-relaxed">
                         {{ __('dept.cta.body') }}
                     </p>
                     <a href="{{ route('registration.create') }}?department={{ $department->slug }}"
-                       class="block w-full text-center px-6 py-3 bg-[#c9a84c] text-[#1a472a] font-bold rounded-lg hover:bg-[#dfc06a] transition-colors">
+                       class="block w-full text-center px-6 py-3 bg-white text-[#1a472a] font-bold rounded-lg hover:bg-gray-100 transition-colors">
                         {{ __('Tilmeld dig nu') }}
                     </a>
                     <div class="mt-6 pt-6 border-t border-[#235c38]">
                         <p class="text-gray-400 text-xs">{{ __('Spørgsmål? Skriv til os:') }}</p>
-                        <a href="mailto:info@faelledunited.dk" class="text-[#c9a84c] text-sm hover:underline">
+                        <a href="mailto:info@faelledunited.dk" class="text-white/80 text-sm hover:text-white hover:underline transition-colors">
                             info@faelledunited.dk
                         </a>
                     </div>
@@ -120,7 +120,7 @@
 
         <div class="mt-10 pt-8 border-t border-gray-200">
             <a href="{{ route('departments.index') }}"
-               class="inline-flex items-center text-[#1a472a] font-semibold hover:text-[#c9a84c] transition-colors">
+               class="inline-flex items-center text-[#1a472a] font-semibold hover:text-[#4a7a58] transition-colors">
                 <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
