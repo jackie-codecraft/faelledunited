@@ -85,6 +85,13 @@
     color: rgba(255, 255, 255, 0.6) !important;
 }
 
+/* ── Collapsed sidebar header — center the logo mark */
+.fi-sidebar:not(.fi-sidebar-open) .fi-sidebar-header {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 /* ─── Dark mode — same sidebar, lighter content area ─────────────────── */
 .dark .fi-sidebar,
 .dark .fi-sidebar-header {

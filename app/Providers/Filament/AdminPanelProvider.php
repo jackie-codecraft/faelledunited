@@ -31,11 +31,12 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->brandName('Fælled United')
             ->brandLogo(fn () => new HtmlString(
-                '<div style="display:flex;align-items:center;gap:0.65rem">'
+                '<div style="display:flex;align-items:center;gap:0.65rem;min-width:0">'
                 . '<img src="' . asset('images/logo.jpg') . '" '
-                . 'style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2)" '
+                . 'style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2);flex-shrink:0" '
                 . 'alt="Fælled United">'
-                . '<span style="font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.04em;line-height:1">'
+                . '<span x-show="$store.sidebar.isOpen" x-transition.opacity '
+                . 'style="font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.04em;line-height:1;white-space:nowrap;overflow:hidden">'
                 . 'Fælled United'
                 . '</span>'
                 . '</div>'
