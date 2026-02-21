@@ -36,9 +36,9 @@
 .fi-sidebar-item-label {
     color: rgba(255, 255, 255, 0.88) !important;
 }
-/* Active item label */
-.fi-active .fi-sidebar-item-label,
-.fi-sidebar-item-active .fi-sidebar-item-label {
+/* Active item label — direct child only */
+li.fi-sidebar-item.fi-active > a .fi-sidebar-item-label,
+li.fi-sidebar-item.fi-sidebar-item-active > a .fi-sidebar-item-label {
     color: #fff !important;
 }
 
@@ -46,9 +46,9 @@
 .fi-sidebar-item-icon {
     color: rgba(255, 255, 255, 0.65) !important;
 }
-/* Active item icon */
-.fi-active .fi-sidebar-item-icon,
-.fi-sidebar-item-active .fi-sidebar-item-icon {
+/* Active item icon — direct child only */
+li.fi-sidebar-item.fi-active > a .fi-sidebar-item-icon,
+li.fi-sidebar-item.fi-sidebar-item-active > a .fi-sidebar-item-icon {
     color: #6fcf8a !important;
 }
 
@@ -56,8 +56,9 @@
 .fi-sidebar-item-button:hover {
     background-color: rgba(74, 154, 94, 0.18) !important;
 }
-.fi-active .fi-sidebar-item-button,
-.fi-sidebar-item-active .fi-sidebar-item-button {
+/* Only highlight the item that is itself active — not all items inside an active group */
+li.fi-sidebar-item.fi-active > a.fi-sidebar-item-button,
+li.fi-sidebar-item.fi-sidebar-item-active > a.fi-sidebar-item-button {
     background-color: rgba(74, 154, 94, 0.28) !important;
 }
 
@@ -69,7 +70,7 @@
 .fi-sidebar-item-grouped-border > div:last-child {
     background-color: rgba(255, 255, 255, 0.45) !important;
 }
-.fi-active .fi-sidebar-item-grouped-border > div:last-child {
+li.fi-sidebar-item.fi-active > a .fi-sidebar-item-grouped-border > div:last-child {
     background-color: #6fcf8a !important;
 }
 
