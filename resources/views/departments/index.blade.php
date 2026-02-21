@@ -61,6 +61,37 @@
             </a>
         </div>
 
+        {{-- Start Your Own Department --}}
+        <div class="mt-20 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-[#1a472a] mb-6 text-center">Start din egen afdeling</h2>
+
+            <div class="bg-green-50 border-2 border-[#c9a84c] rounded-2xl p-8 shadow-md">
+                <div class="flex items-start gap-5">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#1a472a] flex items-center justify-center text-2xl shadow">
+                        🏅
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-[#1a472a] mb-3">
+                            Vil du starte en ny afdeling?
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Fælled United er en åben og voksende klub, og vi er altid interesserede i at udvide med nye sportsgrene. Har du en idé til en ny afdeling og tror du på, at der er nok interesserede familier, vil vi meget gerne høre fra dig.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Uanset om det drejer sig om basketball, tennis, cykling eller noget helt fjerde — vi tror på, at sport samler folk. En ny afdeling starter altid med én person med en god idé og lysten til at gøre en forskel for børn i København.
+                        </p>
+                        <p class="text-gray-600 text-sm italic mb-6">
+                            Tag fat i bestyrelsen, og lad os tage en uforpligtende snak om mulighederne. Vi hjælper gerne med at komme i gang.
+                        </p>
+                        <a href="{{ route('contact') }}"
+                           class="inline-flex items-center px-6 py-3 bg-[#1a472a] text-white font-bold rounded-lg hover:bg-[#235c38] transition-colors shadow">
+                            ✉️ &nbsp;Kontakt bestyrelsen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
