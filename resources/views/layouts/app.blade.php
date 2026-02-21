@@ -158,7 +158,7 @@
                 <div>
                     <h3 class="font-semibold text-[#4a7a58] mb-4 uppercase text-xs tracking-wider">{{ __('Følg os') }}</h3>
                     <div class="flex gap-3">
-                        <a href="#" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
+                        <a href="https://www.facebook.com/groups/816017494322742" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
                             f
                         </a>
                         <a href="#" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
