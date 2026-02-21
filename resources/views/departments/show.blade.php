@@ -45,9 +45,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @foreach($department->ageGroups as $group)
-                    <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-[#c9a84c] transition-colors">
+                    <a href="{{ route('departments.agegroups.show', [$department->slug, $group->slug]) }}"
+                       class="block bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-[#c9a84c] hover:shadow-md transition-all group">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-semibold text-gray-800">{{ $group->label_da }}</h4>
+                            <h4 class="font-semibold text-gray-800 group-hover:text-[#1a472a]">{{ $group->label_da }}</h4>
                             <span class="text-xs px-2 py-1 rounded-full
                                 @if($group->gender === 'boys') bg-blue-100 text-blue-700
                                 @elseif($group->gender === 'girls') bg-pink-100 text-pink-700
@@ -60,9 +61,18 @@
                             </span>
                         </div>
                         @if($group->description_da)
-                        <p class="text-gray-500 text-sm mt-2">{{ $group->description_da }}</p>
+                        <p class="text-gray-500 text-sm mt-2">{{ Str::limit($group->description_da, 80) }}</p>
                         @endif
-                    </div>
+                        @if($group->coach_info && !empty($group->coach_info['name']))
+                        <p class="text-xs text-[#1a472a] mt-2 font-medium">👤 {{ $group->coach_info['name'] }}</p>
+                        @endif
+                        @if($group->training_schedule && !empty($group->training_schedule['days']))
+                        <p class="text-xs text-gray-400 mt-1">📅 {{ $group->training_schedule['days'] }}</p>
+                        @endif
+                        <span class="mt-3 inline-flex items-center text-xs font-semibold text-[#c9a84c] group-hover:underline">
+                            Se hold →
+                        </span>
+                    </a>
                     @endforeach
                 </div>
                 @else

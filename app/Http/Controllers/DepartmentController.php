@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgeGroup;
 use App\Models\Department;
 
 class DepartmentController extends Controller
@@ -18,15 +19,22 @@ class DepartmentController extends Controller
         return view('departments.index', compact('departments'));
     }
 
-    public function show(string $slug)
+    public function show(Department $department)
     {
-        $department = Department::with(['ageGroups' => function ($q) {
-                $q->where('is_active', true)->orderBy('sort_order');
-            }])
-            ->where('slug', $slug)
-            ->where('is_active', true)
-            ->firstOrFail();
+        abort_if(! $department->is_active, 404);
+
+        $department->load(['ageGroups' => function ($q) {
+            $q->where('is_active', true)->orderBy('sort_order');
+        }]);
 
         return view('departments.show', compact('department'));
+    }
+
+    public function showAgeGroup(Department $department, AgeGroup $ageGroup)
+    {
+        abort_if(! $department->is_active, 404);
+        abort_if(! $ageGroup->is_active || $ageGroup->department_id !== $department->id, 404);
+
+        return view('departments.age-group', compact('department', 'ageGroup'));
     }
 }

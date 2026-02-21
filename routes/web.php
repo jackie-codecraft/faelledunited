@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -17,7 +18,8 @@ Route::get('/nyheder/{slug}', [NewsController::class, 'show'])->name('news.show'
 
 // Departments
 Route::get('/afdelinger', [DepartmentController::class, 'index'])->name('departments.index');
-Route::get('/afdelinger/{slug}', [DepartmentController::class, 'show'])->name('departments.show');
+Route::get('/afdelinger/{department:slug}', [DepartmentController::class, 'show'])->name('departments.show');
+Route::get('/afdelinger/{department:slug}/{ageGroup:slug}', [DepartmentController::class, 'showAgeGroup'])->name('departments.agegroups.show');
 
 // Registration
 Route::get('/tilmeld', [RegistrationController::class, 'create'])->name('registration.create');
@@ -30,3 +32,11 @@ Route::post('/kontakt', [ContactController::class, 'store'])->name('contact.stor
 // Static / content pages
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');
 Route::get('/vedtaegter', [PageController::class, 'vedtaegter'])->name('vedtaegter');
+
+// Language switcher
+Route::get('/language/{locale}', function (string $locale) {
+    if (in_array($locale, ['da', 'en'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back()->withInput();
+})->name('language.switch');
