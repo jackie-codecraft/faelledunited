@@ -74,7 +74,7 @@
                     <span class="text-2xl mt-0.5 shrink-0">📍</span>
                     <div>
                         <p class="font-semibold text-white text-sm mb-1">{{ __('Lokalt i Ørestad') }}</p>
-                        <p class="text-white/45 text-xs leading-relaxed">{{ __('Træning og kampe tæt på hjemmet — i og omkring Fælledparken.') }}</p>
+                        <p class="text-white/45 text-xs leading-relaxed">{{ __('Træning og kampe tæt på hjemmet — tæt ved Amager Fælled.') }}</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 py-5 sm:py-0 sm:px-8 first:pl-0 last:pr-0">
