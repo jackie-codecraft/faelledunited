@@ -8,91 +8,91 @@
 
 /* ─── Club green sidebar ────────────────────────────────────────────── */
 
-/* Sidebar wrapper — dark green always (light + dark mode) */
-.fi-sidebar {
+/* Sidebar + header background — dark green always */
+.fi-sidebar,
+.fi-sidebar-header {
     background-color: #0a1a0f !important;
     border-right: 1px solid rgba(74, 154, 94, 0.12) !important;
 }
-
-/* Sidebar header (brand / logo area) */
 .fi-sidebar-header {
-    background-color: #0a1a0f !important;
     border-bottom: 1px solid rgba(74, 154, 94, 0.12) !important;
     box-shadow: none !important;
 }
 
-/* Brand name text */
-.fi-sidebar-header .fi-logo {
-    color: #fff !important;
-}
-
-/* Navigation group labels */
+/* ── Group headings (Club / News / Members / Communications) */
 .fi-sidebar-group-label {
-    color: rgba(255, 255, 255, 0.55) !important;
-    font-size: 0.65rem !important;
-    letter-spacing: 0.12em !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    letter-spacing: 0.1em !important;
+}
+.fi-sidebar-group-icon {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+/* Group button hover */
+.fi-sidebar-group-button:hover {
+    background-color: rgba(74, 154, 94, 0.15) !important;
 }
 
-/* Nav item text */
-.fi-sidebar-item-button {
-    color: rgba(255, 255, 255, 0.9) !important;
+/* ── Nav item labels (the visible text) */
+.fi-sidebar-item-label {
+    color: rgba(255, 255, 255, 0.88) !important;
 }
-
-.fi-sidebar-item-button:hover {
-    background-color: rgba(74, 154, 94, 0.2) !important;
+/* Active item label */
+.fi-active .fi-sidebar-item-label,
+.fi-sidebar-item-active .fi-sidebar-item-label {
     color: #fff !important;
 }
 
-/* Active nav item */
-.fi-sidebar-item-active .fi-sidebar-item-button {
-    background-color: rgba(74, 154, 94, 0.25) !important;
-    color: #fff !important;
+/* ── Nav item icons */
+.fi-sidebar-item-icon {
+    color: rgba(255, 255, 255, 0.65) !important;
 }
-
-.fi-sidebar-item-active .fi-sidebar-item-button svg {
+/* Active item icon */
+.fi-active .fi-sidebar-item-icon,
+.fi-sidebar-item-active .fi-sidebar-item-icon {
     color: #6fcf8a !important;
 }
 
-/* Nav item icons */
-.fi-sidebar-item-button svg {
-    color: rgba(255, 255, 255, 0.75) !important;
+/* ── Nav item button backgrounds */
+.fi-sidebar-item-button:hover {
+    background-color: rgba(74, 154, 94, 0.18) !important;
+}
+.fi-active .fi-sidebar-item-button,
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background-color: rgba(74, 154, 94, 0.28) !important;
 }
 
-/* Collapse button (sidebar toggle) */
+/* ── Grouped bullet dots + vertical connector lines */
+.fi-sidebar-item-grouped-border > div {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+/* The bullet dot itself */
+.fi-sidebar-item-grouped-border > div:last-child {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+}
+.fi-active .fi-sidebar-item-grouped-border > div:last-child {
+    background-color: #6fcf8a !important;
+}
+
+/* ── Dashboard item (ungrouped, directly in sidebar) */
+.fi-sidebar-nav > ul > .fi-sidebar-item > .fi-sidebar-item-button {
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* ── Sidebar collapse/close button */
 .fi-sidebar-close-btn,
-button[x-on\:click="$store.sidebar.close()"] {
-    color: rgba(255, 255, 255, 0.5) !important;
+.fi-icon-btn[title*="sidebar"],
+.fi-icon-btn[title*="Sidebar"] {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Group divider lines */
-.fi-sidebar-nav-groups {
-    border-color: rgba(74, 154, 94, 0.1) !important;
-}
-
-/* Sidebar collapse toggle icon */
-.fi-icon-btn.fi-sidebar-toggle-button {
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-.fi-icon-btn.fi-sidebar-toggle-button:hover {
-    background-color: rgba(74, 154, 94, 0.15) !important;
-    color: #fff !important;
-}
-
-/* ─── Dark mode — main content area ─────────────────────────────────── */
-
-/* Topbar in dark mode */
-.dark .fi-topbar {
-    background-color: #0d1117 !important;
-    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
-}
-
-/* Ensure sidebar stays dark in dark mode too */
+/* ─── Dark mode — same sidebar, lighter content area ─────────────────── */
 .dark .fi-sidebar,
 .dark .fi-sidebar-header {
     background-color: #071009 !important;
 }
-
-/* Dark mode: nav items fully bright */
-.dark .fi-sidebar-item-button {
-    color: rgba(255, 255, 255, 0.92) !important;
+.dark .fi-sidebar-item-label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+.dark .fi-sidebar-item-icon {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
