@@ -26,25 +26,49 @@ class BoardMemberResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('role_da')
-                    ->required(),
-                Forms\Components\TextInput::make('role_en')
-                    ->required(),
-                Forms\Components\Textarea::make('bio_da')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('bio_en')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('photo'),
-                Forms\Components\TextInput::make('email')
-                    ->email(),
-                Forms\Components\TextInput::make('sort_order')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
+                Forms\Components\Section::make('Person')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Full Name')
+                            ->required(),
+                        Forms\Components\TextInput::make('email')
+                            ->label('Email')
+                            ->email(),
+                        Forms\Components\TextInput::make('sort_order')
+                            ->label('Sort Order')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\Toggle::make('is_active')
+                            ->label('Active')
+                            ->required(),
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Role')
+                    ->schema([
+                        Forms\Components\TextInput::make('role_da')
+                            ->label('Role (Danish)')
+                            ->required(),
+                        Forms\Components\TextInput::make('role_en')
+                            ->label('Role (English)')
+                            ->required(),
+                        Forms\Components\Textarea::make('bio_da')
+                            ->label('Bio (Danish)')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                        Forms\Components\Textarea::make('bio_en')
+                            ->label('Bio (English)')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Photo')
+                    ->schema([
+                        Forms\Components\FileUpload::make('photo')
+                            ->label('Photo')
+                            ->image()
+                            ->directory('board-members'),
+                    ]),
             ]);
     }
 
@@ -53,28 +77,21 @@ class BoardMemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('role_da')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('role_en')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('photo')
+                    ->label('Role (DA)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sort_order')
+                    ->label('Order')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
+                    ->label('Active')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

@@ -27,25 +27,25 @@ class NewsPostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Publicering')
+                Forms\Components\Section::make('Publishing')
                     ->schema([
                         Forms\Components\Select::make('news_category_id')
-                            ->label('Kategori')
+                            ->label('Category')
                             ->relationship('category', 'name_da')
                             ->searchable()
                             ->preload(),
                         Forms\Components\Toggle::make('is_published')
-                            ->label('Publiceret')
+                            ->label('Published')
                             ->required(),
                         Forms\Components\DateTimePicker::make('published_at')
-                            ->label('Publiceringsdato')
+                            ->label('Publish Date')
                             ->native(false),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Dansk indhold')
+                Forms\Components\Section::make('Danish Content')
                     ->schema([
                         Forms\Components\TextInput::make('title_da')
-                            ->label('Titel (DA)')
+                            ->label('Title (Danish)')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
@@ -58,40 +58,40 @@ class NewsPostResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->unique(NewsPost::class, 'slug', ignoreRecord: true)
-                            ->helperText('Auto-genereret fra titel. Kan ændres manuelt.'),
+                            ->helperText('Auto-generated from title. Can be changed manually.'),
                         Forms\Components\Textarea::make('excerpt_da')
-                            ->label('Uddrag (DA)')
+                            ->label('Excerpt (Danish)')
                             ->rows(2)
                             ->columnSpanFull(),
                         Forms\Components\Textarea::make('body_da')
-                            ->label('Brødtekst (DA) — Markdown')
+                            ->label('Body (Danish) — Markdown')
                             ->required()
                             ->rows(12)
                             ->columnSpanFull()
-                            ->helperText('Brug Markdown-formatering: **fed**, *kursiv*, ## overskrift, osv.'),
+                            ->helperText('Use Markdown: **bold**, *italic*, ## heading, etc.'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Engelsk indhold')
+                Forms\Components\Section::make('English Content')
                     ->schema([
                         Forms\Components\TextInput::make('title_en')
-                            ->label('Titel (EN)')
+                            ->label('Title (English)')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Textarea::make('excerpt_en')
-                            ->label('Uddrag (EN)')
+                            ->label('Excerpt (English)')
                             ->rows(2)
                             ->columnSpanFull(),
                         Forms\Components\Textarea::make('body_en')
-                            ->label('Brødtekst (EN) — Markdown')
+                            ->label('Body (English) — Markdown')
                             ->required()
                             ->rows(8)
                             ->columnSpanFull(),
                     ])->columns(2)->collapsible()->collapsed(),
 
-                Forms\Components\Section::make('Billede')
+                Forms\Components\Section::make('Image')
                     ->schema([
                         Forms\Components\FileUpload::make('featured_image')
-                            ->label('Forsidebillede')
+                            ->label('Featured Image')
                             ->image()
                             ->directory('news')
                             ->columnSpanFull(),
@@ -104,28 +104,28 @@ class NewsPostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title_da')
-                    ->label('Titel')
+                    ->label('Title')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name_da')
-                    ->label('Kategori')
+                    ->label('Category')
                     ->badge()
                     ->color('success'),
                 Tables\Columns\IconColumn::make('is_published')
-                    ->label('Publiceret')
+                    ->label('Published')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('published_at')
-                    ->label('Dato')
+                    ->label('Date')
                     ->dateTime('d/m/Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Oprettet')
+                    ->label('Created')
                     ->dateTime('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('is_published')->label('Publiceret'),
+                Tables\Filters\TernaryFilter::make('is_published')->label('Published'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

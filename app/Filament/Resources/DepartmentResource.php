@@ -26,10 +26,10 @@ class DepartmentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Grundoplysninger')
+                Forms\Components\Section::make('Basic Info')
                     ->schema([
                         Forms\Components\TextInput::make('name_da')
-                            ->label('Navn (DA)')
+                            ->label('Name (Danish)')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
@@ -38,7 +38,7 @@ class DepartmentResource extends Resource
                                 $set('slug', Str::slug($state));
                             }),
                         Forms\Components\TextInput::make('name_en')
-                            ->label('Navn (EN)')
+                            ->label('Name (English)')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('slug')
@@ -47,30 +47,30 @@ class DepartmentResource extends Resource
                             ->maxLength(255)
                             ->unique(Department::class, 'slug', ignoreRecord: true),
                         Forms\Components\TextInput::make('sort_order')
-                            ->label('Rækkefølge')
+                            ->label('Sort Order')
                             ->numeric()
                             ->default(0),
                         Forms\Components\Toggle::make('is_active')
-                            ->label('Aktiv')
+                            ->label('Active')
                             ->required(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Beskrivelse')
+                Forms\Components\Section::make('Description')
                     ->schema([
                         Forms\Components\Textarea::make('description_da')
-                            ->label('Beskrivelse (DA)')
+                            ->label('Description (Danish)')
                             ->rows(4)
                             ->columnSpanFull(),
                         Forms\Components\Textarea::make('description_en')
-                            ->label('Beskrivelse (EN)')
+                            ->label('Description (English)')
                             ->rows(4)
                             ->columnSpanFull(),
                     ]),
 
-                Forms\Components\Section::make('Billede')
+                Forms\Components\Section::make('Image')
                     ->schema([
                         Forms\Components\FileUpload::make('hero_image')
-                            ->label('Hero-billede')
+                            ->label('Hero Image')
                             ->image()
                             ->directory('departments'),
                     ]),
@@ -82,16 +82,16 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name_da')
-                    ->label('Navn')
+                    ->label('Name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug'),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->label('Rækkefølge')
+                    ->label('Sort Order')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('Aktiv')
+                    ->label('Active')
                     ->boolean(),
             ])
             ->actions([

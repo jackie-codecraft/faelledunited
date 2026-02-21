@@ -28,37 +28,66 @@ class RegistrationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('department_id')
-                    ->relationship('department', 'id')
-                    ->required(),
-                Forms\Components\Select::make('age_group_id')
-                    ->relationship('ageGroup', 'id')
-                    ->required(),
-                Forms\Components\TextInput::make('player_name')
-                    ->required(),
-                Forms\Components\DatePicker::make('date_of_birth')
-                    ->required(),
-                Forms\Components\TextInput::make('current_club_experience'),
-                Forms\Components\TextInput::make('parent_name')
-                    ->required(),
-                Forms\Components\TextInput::make('parent_email')
-                    ->email()
-                    ->required(),
-                Forms\Components\TextInput::make('address')
-                    ->required(),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->required(),
-                Forms\Components\Textarea::make('additional_info')
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('gdpr_consent')
-                    ->required(),
-                Forms\Components\Toggle::make('photo_consent')
-                    ->required(),
-                Forms\Components\TextInput::make('status')
-                    ->required(),
-                Forms\Components\Textarea::make('internal_notes')
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('Sign-up Details')
+                    ->schema([
+                        Forms\Components\Select::make('department_id')
+                            ->label('Department')
+                            ->relationship('department', 'name_da')
+                            ->required(),
+                        Forms\Components\Select::make('age_group_id')
+                            ->label('Age Group / Team')
+                            ->relationship('ageGroup', 'label_da')
+                            ->required(),
+                        Forms\Components\TextInput::make('status')
+                            ->label('Status')
+                            ->required(),
+                    ])->columns(3),
+
+                Forms\Components\Section::make('Child')
+                    ->schema([
+                        Forms\Components\TextInput::make('player_name')
+                            ->label('Full Name')
+                            ->required(),
+                        Forms\Components\DatePicker::make('date_of_birth')
+                            ->label('Date of Birth')
+                            ->required(),
+                        Forms\Components\TextInput::make('current_club_experience')
+                            ->label('Previous Club / Experience'),
+                    ])->columns(3),
+
+                Forms\Components\Section::make('Parent / Guardian')
+                    ->schema([
+                        Forms\Components\TextInput::make('parent_name')
+                            ->label('Name')
+                            ->required(),
+                        Forms\Components\TextInput::make('parent_email')
+                            ->label('Email')
+                            ->email()
+                            ->required(),
+                        Forms\Components\TextInput::make('phone')
+                            ->label('Phone')
+                            ->tel()
+                            ->required(),
+                        Forms\Components\TextInput::make('address')
+                            ->label('Address')
+                            ->required(),
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Consents & Notes')
+                    ->schema([
+                        Forms\Components\Toggle::make('gdpr_consent')
+                            ->label('GDPR Consent')
+                            ->required(),
+                        Forms\Components\Toggle::make('photo_consent')
+                            ->label('Photo Consent')
+                            ->required(),
+                        Forms\Components\Textarea::make('additional_info')
+                            ->label('Message from Parent')
+                            ->columnSpanFull(),
+                        Forms\Components\Textarea::make('internal_notes')
+                            ->label('Internal Notes')
+                            ->columnSpanFull(),
+                    ])->columns(2),
             ]);
     }
 
@@ -66,39 +95,36 @@ class RegistrationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('department.id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('department.name_da')
+                    ->label('Department')
+                    ->badge()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('ageGroup.id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('ageGroup.label_da')
+                    ->label('Team')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('player_name')
+                    ->label('Child')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_of_birth')
-                    ->date()
+                    ->label('Born')
+                    ->date('d/m/Y')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('current_club_experience')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('parent_name')
+                    ->label('Parent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent_email')
+                    ->label('Email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('address')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
                     ->searchable(),
                 Tables\Columns\IconColumn::make('gdpr_consent')
+                    ->label('GDPR')
                     ->boolean(),
-                Tables\Columns\IconColumn::make('photo_consent')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Submitted')
+                    ->dateTime('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
