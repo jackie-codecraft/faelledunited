@@ -161,7 +161,7 @@
                         <a href="https://www.facebook.com/groups/816017494322742" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
                             f
                         </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
+                        <a href="https://www.instagram.com/faelledunited/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
                             ig
                         </a>
                     </div>
