@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description', 'Fælled United — Mere end en klub, en familie. Fodbold og håndbold i København.')">
     <title>@hasSection('title') @yield('title') — Fælled United @else Fælled United @endif</title>
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-gray-800 font-sans antialiased">
@@ -18,10 +19,8 @@
             <div class="flex items-center justify-between h-16">
 
                 {{-- Logo / Club name --}}
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-full bg-[#c9a84c] flex items-center justify-center font-bold text-[#1a472a] text-sm leading-none select-none">
-                        FU
-                    </div>
+                <a href="{{ route('home') }}" class="flex items-center gap-2 group">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="Fælled United" class="w-12 h-12 rounded-full object-cover ring-2 ring-[#c9a84c]">
                     <span class="font-bold text-xl tracking-tight group-hover:text-[#c9a84c] transition-colors">
                         Fælled United
                     </span>
@@ -126,7 +125,7 @@
                 {{-- Club info --}}
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 rounded-full bg-[#c9a84c] flex items-center justify-center font-bold text-[#1a472a] text-xs">FU</div>
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Fælled United" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#c9a84c]">
                         <span class="font-bold text-lg">Fælled United</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed">

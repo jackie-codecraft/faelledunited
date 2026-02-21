@@ -23,6 +23,9 @@
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
+            <div class="flex justify-center mb-6">
+                <img src="{{ asset('images/logo.jpg') }}" alt="Fælled United" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover ring-4 ring-[#c9a84c] shadow-2xl">
+            </div>
             <p class="text-[#c9a84c] font-semibold uppercase tracking-widest text-sm mb-4">{{ __('Velkommen til') }}</p>
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
                 Fælled United
