@@ -28,34 +28,34 @@
 
 /* Navigation group labels */
 .fi-sidebar-group-label {
-    color: rgba(255, 255, 255, 0.35) !important;
+    color: rgba(255, 255, 255, 0.55) !important;
     font-size: 0.65rem !important;
     letter-spacing: 0.12em !important;
 }
 
 /* Nav item text */
 .fi-sidebar-item-button {
-    color: rgba(255, 255, 255, 0.65) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .fi-sidebar-item-button:hover {
-    background-color: rgba(74, 154, 94, 0.15) !important;
+    background-color: rgba(74, 154, 94, 0.2) !important;
     color: #fff !important;
 }
 
 /* Active nav item */
 .fi-sidebar-item-active .fi-sidebar-item-button {
-    background-color: rgba(26, 71, 42, 0.8) !important;
+    background-color: rgba(74, 154, 94, 0.25) !important;
     color: #fff !important;
 }
 
 .fi-sidebar-item-active .fi-sidebar-item-button svg {
-    color: #4a9b5e !important;
+    color: #6fcf8a !important;
 }
 
 /* Nav item icons */
 .fi-sidebar-item-button svg {
-    color: rgba(255, 255, 255, 0.4) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
 }
 
 /* Collapse button (sidebar toggle) */
@@ -92,7 +92,7 @@ button[x-on\:click="$store.sidebar.close()"] {
     background-color: #071009 !important;
 }
 
-/* Dark mode: slightly lighten the nav items for contrast */
+/* Dark mode: nav items fully bright */
 .dark .fi-sidebar-item-button {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
 }
