@@ -29,7 +29,7 @@ class NewsController extends Controller
             'allow_unsafe_links' => false,
         ]);
 
-        $bodyHtml = $converter->convert($post->body_da)->getContent();
+        $bodyHtml = $converter->convert($post->body)->getContent();
 
         return view('news.show', compact('post', 'bodyHtml'));
     }
