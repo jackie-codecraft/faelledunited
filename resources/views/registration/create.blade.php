@@ -224,7 +224,7 @@
                             value="{{ old('address') }}"
                             required
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a472a] focus:border-transparent @error('address') border-red-400 @enderror"
-                            placeholder="fx. Nørrebrogade 1, 2200 København N"
+                            placeholder="fx. Ørestads Boulevard 55, 2300 København S"
                         >
                         @error('address')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
