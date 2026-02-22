@@ -75,16 +75,16 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-building-office-2'),
 
                 NavigationGroup::make()
-                    ->label(fn () => __('admin.nav_group.news'))
-                    ->icon('heroicon-o-newspaper'),
-
-                NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.members'))
                     ->icon('heroicon-o-users'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.communications'))
                     ->icon('heroicon-o-chat-bubble-left-right'),
+
+                NavigationGroup::make()
+                    ->label(fn () => __('admin.nav_group.news'))
+                    ->icon('heroicon-o-newspaper'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.administration'))
