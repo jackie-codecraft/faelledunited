@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactInquiryReplyController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\UnsubscribeController;
 use App\Http\Controllers\DepartmentController;
@@ -30,6 +31,10 @@ Route::post('/tilmeld', [RegistrationController::class, 'store'])->name('registr
 // Contact
 Route::get('/kontakt', [ContactController::class, 'create'])->name('contact');
 Route::post('/kontakt', [ContactController::class, 'store'])->name('contact.store');
+
+// Contact inquiry reply (signed — sent to assigned user)
+Route::get('/kontakt/svar/{inquiry}', [ContactInquiryReplyController::class, 'show'])->name('contact.inquiry.reply')->middleware('signed');
+Route::post('/kontakt/svar/{inquiry}', [ContactInquiryReplyController::class, 'send'])->name('contact.inquiry.reply.send')->middleware('signed');
 
 // Mailing list
 Route::post('/mailing-list', [MailingListController::class, 'store'])->name('mailing-list.store');

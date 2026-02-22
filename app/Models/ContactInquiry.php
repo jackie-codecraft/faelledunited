@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ContactInquiry extends Model
 {
-    protected $fillable = ['name', 'email', 'subject', 'message', 'status', 'assigned_to', 'internal_notes'];
+    protected $fillable = ['name', 'email', 'subject', 'message', 'locale', 'status', 'assigned_to', 'internal_notes'];
+
+    protected $casts = [
+        'status' => 'string',
+    ];
 
     public function assignedUser(): BelongsTo { return $this->belongsTo(User::class, 'assigned_to'); }
 }
