@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,4 +14,18 @@ class AgeGroup extends Model
 
     public function department(): BelongsTo { return $this->belongsTo(Department::class); }
     public function registrations(): HasMany { return $this->hasMany(Registration::class); }
+
+    public function label(): Attribute
+    {
+        return Attribute::get(fn () => app()->getLocale() === 'en' && !empty($this->label_en)
+            ? $this->label_en
+            : $this->label_da);
+    }
+
+    public function description(): Attribute
+    {
+        return Attribute::get(fn () => app()->getLocale() === 'en' && !empty($this->description_en)
+            ? $this->description_en
+            : $this->description_da);
+    }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $ageGroup->label_da . ' — ' . $department->name_da)
+@section('title', $ageGroup->label . ' — ' . $department->name)
 
 @section('content')
 
@@ -13,9 +13,9 @@
                 <span class="mx-2">/</span>
                 <a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a>
                 <span class="mx-2">/</span>
-                <a href="{{ route('departments.show', $department->slug) }}" class="hover:text-white transition-colors">{{ $department->name_da }}</a>
+                <a href="{{ route('departments.show', $department->slug) }}" class="hover:text-white transition-colors">{{ $department->name }}</a>
                 <span class="mx-2">/</span>
-                <span class="text-gray-200">{{ $ageGroup->label_da }}</span>
+                <span class="text-gray-200">{{ $ageGroup->label }}</span>
             </nav>
 
             <div class="flex flex-wrap items-start gap-4 justify-between">
@@ -27,9 +27,9 @@
                             @else 🏆
                             @endif
                         </span>
-                        <h1 class="text-4xl font-extrabold">{{ $ageGroup->label_da }}</h1>
+                        <h1 class="text-4xl font-extrabold">{{ $ageGroup->label }}</h1>
                     </div>
-                    <p class="text-gray-300 text-lg">{{ $department->name_da }}</p>
+                    <p class="text-gray-300 text-lg">{{ $department->name }}</p>
                 </div>
 
                 {{-- Season badge — tertiary accent: visible special label --}}
@@ -125,14 +125,14 @@
                 @endif
 
                 {{-- Description --}}
-                @if($ageGroup->description_da)
+                @if($ageGroup->description)
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
                     <h2 class="text-xl font-bold text-[#1a472a] mb-4 flex items-center gap-2">
                         <span>ℹ️</span>
                         {{ __('Om holdet') }}
                     </h2>
                     <div class="w-10 h-1 bg-[#1a472a] rounded-full mb-4"></div>
-                    <p class="text-gray-600 leading-relaxed">{{ $ageGroup->description_da }}</p>
+                    <p class="text-gray-600 leading-relaxed">{{ $ageGroup->description }}</p>
                 </div>
                 @endif
 
@@ -167,7 +167,7 @@
                 <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
-                {{ __('Tilbage til') }} {{ $department->name_da }}
+                {{ __('Tilbage til') }} {{ $department->name }}
             </a>
         </div>
 

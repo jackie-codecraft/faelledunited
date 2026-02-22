@@ -112,15 +112,15 @@
                         <span class="inline-block text-[10px] font-bold uppercase tracking-[0.15em] text-white/60
                                      border border-white/15 bg-white/[0.07] backdrop-blur-sm px-3 py-1 rounded-full mb-3">
                             {{ $dept->slug === 'fodbold' ? '⚽' : '🤾' }}
-                            {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
+                            {{ $dept->name }}
                         </span>
                         <h3 class="font-display text-[2.75rem] tracking-wide leading-none text-white mb-2">
-                            {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
+                            {{ $dept->name }}
                         </h3>
                         <p class="text-white/55 text-sm leading-relaxed mb-5 max-w-xs">
                             {{ app()->getLocale() === 'en'
-                                ? ($dept->description_en ?: 'Click to learn more about our ' . strtolower($dept->name_en ?? $dept->name_da) . ' department.')
-                                : ($dept->description_da ?: 'Klik for at læse mere om vores ' . strtolower($dept->name_da) . '-afdeling.') }}
+                                ? ($dept->description ?: 'Click to learn more about our ' . strtolower($dept->name ?? $dept->name) . ' department.')
+                                : ($dept->description ?: 'Klik for at læse mere om vores ' . strtolower($dept->name) . '-afdeling.') }}
                         </p>
                         <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-white/50 group-hover:text-white transition-colors">
                             {{ __('Se hold og tilmelding') }}
@@ -170,7 +170,7 @@
                     <div class="h-52 md:h-64 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-5 shrink-0">
                         @if($featured->category)
                         <span class="inline-block px-2.5 py-1 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
-                            {{ $featured->category->name_da }}
+                            {{ $featured->category->name }}
                         </span>
                         @endif
                     </div>
@@ -179,10 +179,10 @@
                             {{ ($featured->published_at ?? $featured->created_at)->isoFormat('D. MMMM YYYY') }}
                         </p>
                         <h3 class="font-bold text-gray-900 text-xl leading-snug mb-3 group-hover:text-[#1a472a] transition-colors">
-                            {{ $featured->title_da }}
+                            {{ $featured->title }}
                         </h3>
-                        @if($featured->excerpt_da)
-                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">{{ $featured->excerpt_da }}</p>
+                        @if($featured->excerpt)
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">{{ $featured->excerpt }}</p>
                         @endif
                         <span class="mt-auto text-[#1a472a] font-bold text-xs uppercase tracking-[0.08em] group-hover:text-[#4a7a58] transition-colors">
                             {{ __('Læs mere') }} →
@@ -199,7 +199,7 @@
                         <div class="h-28 bg-gradient-to-br from-[#1a472a] to-[#0a1a0f] flex items-end p-4 shrink-0">
                             @if($post->category)
                             <span class="inline-block px-2 py-0.5 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
-                                {{ $post->category->name_da }}
+                                {{ $post->category->name }}
                             </span>
                             @endif
                         </div>
@@ -208,7 +208,7 @@
                                 {{ ($post->published_at ?? $post->created_at)->isoFormat('D. MMMM YYYY') }}
                             </p>
                             <h3 class="font-bold text-gray-900 text-sm leading-snug mb-2 group-hover:text-[#1a472a] transition-colors flex-1">
-                                {{ $post->title_da }}
+                                {{ $post->title }}
                             </h3>
                             <span class="text-[#1a472a] font-bold text-[10px] uppercase tracking-[0.08em] group-hover:text-[#4a7a58] transition-colors">
                                 {{ __('Læs mere') }} →

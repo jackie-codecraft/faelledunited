@@ -18,13 +18,13 @@
             @foreach($posts as $post)
             <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
                 @if($post->featured_image)
-                    <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title_da }}" class="h-48 w-full object-cover">
+                    <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="h-48 w-full object-cover">
                 @else
                     <div class="h-48 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-4">
                         @if($post->category)
                         {{-- Tertiary accent: category badge is a genuine classifier, good use of #fbbf24 --}}
                         <span class="inline-block px-2 py-1 bg-[#fbbf24] text-[#0d2014] text-xs font-bold rounded">
-                            {{ $post->category->name_da }}
+                            {{ $post->category->name }}
                         </span>
                         @endif
                     </div>
@@ -33,7 +33,7 @@
                 <div class="p-6 flex flex-col flex-1">
                     @if($post->category && $post->featured_image)
                     <span class="inline-block mb-3 px-2 py-1 bg-[#1a472a] text-white text-xs font-bold rounded self-start">
-                        {{ $post->category->name_da }}
+                        {{ $post->category->name }}
                     </span>
                     @endif
 
@@ -42,11 +42,11 @@
                     </p>
 
                     <h2 class="font-bold text-xl text-gray-900 mb-3 leading-snug group-hover:text-[#1a472a] transition-colors">
-                        <a href="{{ route('news.show', $post->slug) }}">{{ $post->title_da }}</a>
+                        <a href="{{ route('news.show', $post->slug) }}">{{ $post->title }}</a>
                     </h2>
 
-                    @if($post->excerpt_da)
-                    <p class="text-gray-500 text-sm flex-1 mb-4">{{ Str::limit($post->excerpt_da, 140) }}</p>
+                    @if($post->excerpt)
+                    <p class="text-gray-500 text-sm flex-1 mb-4">{{ Str::limit($post->excerpt, 140) }}</p>
                     @endif
 
                     <a href="{{ route('news.show', $post->slug) }}"

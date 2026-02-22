@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', app()->getLocale() === 'en' ? $department->name_en : $department->name_da)
+@section('title', $department->name)
 
 @section('content')
 
@@ -12,11 +12,11 @@
                 <span class="mx-2">/</span>
                 <a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a>
                 <span class="mx-2">/</span>
-                <span class="text-gray-200">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</span>
+                <span class="text-gray-200">{{ $department->name }}</span>
             </nav>
             <div>
                 <span class="text-xs font-bold tracking-widest uppercase text-white/40 block mb-2">{{ __('Afdeling') }}</span>
-                <h1 class="text-4xl md:text-5xl font-extrabold">{{ app()->getLocale() === 'en' ? $department->name_en : $department->name_da }}</h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold">{{ $department->name }}</h1>
             </div>
         </div>
     </div>
@@ -29,17 +29,17 @@
             <div class="lg:col-span-2">
                 <h2 class="text-2xl font-bold text-[#1a472a] mb-4">
                     @if(app()->getLocale() === 'en')
-                        About the {{ $department->name_en }} department
+                        About the {{ $department->name }} department
                     @else
-                        Om {{ $department->name_da }}-afdelingen
+                        Om {{ $department->name }}-afdelingen
                     @endif
                 </h2>
                 <div class="w-12 h-1 bg-[#1a472a] rounded-full mb-6"></div>
 
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
                     {{ app()->getLocale() === 'en'
-                        ? ($department->description_en ?: 'We offer ' . strtolower($department->name_en ?? $department->name_da) . ' for children and young people of all ages in Copenhagen. With us it is about having fun, learning new skills and creating friendships for life. Everyone is welcome — regardless of level and experience.')
-                        : ($department->description_da ?: 'Vi tilbyder ' . strtolower($department->name_da) . ' for børn og unge i alle aldre i København. Hos os handler det om at have det sjovt, lære nye færdigheder og skabe venskaber for livet. Alle er velkomne — uanset niveau og erfaring.') }}
+                        ? ($department->description ?: 'We offer ' . strtolower($department->name ?? $department->name) . ' for children and young people of all ages in Copenhagen. With us it is about having fun, learning new skills and creating friendships for life. Everyone is welcome — regardless of level and experience.')
+                        : ($department->description ?: 'Vi tilbyder ' . strtolower($department->name) . ' for børn og unge i alle aldre i København. Hos os handler det om at have det sjovt, lære nye færdigheder og skabe venskaber for livet. Alle er velkomne — uanset niveau og erfaring.') }}
                 </p>
 
                 {{-- Age groups --}}
@@ -52,7 +52,7 @@
                        class="block bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-[#1a472a] hover:shadow-md transition-all group">
                         <div class="flex items-center justify-between">
                             <h4 class="font-semibold text-gray-800 group-hover:text-[#1a472a]">
-                                {{ app()->getLocale() === 'en' ? $group->label_en : $group->label_da }}
+                                {{ $group->label }}
                             </h4>
                             <span class="text-xs px-2 py-1 rounded-full
                                 @if($group->gender === 'boys') bg-blue-100 text-blue-700
@@ -65,9 +65,9 @@
                                 @endif
                             </span>
                         </div>
-                        @if($group->description_da)
+                        @if($group->description)
                         <p class="text-gray-500 text-sm mt-2">
-                            {{ Str::limit(app()->getLocale() === 'en' ? ($group->description_en ?: $group->description_da) : $group->description_da, 80) }}
+                            {{ Str::limit(app()->getLocale() === 'en' ? ($group->description ?: $group->description) : $group->description, 80) }}
                         </p>
                         @endif
                         @if($group->coach_info && !empty($group->coach_info['name']))

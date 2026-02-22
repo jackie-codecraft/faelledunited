@@ -26,7 +26,7 @@
                                 {{ __('Afdeling') }}
                             </span>
                             <h2 class="text-white font-extrabold text-2xl leading-tight">
-                                {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
+                                {{ $dept->name }}
                             </h2>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                     <div class="p-8">
                         <p class="text-gray-400 text-base leading-relaxed mb-6">
                             {{ app()->getLocale() === 'en'
-                                ? ($dept->description_en ?: 'We offer ' . strtolower($dept->name_en ?? $dept->name_da) . ' for children of all ages. Come and be part of the team!')
-                                : ($dept->description_da ?: 'Vi tilbyder ' . strtolower($dept->name_da) . ' for børn i alle aldre. Kom og vær en del af holdet!') }}
+                                ? ($dept->description ?: 'We offer ' . strtolower($dept->name ?? $dept->name) . ' for children of all ages. Come and be part of the team!')
+                                : ($dept->description ?: 'Vi tilbyder ' . strtolower($dept->name) . ' for børn i alle aldre. Kom og vær en del af holdet!') }}
                         </p>
 
                         @if($dept->ageGroups->count() > 0)

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $post->title_da)
+@section('title', $post->title)
 
 @section('content')
 
@@ -11,17 +11,17 @@
                 <span class="mx-2">/</span>
                 <a href="{{ route('news.index') }}" class="hover:text-white transition-colors">{{ __('Nyheder') }}</a>
                 <span class="mx-2">/</span>
-                <span class="text-gray-200">{{ Str::limit($post->title_da, 50) }}</span>
+                <span class="text-gray-200">{{ Str::limit($post->title, 50) }}</span>
             </nav>
 
             @if($post->category)
             {{-- Tertiary accent: category badge on dark hero — clear classifier --}}
             <span class="inline-block mb-3 px-3 py-1 bg-[#fbbf24] text-[#0d2014] text-xs font-bold rounded-full uppercase tracking-wide">
-                {{ $post->category->name_da }}
+                {{ $post->category->name }}
             </span>
             @endif
 
-            <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-3">{{ $post->title_da }}</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-3">{{ $post->title }}</h1>
 
             <p class="text-gray-300 text-sm">
                 {{ ($post->published_at ?? $post->created_at)->isoFormat('dddd D. MMMM YYYY') }}
@@ -33,7 +33,7 @@
 
         @if($post->featured_image)
         <div class="mb-8 rounded-xl overflow-hidden shadow-md">
-            <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title_da }}" class="w-full">
+            <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full">
         </div>
         @endif
 

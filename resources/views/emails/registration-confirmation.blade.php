@@ -29,11 +29,11 @@
     </tr>
     <tr>
         <td style="padding:7px 0;color:#888888;vertical-align:top">{{ trans('email.common.department', [], $locale) }}</td>
-        <td style="padding:7px 0;color:#1a1a1a">{{ $registration->department?->name_da ?? '—' }}</td>
+        <td style="padding:7px 0;color:#1a1a1a">{{ $registration->department?->name ?? '—' }}</td>
     </tr>
     <tr style="background:#fafafa">
         <td style="padding:7px 8px;color:#888888;vertical-align:top">{{ trans('email.registration.age_group', [], $locale) }}</td>
-        <td style="padding:7px 0;color:#1a1a1a">{{ $registration->ageGroup?->label_da ?? '—' }}</td>
+        <td style="padding:7px 0;color:#1a1a1a">{{ $registration->ageGroup?->label ?? '—' }}</td>
     </tr>
     @if($registration->current_club_experience)
     <tr>

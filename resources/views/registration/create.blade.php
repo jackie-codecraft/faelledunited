@@ -101,7 +101,7 @@
                             <option value="">{{ __('Vælg afdeling...') }}</option>
                             @foreach($departments as $dept)
                             <option value="{{ $dept->id }}" {{ old('department_id', request('department') === $dept->slug ? $dept->id : '') == $dept->id ? 'selected' : '' }}>
-                                {{ app()->getLocale() === 'en' ? $dept->name_en : $dept->name_da }}
+                                {{ $dept->name }}
                             </option>
                             @endforeach
                         </select>
@@ -129,7 +129,7 @@
                                 x-show="selectedDepartment == '{{ $group->department_id }}'"
                                 {{ old('age_group_id') == $group->id ? 'selected' : '' }}
                             >
-                                {{ app()->getLocale() === 'en' ? $group->label_en : $group->label_da }}
+                                {{ $group->label }}
                             </option>
                             @endforeach
                         </select>
