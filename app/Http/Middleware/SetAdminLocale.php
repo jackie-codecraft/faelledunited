@@ -9,13 +9,8 @@ class SetAdminLocale
 {
     public function handle(Request $request, Closure $next): mixed
     {
-        $locale = 'da'; // default
-
-        if ($user = $request->user()) {
-            $locale = $user->locale ?? 'da';
-        }
-
-        app()->setLocale(in_array($locale, ['da', 'en']) ? $locale : 'da');
+        // Admin panel is English-only
+        app()->setLocale('en');
 
         return $next($request);
     }
