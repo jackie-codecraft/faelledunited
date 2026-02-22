@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BoardMember;
+use App\Models\Statute;
 use League\CommonMark\CommonMarkConverter;
 
 class PageController extends Controller
@@ -18,11 +19,11 @@ class PageController extends Controller
 
     public function vedtaegter()
     {
-        // Render vedtaegter from Markdown file in storage or inline placeholder
-        $markdownPath = storage_path('app/vedtaegter.md');
-        $markdown = file_exists($markdownPath)
-            ? file_get_contents($markdownPath)
-            : $this->vedtaegterPlaceholder();
+        $statute = Statute::current();
+        $locale = app()->getLocale();
+
+        $field = $locale === 'en' ? 'content_en' : 'content_da';
+        $markdown = $statute->{$field} ?: $this->vedtaegterPlaceholder($locale);
 
         $converter = new CommonMarkConverter([
             'html_input' => 'strip',
@@ -30,12 +31,75 @@ class PageController extends Controller
         ]);
 
         $contentHtml = $converter->convert($markdown)->getContent();
+        $updatedAt = $statute->updated_at;
 
-        return view('pages.vedtaegter', compact('contentHtml'));
+        return view('pages.vedtaegter', compact('contentHtml', 'updatedAt'));
     }
 
-    private function vedtaegterPlaceholder(): string
+    private function vedtaegterPlaceholder(string $locale = 'da'): string
     {
+        if ($locale === 'en') {
+            return <<<'MD'
+# Statutes of Fælled United
+
+*Adopted at the general assembly — date to be inserted here*
+
+---
+
+## § 1 — Name and domicile
+
+The name of the association is **Fælled United**. The association is domiciled in the Municipality of Copenhagen.
+
+## § 2 — Purpose
+
+The purpose of the association is to promote football and handball for children and young people in Copenhagen, and to create a safe and inclusive community for players, families, and volunteers.
+
+## § 3 — Membership
+
+Any person wishing to support the association's purpose may be admitted as a member. The board may refuse admission if special reasons so dictate.
+
+## § 4 — Membership fees
+
+Membership fees are set by the board for each season and communicated to all members in good time.
+
+## § 5 — General assembly
+
+The general assembly is the supreme authority of the association. The ordinary general assembly is held each year in the first quarter. Notice is given with at least 14 days' notice.
+
+### Agenda
+
+The ordinary general assembly addresses:
+
+1. Election of a chairperson
+2. Report from the board
+3. Presentation of accounts
+4. Setting of membership fees
+5. Election of board members
+6. Election of auditor
+7. Any other business
+
+## § 6 — Board
+
+The board consists of at least 3 and at most 7 members, elected for 2-year terms at the general assembly.
+
+## § 7 — Accounts and audit
+
+The association's financial year runs from 1 January to 31 December. The accounts are audited by an auditor elected at the general assembly.
+
+## § 8 — Amendments to the statutes
+
+Amendments to the statutes require a 2/3 majority at an ordinary or extraordinary general assembly.
+
+## § 9 — Dissolution
+
+Dissolution of the association requires a 2/3 majority at two consecutive general assemblies with at least 4 weeks between them. Upon dissolution, the association's assets are transferred to a charitable cause within children's sport in Copenhagen.
+
+---
+
+*These statutes are placeholders — Sam will update them with the final statutes.*
+MD;
+        }
+
         return <<<'MD'
 # Vedtægter for Fælled United
 

@@ -26,7 +26,11 @@
             </div>
 
             <div class="mt-10 pt-6 border-t border-gray-100 text-xs text-gray-400">
-                Sidst opdateret: {{ now()->isoFormat('MMMM YYYY') }}
+                @if (app()->getLocale() === 'en')
+                    Last updated: {{ $updatedAt?->isoFormat('MMMM YYYY') ?? now()->isoFormat('MMMM YYYY') }}
+                @else
+                    Sidst opdateret: {{ $updatedAt?->isoFormat('MMMM YYYY') ?? now()->isoFormat('MMMM YYYY') }}
+                @endif
             </div>
         </div>
 

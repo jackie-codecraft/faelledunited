@@ -214,5 +214,10 @@
     "email.registration.date_of_birth": "Fødselsdato",
     "email.registration.age_group": "Årgang / Hold",
     "email.registration.previous_club": "Tidligere klub",
-    "email.registration.closing": "Vi glæder os til at byde :name velkommen i Fælled United! Har du spørgsmål, er du velkommen til at skrive til os."
+    "email.registration.closing": "Vi glæder os til at byde :name velkommen i Fælled United! Har du spørgsmål, er du velkommen til at skrive til os.",
+
+    "admin.nav.statutes": "Vedtægter",
+    "admin.page.statutes": "Rediger vedtægter",
+    "admin.statutes.saved": "Vedtægter gemt",
+    "admin.statutes.save_button": "Gem vedtægter"
 }
