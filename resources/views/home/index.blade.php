@@ -172,9 +172,18 @@
                 @php $featured = $latestNews->first(); @endphp
                 <a href="{{ route('news.show', $featured->slug) }}"
                    class="group md:col-span-2 bg-gray-50 rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300">
-                    <div class="h-52 md:h-64 bg-gradient-to-br from-[#1a472a] to-[#0f2718] flex items-end p-5 shrink-0">
+                    @php
+                        $featuredImg = $featured->featured_image
+                            ? \Illuminate\Support\Facades\Storage::disk('public')->url($featured->featured_image)
+                            : null;
+                    @endphp
+                    <div class="h-52 md:h-64 relative flex items-end p-5 shrink-0 overflow-hidden {{ $featuredImg ? '' : 'bg-gradient-to-br from-[#1a472a] to-[#0f2718]' }}"
+                         @if($featuredImg) style="background-image: url('{{ $featuredImg }}'); background-size: cover; background-position: center;" @endif>
+                        @if($featuredImg)
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/70 to-transparent"></div>
+                        @endif
                         @if($featured->category)
-                        <span class="inline-block px-2.5 py-1 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
+                        <span class="relative z-10 inline-block px-2.5 py-1 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
                             {{ $featured->category->name }}
                         </span>
                         @endif
@@ -201,9 +210,18 @@
                     @foreach($latestNews->skip(1)->take(2) as $post)
                     <a href="{{ route('news.show', $post->slug) }}"
                        class="group bg-gray-50 rounded-2xl overflow-hidden flex flex-col flex-1 hover:shadow-lg transition-all duration-300">
-                        <div class="h-28 bg-gradient-to-br from-[#1a472a] to-[#0a1a0f] flex items-end p-4 shrink-0">
+                        @php
+                            $postImg = $post->featured_image
+                                ? \Illuminate\Support\Facades\Storage::disk('public')->url($post->featured_image)
+                                : null;
+                        @endphp
+                        <div class="h-28 relative flex items-end p-4 shrink-0 overflow-hidden {{ $postImg ? '' : 'bg-gradient-to-br from-[#1a472a] to-[#0a1a0f]' }}"
+                             @if($postImg) style="background-image: url('{{ $postImg }}'); background-size: cover; background-position: center;" @endif>
+                            @if($postImg)
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/70 to-transparent"></div>
+                            @endif
                             @if($post->category)
-                            <span class="inline-block px-2 py-0.5 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
+                            <span class="relative z-10 inline-block px-2 py-0.5 bg-[#fbbf24] text-[#0d2014] text-[10px] font-extrabold uppercase tracking-wider rounded">
                                 {{ $post->category->name }}
                             </span>
                             @endif
