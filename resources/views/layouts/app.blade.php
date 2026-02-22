@@ -43,6 +43,9 @@
                     <a href="{{ route('about') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors {{ request()->routeIs('about') ? 'text-white font-semibold' : 'text-white/80' }}">
                         {{ __('Om klubben') }}
                     </a>
+                    <a href="{{ route('shop') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors {{ request()->routeIs('shop') ? 'text-white font-semibold' : 'text-white/80' }}">
+                        {{ app()->getLocale() === 'en' ? 'Shop' : 'Butik' }}
+                    </a>
                     <a href="{{ route('contact') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors {{ request()->routeIs('contact') ? 'text-white font-semibold' : 'text-white/80' }}">
                         {{ __('Kontakt') }}
                     </a>
@@ -96,6 +99,7 @@
                 <a href="{{ route('news.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors">{{ __('Nyheder') }}</a>
                 <a href="{{ route('departments.index') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors">{{ __('Afdelinger') }}</a>
                 <a href="{{ route('about') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors">{{ __('Om klubben') }}</a>
+                <a href="{{ route('shop') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors {{ request()->routeIs('shop') ? 'text-white font-semibold' : '' }}">{{ app()->getLocale() === 'en' ? 'Shop' : 'Butik' }}</a>
                 <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-[#235c38] hover:text-white transition-colors">{{ __('Kontakt') }}</a>
                 <a href="{{ route('registration.create') }}" class="block mt-2 px-4 py-2 bg-white text-[#1a472a] rounded-md text-sm font-bold text-center hover:bg-gray-100 transition-colors">{{ __('Tilmeld dig') }}</a>
 

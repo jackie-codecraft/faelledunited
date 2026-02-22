@@ -9,6 +9,11 @@ use League\CommonMark\CommonMarkConverter;
 
 class PageController extends Controller
 {
+    public function shop()
+    {
+        return view('pages.shop');
+    }
+
     public function about()
     {
         $boardMembers = BoardMember::where('is_active', true)
