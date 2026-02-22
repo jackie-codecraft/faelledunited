@@ -45,6 +45,7 @@ Route::get('/afmeld', [UnsubscribeController::class, 'confirm'])->name('unsubscr
 Route::post('/afmeld', [UnsubscribeController::class, 'process'])->name('unsubscribe.process');
 
 // Static / content pages
+Route::get('/butik', [PageController::class, 'shop'])->name('shop');
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');
 Route::get('/vedtaegter', [PageController::class, 'vedtaegter'])->name('vedtaegter');
 Route::get('/privatlivspolitik', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
