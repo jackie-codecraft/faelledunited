@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InviteController;
 use App\Http\Controllers\ContactInquiryReplyController;
 use App\Http\Controllers\NewsletterPreviewController;
 use App\Http\Controllers\MailingListController;
@@ -49,6 +50,10 @@ Route::get('/butik', [PageController::class, 'shop'])->name('shop');
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');
 Route::get('/vedtaegter', [PageController::class, 'vedtaegter'])->name('vedtaegter');
 Route::get('/privatlivspolitik', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
+
+// User invitations
+Route::get('/invitation/{token}', [InviteController::class, 'show'])->name('invite.show');
+Route::post('/invitation/{token}', [InviteController::class, 'accept'])->name('invite.accept');
 
 // Language switcher
 Route::get('/language/{locale}', function (string $locale) {
