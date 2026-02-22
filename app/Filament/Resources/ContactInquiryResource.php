@@ -3,16 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContactInquiryResource\Pages;
-use App\Filament\Resources\ContactInquiryResource\RelationManagers;
+use App\Mail\ContactInquiryReply;
 use App\Models\ContactInquiry;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Illuminate\Support\HtmlString;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Mail;
 
 class ContactInquiryResource extends Resource
 {
@@ -31,16 +32,26 @@ class ContactInquiryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\TextInput::make('subject')
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\Textarea::make('message')
-                    ->required()
+                    ->disabled()
+                    ->dehydrated(false)
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'new'         => __('admin.inquiry.status.new'),
+                        'in_progress' => __('admin.inquiry.status.in_progress'),
+                        'resolved'    => __('admin.inquiry.status.resolved'),
+                        'replied'     => __('admin.inquiry.status.replied'),
+                    ])
                     ->required(),
                 Forms\Components\Select::make('assigned_to')
                     ->label(__('admin.col.assigned_to'))
@@ -64,7 +75,15 @@ class ContactInquiryResource extends Resource
                 Tables\Columns\TextColumn::make('subject')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'new'         => 'warning',
+                        'in_progress' => 'primary',
+                        'resolved'    => 'success',
+                        'replied'     => 'success',
+                        default       => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => __('admin.inquiry.status.' . $state)),
                 Tables\Columns\TextColumn::make('assignedUser.name')
                     ->label(__('admin.col.assigned_to'))
                     ->default('—')
@@ -79,9 +98,56 @@ class ContactInquiryResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'new'         => __('admin.inquiry.status.new'),
+                        'in_progress' => __('admin.inquiry.status.in_progress'),
+                        'resolved'    => __('admin.inquiry.status.resolved'),
+                        'replied'     => __('admin.inquiry.status.replied'),
+                    ]),
             ])
             ->actions([
+                Tables\Actions\Action::make('reply')
+                    ->label(__('admin.inquiry.action.reply'))
+                    ->icon('heroicon-o-paper-airplane')
+                    ->color('success')
+                    ->form([
+                        Forms\Components\Placeholder::make('inquiry_details')
+                            ->label(__('admin.inquiry.original_message_label'))
+                            ->content(fn (ContactInquiry $record): HtmlString => new HtmlString(
+                                '<div class="rounded-lg border border-gray-200 bg-gray-50 p-4 space-y-2 text-sm">'
+                                . '<div class="grid grid-cols-[5rem_1fr] gap-x-3 gap-y-1.5">'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.from') . '</span>'
+                                . '<span class="font-semibold text-gray-800">' . e($record->name) . ' &lt;' . e($record->email) . '&gt;</span>'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.subject') . '</span>'
+                                . '<span class="font-semibold text-gray-800">' . e($record->subject ?? '—') . '</span>'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.received') . '</span>'
+                                . '<span class="text-gray-600">' . e($record->created_at->format('d. M Y \k\l. H:i')) . '</span>'
+                                . '</div>'
+                                . '<div class="border-t border-gray-200 pt-3 mt-1">'
+                                . '<p class="text-gray-500 mb-1">' . __('admin.inquiry.field.message') . '</p>'
+                                . '<p class="text-gray-800 leading-relaxed whitespace-pre-wrap">' . e($record->message) . '</p>'
+                                . '</div>'
+                                . '</div>'
+                            )),
+                        Forms\Components\Textarea::make('reply_message')
+                            ->label(__('admin.inquiry.reply_message'))
+                            ->required()
+                            ->rows(6),
+                    ])
+                    ->action(function (ContactInquiry $record, array $data): void {
+                        Mail::to($record->email)->send(
+                            new ContactInquiryReply($record, $data['reply_message'])
+                        );
+
+                        $record->status = 'replied';
+                        $record->save();
+
+                        Notification::make()
+                            ->title(__('admin.inquiry.reply_sent'))
+                            ->success()
+                            ->send();
+                    }),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -101,9 +167,9 @@ class ContactInquiryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListContactInquiries::route('/'),
+            'index'  => Pages\ListContactInquiries::route('/'),
             'create' => Pages\CreateContactInquiry::route('/create'),
-            'edit' => Pages\EditContactInquiry::route('/{record}/edit'),
+            'edit'   => Pages\EditContactInquiry::route('/{record}/edit'),
         ];
     }
 }

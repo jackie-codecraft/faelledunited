@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactInquiryConfirmation;
+use App\Mail\ContactInquiryNotification;
 use App\Models\ContactInquiry;
 use App\Models\SiteSettings;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -31,16 +33,31 @@ class ContactController extends Controller
         ]);
 
         $settings = SiteSettings::current();
+        $locale = app()->getLocale();
 
         $inquiry = ContactInquiry::create(array_merge($validated, [
             'assigned_to' => $settings->default_inquiry_assignee_id,
+            'locale'      => $locale,
         ]));
 
+        // Send confirmation to the person who submitted the inquiry
         try {
-            Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry, app()->getLocale()));
+            Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry, $locale));
         } catch (\Exception $e) {
-            // Mail failure should not block the user — log silently
             logger()->error('ContactInquiry confirmation mail failed: ' . $e->getMessage());
+        }
+
+        // Notify the assigned user (or fallback to contact email)
+        try {
+            $assignee = $settings->defaultAssignee;
+            $notifyEmail = $assignee?->email ?? $settings->contact_email;
+            $assigneeLocale = $assignee?->locale ?? 'da';
+
+            if ($notifyEmail) {
+                Mail::to($notifyEmail)->send(new ContactInquiryNotification($inquiry, $assigneeLocale));
+            }
+        } catch (\Exception $e) {
+            logger()->error('ContactInquiry notification mail failed: ' . $e->getMessage());
         }
 
         return redirect()->route('contact')
