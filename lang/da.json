@@ -269,7 +269,6 @@
     "admin.col.no_account": "Ingen konto",
     "admin.col.has_account": "Konto",
     "admin.col.board_member": "Bestyrelsesmedlem",
-
     "admin.inquiry.status.new": "Ny",
     "admin.inquiry.status.in_progress": "I gang",
     "admin.inquiry.status.resolved": "Løst",
@@ -282,7 +281,6 @@
     "admin.inquiry.field.subject": "Emne",
     "admin.inquiry.field.received": "Modtaget",
     "admin.inquiry.field.message": "Besked",
-
     "email.inquiry_notification.subject": "Ny henvendelse fra :name — Fælled United",
     "email.inquiry_notification.heading": "Ny kontakthenvendelse",
     "email.inquiry_notification.intro": "I har modtaget en ny henvendelse via kontaktformularen. Se oplysningerne nedenfor og brug knappen for at svare.",
@@ -290,13 +288,11 @@
     "email.inquiry_notification.submitted_at": "Modtaget",
     "email.inquiry_notification.reply_button": "Svar til :name",
     "email.inquiry_notification.link_hint": "Eller kopier dette link og åbn i browser:",
-
     "email.inquiry_reply.subject": "Svar fra Fælled United",
     "email.inquiry_reply.heading": "Hej :name,",
     "email.inquiry_reply.intro": "Tak for din henvendelse. Vi har nu svaret på din besked — se svaret herunder.",
     "email.inquiry_reply.reply_label": "Svar fra Fælled United",
     "email.inquiry_reply.your_original": "Din oprindelige henvendelse",
-
     "admin.nav.newsletter": "Nyhedsbreve",
     "admin.model.newsletter": "Nyhedsbrev",
     "admin.model.newsletters": "Nyhedsbreve",
@@ -320,5 +316,20 @@
     "admin.newsletter.save_and_preview": "Gem kladde og forhåndsvis",
     "admin.newsletter.draft_notice_title": "Dette er kun en kladde — intet sendes endnu.",
     "admin.newsletter.draft_notice_body": "Udfyld emne og indhold, og gem som kladde. Du kan forhåndsvise nyhedsbrevet og sende det til modtagerne i næste trin.",
-    "email.newsletter.footer": "Du modtager denne e-mail, fordi du er tilmeldt Fælled Uniteds nyhedsbrev. Skriv til :email for at afmelde dig."
+    "email.newsletter.footer": "Du modtager denne e-mail, fordi du er tilmeldt Fælled Uniteds nyhedsbrev. Skriv til :email for at afmelde dig.",
+    "admin.dashboard.open_inquiries": "Åbne henvendelser",
+    "admin.dashboard.new_registrations": "Nye tilmeldinger",
+    "admin.dashboard.mailing_list": "Nyhedsbrev abonnenter",
+    "admin.dashboard.total_registrations": "Tilmeldinger i alt",
+    "admin.dashboard.all_clear_inquiries": "Ingen åbne henvendelser",
+    "admin.dashboard.all_clear_registrations": "Ingen nye tilmeldinger",
+    "admin.dashboard.view_all": "Se alle",
+    "admin.dashboard.stat_desc.inquiries_pending": "Kræver svar",
+    "admin.dashboard.stat_desc.registrations_pending": "Afventer behandling",
+    "admin.dashboard.stat_desc.all_clear": "Alt er fint!",
+    "admin.dashboard.stat_desc.confirmed_subscribers": "Bekræftede abonnenter",
+    "admin.dashboard.stat_desc.all_time": "Alle tilmeldinger",
+    "admin.dashboard.empty_desc.all_caught_up": "Du er helt ajour!",
+    "admin.dashboard.empty_desc.no_recent_regs": "Ingen nye tilmeldinger de seneste 30 dage",
+    "admin.action.view": "Vis"
 }
