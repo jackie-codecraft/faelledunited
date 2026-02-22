@@ -13,17 +13,19 @@ class ContactInquiryConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $userLocale;
+
     public function __construct(
         public readonly ContactInquiry $inquiry,
         string $locale = 'da',
     ) {
-        $this->locale($locale);
+        $this->userLocale = in_array($locale, ['da', 'en']) ? $locale : 'da';
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('email.contact.subject'),
+            subject: trans('email.contact.subject', [], $this->userLocale),
         );
     }
 
@@ -31,6 +33,7 @@ class ContactInquiryConfirmation extends Mailable
     {
         return new Content(
             view: 'emails.contact-inquiry',
+            with: ['locale' => $this->userLocale],
         );
     }
 }

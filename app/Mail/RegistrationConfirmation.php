@@ -13,18 +13,20 @@ class RegistrationConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $userLocale;
+
     public function __construct(
         public readonly Registration $registration,
         string $locale = 'da',
     ) {
-        $this->locale($locale);
+        $this->userLocale = in_array($locale, ['da', 'en']) ? $locale : 'da';
         $this->registration->loadMissing(['department', 'ageGroup']);
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('email.registration.subject', ['name' => $this->registration->player_name]),
+            subject: trans('email.registration.subject', ['name' => $this->registration->player_name], $this->userLocale),
         );
     }
 
@@ -32,6 +34,7 @@ class RegistrationConfirmation extends Mailable
     {
         return new Content(
             view: 'emails.registration-confirmation',
+            with: ['locale' => $this->userLocale],
         );
     }
 }

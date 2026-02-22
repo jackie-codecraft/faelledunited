@@ -13,17 +13,19 @@ class MailingListWelcome extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $userLocale;
+
     public function __construct(
         public readonly NewsletterSubscriber $subscriber,
         string $locale = 'da',
     ) {
-        $this->locale($locale);
+        $this->userLocale = in_array($locale, ['da', 'en']) ? $locale : 'da';
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('email.mailing.subject'),
+            subject: trans('email.mailing.subject', [], $this->userLocale),
         );
     }
 
@@ -31,6 +33,7 @@ class MailingListWelcome extends Mailable
     {
         return new Content(
             view: 'emails.mailing-list-welcome',
+            with: ['locale' => $this->userLocale],
         );
     }
 }
