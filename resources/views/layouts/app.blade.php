@@ -150,6 +150,7 @@
                         <li><a href="{{ route('departments.index') }}" class="hover:text-white transition-colors">{{ __('Afdelinger') }}</a></li>
                         <li><a href="{{ route('about') }}" class="hover:text-white transition-colors">{{ __('Om klubben') }}</a></li>
                         <li><a href="{{ route('vedtaegter') }}" class="hover:text-white transition-colors">{{ __('Vedtægter') }}</a></li>
+                        <li><a href="{{ route('privacy-policy') }}" class="hover:text-white transition-colors">{{ __('Privatlivspolitik') }}</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors">{{ __('Kontakt') }}</a></li>
                     </ul>
                 </div>
@@ -170,6 +171,14 @@
 
             <div class="border-t border-[#1a1a1a] mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
                 <p>{{ __('footer.copyright', ['year' => date('Y')]) }}</p>
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-gray-400 transition-colors">
+                        {{ app()->getLocale() === 'en' ? 'Privacy Policy' : 'Privatlivspolitik' }}
+                    </a>
+                    <a href="{{ route('vedtaegter') }}" class="hover:text-gray-400 transition-colors">
+                        {{ app()->getLocale() === 'en' ? 'Statutes' : 'Vedtægter' }}
+                    </a>
+                </div>
                 <p>{{ __('footer.built_by') }}</p>
             </div>
         </div>

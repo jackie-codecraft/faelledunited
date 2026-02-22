@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BoardMember;
+use App\Models\PrivacyPolicy;
 use App\Models\Statute;
 use League\CommonMark\CommonMarkConverter;
 
@@ -34,6 +35,25 @@ class PageController extends Controller
         $updatedAt = $statute->updated_at;
 
         return view('pages.vedtaegter', compact('contentHtml', 'updatedAt'));
+    }
+
+    public function privacyPolicy()
+    {
+        $policy = PrivacyPolicy::current();
+        $locale = app()->getLocale();
+
+        $field = $locale === 'en' ? 'content_en' : 'content_da';
+        $markdown = $policy->{$field};
+
+        $converter = new CommonMarkConverter([
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+        ]);
+
+        $contentHtml = $converter->convert($markdown)->getContent();
+        $updatedAt = $policy->updated_at;
+
+        return view('pages.privacy', compact('contentHtml', 'updatedAt'));
     }
 
     private function vedtaegterPlaceholder(string $locale = 'da'): string

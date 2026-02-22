@@ -36,6 +36,7 @@ Route::post('/mailing-list', [MailingListController::class, 'store'])->name('mai
 // Static / content pages
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');
 Route::get('/vedtaegter', [PageController::class, 'vedtaegter'])->name('vedtaegter');
+Route::get('/privatlivspolitik', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
 
 // Language switcher
 Route::get('/language/{locale}', function (string $locale) {

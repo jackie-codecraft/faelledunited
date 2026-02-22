@@ -219,5 +219,10 @@
     "admin.nav.statutes": "Statutes",
     "admin.page.statutes": "Edit Statutes",
     "admin.statutes.saved": "Statutes saved",
-    "admin.statutes.save_button": "Save statutes"
+    "admin.statutes.save_button": "Save statutes",
+
+    "admin.nav.privacy_policy": "Privacy Policy",
+    "admin.page.privacy_policy": "Edit Privacy Policy",
+    "admin.privacy_policy.saved": "Privacy policy saved",
+    "admin.privacy_policy.save_button": "Save privacy policy"
 }

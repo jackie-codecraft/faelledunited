@@ -219,5 +219,10 @@
     "admin.nav.statutes": "Vedtægter",
     "admin.page.statutes": "Rediger vedtægter",
     "admin.statutes.saved": "Vedtægter gemt",
-    "admin.statutes.save_button": "Gem vedtægter"
+    "admin.statutes.save_button": "Gem vedtægter",
+
+    "admin.nav.privacy_policy": "Privatlivspolitik",
+    "admin.page.privacy_policy": "Rediger privatlivspolitik",
+    "admin.privacy_policy.saved": "Privatlivspolitik gemt",
+    "admin.privacy_policy.save_button": "Gem privatlivspolitik"
 }
