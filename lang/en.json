@@ -243,6 +243,16 @@
     "admin.col.unassigned": "Unassigned",
     "admin.users.cannot_delete_self": "You cannot delete your own account.",
 
+    "admin.profile.language_hint": "Language used for the admin panel interface.",
+    "admin.section.board_profile": "My Board Profile",
+    "admin.section.board_profile_hint": "This information is displayed publicly on the About page.",
+    "admin.col.role_da": "Title (Danish)",
+    "admin.col.role_en": "Title (English)",
+    "admin.col.bio_da": "Bio (Danish)",
+    "admin.col.bio_en": "Bio (English)",
+    "admin.col.photo": "Profile photo",
+    "admin.col.photo_hint": "Displayed as a circle. Square crop recommended.",
+
     "admin.section.user_account": "User Account",
     "admin.section.user_account_hint": "Link this board member to an admin user account. Optional — not all board members need one.",
     "admin.col.linked_user": "Linked user account",

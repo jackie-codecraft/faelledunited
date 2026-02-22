@@ -243,6 +243,16 @@
     "admin.col.unassigned": "Ikke tildelt",
     "admin.users.cannot_delete_self": "Du kan ikke slette din egen konto.",
 
+    "admin.profile.language_hint": "Sprog til adminpanelets brugerflade.",
+    "admin.section.board_profile": "Min bestyrelsesprofil",
+    "admin.section.board_profile_hint": "Disse oplysninger vises offentligt på Om klubben-siden.",
+    "admin.col.role_da": "Titel (dansk)",
+    "admin.col.role_en": "Titel (engelsk)",
+    "admin.col.bio_da": "Biografi (dansk)",
+    "admin.col.bio_en": "Biografi (engelsk)",
+    "admin.col.photo": "Profilbillede",
+    "admin.col.photo_hint": "Vises som cirkel. Kvadratisk beskæring anbefales.",
+
     "admin.section.user_account": "Brugerkonto",
     "admin.section.user_account_hint": "Kæd dette bestyrelsesmedlem sammen med en admin-brugerkonto. Valgfrit — ikke alle bestyrelsesmedlemmer behøver en konto.",
     "admin.col.linked_user": "Tilknyttet brugerkonto",
