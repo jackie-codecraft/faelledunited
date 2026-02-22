@@ -45,7 +45,7 @@ class RegistrationController extends Controller
             'parent_email.email'     => 'Angiv en gyldig e-mailadresse.',
             'phone.required'         => 'Telefonnummer er påkrævet.',
             'address.required'       => 'Adresse er påkrævet.',
-            'gdpr_consent.accepted'  => 'Du skal acceptere behandlingen af persondata for at fortsætte.',
+            'gdpr_consent.accepted'  => __('reg.gdpr_consent_error'),
         ]);
 
         $registration = Registration::create([
@@ -71,6 +71,9 @@ class RegistrationController extends Controller
         }
 
         return redirect()->route('registration.create')
-            ->with('success', 'Tusind tak for din tilmelding! Vi glæder os til at byde ' . $validated['player_name'] . ' velkommen. Vi kontakter dig hurtigst muligt på ' . $validated['parent_email'] . '.');
+            ->with('success', __('reg.success', [
+                'name'  => $validated['player_name'],
+                'email' => $validated['parent_email'],
+            ]));
     }
 }

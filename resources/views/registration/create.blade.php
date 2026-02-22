@@ -255,10 +255,16 @@
                         value="1"
                         required
                         {{ old('gdpr_consent') ? 'checked' : '' }}
-                        class="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#1a472a] focus:ring-[#1a472a]"
+                        class="mt-1 h-4 w-4 rounded border-gray-300 text-[#1a472a] focus:ring-[#1a472a] shrink-0"
                     >
-                    <span class="text-sm text-gray-600">
-                        {{ __('reg.gdpr_consent') }}
+                    <span class="text-sm text-gray-600 leading-relaxed">
+                        @if(app()->getLocale() === 'en')
+                            As the parent or guardian of the child named above, I confirm that Fælled United may process the personal data provided here for membership administration purposes, and that I have read and accept the
+                            <a href="{{ route('privacy-policy') }}" target="_blank" class="text-[#1a472a] underline hover:text-[#235c38] transition-colors">privacy policy</a>.
+                        @else
+                            Som forælder eller værge for ovenstående barn bekræfter jeg, at Fælled United må behandle de oplyste personoplysninger med henblik på klubtilmelding, og at jeg har læst og accepterer
+                            <a href="{{ route('privacy-policy') }}" target="_blank" class="text-[#1a472a] underline hover:text-[#235c38] transition-colors">privatlivspolitikken</a>.
+                        @endif
                         <span class="text-red-500">*</span>
                     </span>
                 </label>
