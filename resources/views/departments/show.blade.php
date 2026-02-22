@@ -81,8 +81,15 @@
                         @if($group->coach_info && !empty($group->coach_info['name']))
                         <p class="text-xs text-[#1a472a] mt-2 font-medium">👤 {{ $group->coach_info['name'] }}</p>
                         @endif
-                        @if($group->training_schedule && !empty($group->training_schedule['days']))
-                        <p class="text-xs text-gray-400 mt-1">📅 {{ $group->training_schedule['days'] }}</p>
+                        @php
+                            $sessionDays = collect($group->training_schedule ?? [])
+                                ->filter(fn($s) => is_array($s) && !empty($s['day']))
+                                ->map(fn($s) => __('days.' . $s['day']))
+                                ->unique()
+                                ->values();
+                        @endphp
+                        @if($sessionDays->isNotEmpty())
+                        <p class="text-xs text-gray-400 mt-1">📅 {{ $sessionDays->join(', ') }}</p>
                         @endif
                         <span class="mt-3 inline-flex items-center text-xs font-semibold text-[#1a472a] group-hover:underline">
                             {{ __('Se hold') }}

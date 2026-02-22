@@ -78,12 +78,42 @@ class AgeGroupResource extends Resource
                     ->columnSpanFull(),
             ]),
 
-            Forms\Components\Section::make('Training Schedule')
-                ->description('Training days, times and location')
+            Forms\Components\Section::make(fn () => __('admin.section.training_schedule'))
+                ->description(fn () => __('admin.section.training_schedule_desc'))
                 ->schema([
-                    Forms\Components\KeyValue::make('training_schedule')
-                        ->label('Training schedule fields')
-                        ->helperText('Keys: days, time, location, notes')
+                    Forms\Components\Repeater::make('training_schedule')
+                        ->label('')
+                        ->schema([
+                            Forms\Components\Select::make('day')
+                                ->label(fn () => __('admin.col.day'))
+                                ->options(fn () => [
+                                    'monday'    => __('days.monday'),
+                                    'tuesday'   => __('days.tuesday'),
+                                    'wednesday' => __('days.wednesday'),
+                                    'thursday'  => __('days.thursday'),
+                                    'friday'    => __('days.friday'),
+                                    'saturday'  => __('days.saturday'),
+                                    'sunday'    => __('days.sunday'),
+                                ])
+                                ->required(),
+
+                            Forms\Components\TextInput::make('time')
+                                ->label(fn () => __('admin.col.time'))
+                                ->placeholder('10:30 – 12:00')
+                                ->required(),
+
+                            Forms\Components\TextInput::make('location')
+                                ->label(fn () => __('admin.col.location'))
+                                ->placeholder('Byparken'),
+
+                            Forms\Components\TextInput::make('notes')
+                                ->label(fn () => __('admin.col.notes'))
+                                ->placeholder(__('admin.placeholder.optional')),
+                        ])
+                        ->columns(4)
+                        ->addActionLabel(fn () => __('admin.action.add_session'))
+                        ->defaultItems(0)
+                        ->reorderable()
                         ->columnSpanFull(),
                 ]),
 
