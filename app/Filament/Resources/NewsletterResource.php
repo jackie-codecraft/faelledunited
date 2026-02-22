@@ -8,6 +8,7 @@ use App\Models\Newsletter;
 use App\Models\NewsletterSubscriber;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Illuminate\Support\HtmlString;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
@@ -35,6 +36,20 @@ class NewsletterResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Placeholder::make('draft_notice')
+                    ->label('')
+                    ->content(fn (): HtmlString => new HtmlString(
+                        '<div class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 flex gap-3 text-sm text-blue-800">'
+                        . '<svg class="h-5 w-5 text-blue-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+                        . '<div>'
+                        . '<p class="font-semibold">' . __('admin.newsletter.draft_notice_title') . '</p>'
+                        . '<p class="mt-0.5 text-blue-700">' . __('admin.newsletter.draft_notice_body') . '</p>'
+                        . '</div>'
+                        . '</div>'
+                    ))
+                    ->visibleOn('create')
+                    ->columnSpanFull(),
+
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('subject')

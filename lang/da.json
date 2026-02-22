@@ -290,5 +290,7 @@
     "admin.newsletter.send_success": "Nyhedsbrevet er sat i kø til afsendelse.",
     "admin.newsletter.save_draft": "Gem kladde",
     "admin.newsletter.save_and_preview": "Gem kladde og forhåndsvis",
+    "admin.newsletter.draft_notice_title": "Dette er kun en kladde — intet sendes endnu.",
+    "admin.newsletter.draft_notice_body": "Udfyld emne og indhold, og gem som kladde. Du kan forhåndsvise nyhedsbrevet og sende det til modtagerne i næste trin.",
     "email.newsletter.footer": "Du modtager denne e-mail, fordi du er tilmeldt Fælled Uniteds nyhedsbrev. Skriv til :email for at afmelde dig."
 }

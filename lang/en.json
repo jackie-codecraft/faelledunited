@@ -290,5 +290,7 @@
     "admin.newsletter.send_success": "The newsletter has been queued for delivery.",
     "admin.newsletter.save_draft": "Save Draft",
     "admin.newsletter.save_and_preview": "Save Draft & Preview",
+    "admin.newsletter.draft_notice_title": "This is just a draft — nothing will be sent yet.",
+    "admin.newsletter.draft_notice_body": "Fill in the subject and content, then save as a draft. You can preview the newsletter and send it to recipients in the next step.",
     "email.newsletter.footer": "You are receiving this email because you are subscribed to the Fælled United newsletter. Write to :email to unsubscribe."
 }
