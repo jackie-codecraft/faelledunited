@@ -107,6 +107,9 @@ class ContactInquiryResource extends Resource
                     ->icon('heroicon-o-paper-airplane')
                     ->color('success')
                     ->form([
+                        Forms\Components\Placeholder::make('original_message')
+                            ->label(__('admin.inquiry.original_message_label'))
+                            ->content(fn (ContactInquiry $record): string => $record->message),
                         Forms\Components\Textarea::make('reply_message')
                             ->label(__('admin.inquiry.reply_message'))
                             ->required()

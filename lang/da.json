@@ -283,6 +283,7 @@
     "admin.inquiry.action.reply": "Besvar",
     "admin.inquiry.reply_message": "Svarbeskeden",
     "admin.inquiry.reply_sent": "Svar sendt!",
+    "admin.inquiry.original_message_label": "Original besked",
 
     "email.inquiry_notification.subject": "Ny henvendelse fra :name — Fælled United",
     "email.inquiry_notification.heading": "Ny kontakthenvendelse",

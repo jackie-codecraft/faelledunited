@@ -75,7 +75,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('contact.inquiry.reply.send', ['inquiry' => $inquiry->id]) }}">
+                <form method="POST" action="{{ $postUrl }}">
                     @csrf
 
                     <div class="mb-6">

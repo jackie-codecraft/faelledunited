@@ -17,6 +17,7 @@ class ContactInquiryReplyController extends Controller
     {
         return view('contact.reply', [
             'inquiry' => $inquiry,
+            'postUrl' => URL::signedRoute('contact.inquiry.reply.send', ['inquiry' => $inquiry->id]),
         ]);
     }
 

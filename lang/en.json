@@ -283,6 +283,7 @@
     "admin.inquiry.action.reply": "Reply",
     "admin.inquiry.reply_message": "Reply message",
     "admin.inquiry.reply_sent": "Reply sent!",
+    "admin.inquiry.original_message_label": "Original message",
 
     "email.inquiry_notification.subject": "New inquiry from :name — Fælled United",
     "email.inquiry_notification.heading": "New contact inquiry",
