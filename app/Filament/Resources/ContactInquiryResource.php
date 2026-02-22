@@ -8,6 +8,7 @@ use App\Models\ContactInquiry;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Illuminate\Support\HtmlString;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -107,9 +108,24 @@ class ContactInquiryResource extends Resource
                     ->icon('heroicon-o-paper-airplane')
                     ->color('success')
                     ->form([
-                        Forms\Components\Placeholder::make('original_message')
+                        Forms\Components\Placeholder::make('inquiry_details')
                             ->label(__('admin.inquiry.original_message_label'))
-                            ->content(fn (ContactInquiry $record): string => $record->message),
+                            ->content(fn (ContactInquiry $record): HtmlString => new HtmlString(
+                                '<div class="rounded-lg border border-gray-200 bg-gray-50 p-4 space-y-2 text-sm">'
+                                . '<div class="grid grid-cols-[5rem_1fr] gap-x-3 gap-y-1.5">'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.from') . '</span>'
+                                . '<span class="font-semibold text-gray-800">' . e($record->name) . ' &lt;' . e($record->email) . '&gt;</span>'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.subject') . '</span>'
+                                . '<span class="font-semibold text-gray-800">' . e($record->subject ?? '—') . '</span>'
+                                . '<span class="text-gray-500 font-medium">' . __('admin.inquiry.field.received') . '</span>'
+                                . '<span class="text-gray-600">' . e($record->created_at->format('d. M Y \k\l. H:i')) . '</span>'
+                                . '</div>'
+                                . '<div class="border-t border-gray-200 pt-3 mt-1">'
+                                . '<p class="text-gray-500 mb-1">' . __('admin.inquiry.field.message') . '</p>'
+                                . '<p class="text-gray-800 leading-relaxed whitespace-pre-wrap">' . e($record->message) . '</p>'
+                                . '</div>'
+                                . '</div>'
+                            )),
                         Forms\Components\Textarea::make('reply_message')
                             ->label(__('admin.inquiry.reply_message'))
                             ->required()
