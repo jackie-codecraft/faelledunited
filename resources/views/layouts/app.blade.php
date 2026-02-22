@@ -137,7 +137,7 @@
                     </p>
                     <p class="text-gray-500 text-sm mt-3">
                         Ørestad, København S<br>
-                        <a href="mailto:info@faelledunited.dk" class="hover:text-white transition-colors">info@faelledunited.dk</a>
+                        <a href="mailto:{{ $siteSettings->contact_email }}" class="hover:text-white transition-colors">{{ $siteSettings->contact_email }}</a>
                     </p>
                 </div>
 
@@ -159,12 +159,16 @@
                 <div>
                     <h3 class="font-semibold text-[#4a7a58] mb-4 uppercase text-xs tracking-wider">{{ __('Følg os') }}</h3>
                     <div class="flex gap-3">
-                        <a href="https://www.facebook.com/groups/816017494322742" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
+                        @if($siteSettings->facebook_url)
+                        <a href="{{ $siteSettings->facebook_url }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Facebook">
                             f
                         </a>
-                        <a href="https://www.instagram.com/faelledunited/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
+                        @endif
+                        @if($siteSettings->instagram_url)
+                        <a href="{{ $siteSettings->instagram_url }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-[#1a472a] flex items-center justify-center hover:bg-white hover:text-[#1a472a] transition-colors text-sm font-bold" title="Instagram">
                             ig
                         </a>
+                        @endif
                     </div>
                 </div>
             </div>

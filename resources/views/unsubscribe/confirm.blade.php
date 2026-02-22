@@ -69,13 +69,13 @@
                     <h2 class="text-xl font-bold text-gray-900 mb-3">Link not found</h2>
                     <p class="text-gray-500 text-sm mb-8 leading-relaxed">
                         This unsubscribe link is invalid or has already been used. If you are still receiving emails, please contact us at
-                        <a href="mailto:info@faelledunited.dk" class="text-[#1a472a] hover:underline">info@faelledunited.dk</a>.
+                        <a href="mailto:{{ $siteSettings->contact_email }}" class="text-[#1a472a] hover:underline">{{ $siteSettings->contact_email }}</a>.
                     </p>
                 @else
                     <h2 class="text-xl font-bold text-gray-900 mb-3">Linket blev ikke fundet</h2>
                     <p class="text-gray-500 text-sm mb-8 leading-relaxed">
                         Dette afmeldingslink er ugyldigt eller allerede brugt. Modtager du stadig e-mails, kan du kontakte os på
-                        <a href="mailto:info@faelledunited.dk" class="text-[#1a472a] hover:underline">info@faelledunited.dk</a>.
+                        <a href="mailto:{{ $siteSettings->contact_email }}" class="text-[#1a472a] hover:underline">{{ $siteSettings->contact_email }}</a>.
                     </p>
                 @endif
 

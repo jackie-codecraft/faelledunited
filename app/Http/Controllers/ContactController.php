@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactInquiryConfirmation;
 use App\Models\ContactInquiry;
+use App\Models\SiteSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -29,7 +30,11 @@ class ContactController extends Controller
             'message.required' => 'Besked er påkrævet.',
         ]);
 
-        $inquiry = ContactInquiry::create($validated);
+        $settings = SiteSettings::current();
+
+        $inquiry = ContactInquiry::create(array_merge($validated, [
+            'assigned_to' => $settings->default_inquiry_assignee_id,
+        ]));
 
         try {
             Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry, app()->getLocale()));

@@ -6,6 +6,7 @@ use App\Mail\RegistrationConfirmation;
 use App\Models\AgeGroup;
 use App\Models\Department;
 use App\Models\Registration;
+use App\Models\SiteSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,14 +14,22 @@ class RegistrationController extends Controller
 {
     public function create()
     {
-        $departments = Department::where('is_active', true)->orderBy('sort_order')->get();
-        $ageGroups   = AgeGroup::where('is_active', true)->orderBy('sort_order')->get();
+        $siteSettings = SiteSettings::current();
+        $departments  = Department::where('is_active', true)->orderBy('sort_order')->get();
+        $ageGroups    = AgeGroup::where('is_active', true)->orderBy('sort_order')->get();
 
-        return view('registration.create', compact('departments', 'ageGroups'));
+        return view('registration.create', compact('siteSettings', 'departments', 'ageGroups'));
     }
 
     public function store(Request $request)
     {
+        $settings = SiteSettings::current();
+
+        if (! $settings->registration_open) {
+            return redirect()->route('registration.create')
+                ->with('registration_closed', true);
+        }
+
         $validated = $request->validate([
             'player_name'             => ['required', 'string', 'max:255'],
             'date_of_birth'           => ['required', 'date', 'before:today'],

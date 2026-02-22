@@ -20,9 +20,9 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 100;
 
-    public static function getNavigationGroup(): ?string  { return __('admin.nav_group.settings'); }
+    public static function getNavigationGroup(): ?string  { return __('admin.nav_group.administration'); }
     public static function getNavigationLabel(): string   { return __('admin.nav.users'); }
     public static function getModelLabel(): string        { return __('admin.model.user'); }
     public static function getPluralModelLabel(): string  { return __('admin.model.users'); }

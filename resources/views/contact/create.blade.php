@@ -38,8 +38,8 @@
                             </svg>
                             <div>
                                 <p class="font-semibold text-gray-800">{{ __('E-mail') }}</p>
-                                <a href="mailto:info@faelledunited.dk" class="text-[#1a472a] hover:text-[#4a7a58] transition-colors">
-                                    info@faelledunited.dk
+                                <a href="mailto:{{ $siteSettings->contact_email }}" class="text-[#1a472a] hover:text-[#4a7a58] transition-colors">
+                                    {{ $siteSettings->contact_email }}
                                 </a>
                             </div>
                         </div>

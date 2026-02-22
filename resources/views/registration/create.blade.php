@@ -11,6 +11,28 @@
         </div>
     </div>
 
+    {{-- Registration closed notice --}}
+    @if(!$siteSettings->registration_open || session('registration_closed'))
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-8 text-center">
+            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h2 class="text-xl font-bold text-amber-800 mb-3">
+                {{ app()->getLocale() === 'en' ? 'Registration is currently closed' : 'Tilmelding er i øjeblikket lukket' }}
+            </h2>
+            <p class="text-amber-700 text-sm leading-relaxed">
+                @if(app()->getLocale() === 'en')
+                    {{ $siteSettings->registration_closed_message_en ?: 'We are not currently accepting new registrations. Please check back later or contact us for more information.' }}
+                @else
+                    {{ $siteSettings->registration_closed_message_da ?: 'Vi modtager i øjeblikket ikke nye tilmeldinger. Tjek igen senere eller kontakt os for mere information.' }}
+                @endif
+            </p>
+        </div>
+    </div>
+    @else
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {{-- Success message --}}
@@ -296,6 +318,7 @@
             </div>
         </form>
     </div>
+    @endif
 
     <script>
     function registrationForm() {

@@ -112,8 +112,8 @@
                     </a>
                     <div class="mt-6 pt-6 border-t border-[#235c38]">
                         <p class="text-gray-400 text-xs">{{ __('Spørgsmål? Skriv til os:') }}</p>
-                        <a href="mailto:info@faelledunited.dk" class="text-white/80 text-sm hover:text-white hover:underline transition-colors">
-                            info@faelledunited.dk
+                        <a href="mailto:{{ $siteSettings->contact_email }}" class="text-white/80 text-sm hover:text-white hover:underline transition-colors">
+                            {{ $siteSettings->contact_email }}
                         </a>
                     </div>
                 </div>
