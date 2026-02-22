@@ -68,9 +68,16 @@ class BoardMemberResource extends Resource
                 Forms\Components\Section::make('Photo')
                     ->schema([
                         Forms\Components\FileUpload::make('photo')
-                            ->label('Photo')
+                            ->label('Profile Photo')
+                            ->helperText('Displayed as a circle on the About page. Square crop recommended.')
                             ->image()
-                            ->directory('board-members'),
+                            ->disk('public')
+                            ->directory('board-members')
+                            ->imageEditor()
+                            ->circleCropper()
+                            ->imageEditorAspectRatios(['1:1'])
+                            ->maxSize(4096)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -79,6 +86,12 @@ class BoardMemberResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('photo')
+                    ->label('')
+                    ->disk('public')
+                    ->circular()
+                    ->size(40)
+                    ->defaultImageUrl(fn ($record) => 'https://ui-avatars.com/api/?background=1a472a&color=fff&size=80&name='.urlencode($record->name)),
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('admin.col.name'))
                     ->searchable(),

@@ -94,7 +94,10 @@ class NewsPostResource extends Resource
                         Forms\Components\FileUpload::make('featured_image')
                             ->label('Featured Image')
                             ->image()
+                            ->disk('public')
                             ->directory('news')
+                            ->imageEditor()
+                            ->maxSize(4096)
                             ->columnSpanFull(),
                     ]),
             ]);
