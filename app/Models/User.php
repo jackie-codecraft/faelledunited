@@ -19,6 +19,9 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'password',
         'locale',
+        'invite_token',
+        'invite_sent_at',
+        'invite_accepted_at',
     ];
 
     protected $hidden = [
@@ -29,9 +32,37 @@ class User extends Authenticatable implements FilamentUser
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
+            'email_verified_at'   => 'datetime',
+            'password'            => 'hashed',
+            'invite_sent_at'      => 'datetime',
+            'invite_accepted_at'  => 'datetime',
         ];
+    }
+
+    /** Generate a fresh invite token and stamp the sent time. */
+    public function generateInviteToken(): string
+    {
+        $token = \Illuminate\Support\Str::random(64);
+        $this->update([
+            'invite_token'       => $token,
+            'invite_sent_at'     => now(),
+            'invite_accepted_at' => null,
+        ]);
+        return $token;
+    }
+
+    public function inviteStatus(): string
+    {
+        if ($this->invite_accepted_at) return 'active';
+        if ($this->invite_sent_at)     return 'pending';
+        return 'none';
+    }
+
+    public function isInviteExpired(): bool
+    {
+        return $this->invite_sent_at
+            && $this->invite_accepted_at === null
+            && $this->invite_sent_at->lt(now()->subDays(7));
     }
 
     public function boardMember(): HasOne
