@@ -66,6 +66,10 @@ class AdminPanelProvider extends PanelProvider
             })
             ->brandLogoHeight('auto')
             ->renderHook(
+                'panels::topbar.end',
+                fn () => view('filament.topbar-view-site')
+            )
+            ->renderHook(
                 'panels::sidebar.nav.start',
                 fn () => new HtmlString(
                     '<div x-cloak x-show="! $store.sidebar.isOpen" '
