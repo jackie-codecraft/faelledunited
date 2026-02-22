@@ -107,6 +107,11 @@ class NewsPostResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('featured_image')
+                    ->label('')
+                    ->disk('public')
+                    ->size(48)
+                    ->extraImgAttributes(['class' => 'rounded object-cover']),
                 Tables\Columns\TextColumn::make('title_da')
                     ->label(__('admin.col.title'))
                     ->searchable()

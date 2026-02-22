@@ -86,6 +86,12 @@ class DepartmentResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('hero_image')
+                    ->label('')
+                    ->disk('public')
+                    ->size(48)
+                    ->defaultImageUrl(fn ($record) => 'https://ui-avatars.com/api/?background=1a472a&color=fff&size=80&name='.urlencode($record->name_da))
+                    ->extraImgAttributes(['class' => 'rounded object-cover']),
                 Tables\Columns\TextColumn::make('name_da')
                     ->label(__('admin.col.name'))
                     ->searchable(),
