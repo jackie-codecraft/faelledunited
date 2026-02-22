@@ -177,10 +177,10 @@
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
         {{-- Sport24 brand --}}
-        <div class="mb-8">
-            <span class="font-[family-name:var(--font-display)] text-6xl sm:text-7xl font-black tracking-widest" style="color: #e31d24;">
-                SPORT 24
-            </span>
+        <div class="mb-8 flex justify-center">
+            <img src="{{ asset('images/sport24-logo-horizontal.jpg') }}"
+                 alt="Sport24"
+                 class="h-16 sm:h-20 w-auto object-contain">
         </div>
 
         <p class="text-gray-700 text-base leading-relaxed mb-8 max-w-xl mx-auto">
