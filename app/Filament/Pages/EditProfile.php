@@ -7,13 +7,18 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\Auth\EditProfile as BaseEditProfile;
 use Illuminate\Database\Eloquent\Model;
 
 class EditProfile extends BaseEditProfile
 {
+    /** Render inside the full panel layout (sidebar + nav) instead of the standalone simple layout. */
+    public static function isSimple(): bool
+    {
+        return false;
+    }
+
     /** Temporarily holds board member fields extracted before the user save. */
     private ?array $pendingBoardMemberData = null;
 
@@ -63,20 +68,14 @@ class EditProfile extends BaseEditProfile
                                             ->schema([
                                                 TextInput::make('role_da')
                                                     ->label(__('admin.col.role_da'))
-                                                    ->maxLength(255),
-                                                Textarea::make('bio_da')
-                                                    ->label(__('admin.col.bio_da'))
-                                                    ->rows(4)
+                                                    ->maxLength(255)
                                                     ->columnSpanFull(),
                                             ]),
                                         Tab::make('🇬🇧 English')
                                             ->schema([
                                                 TextInput::make('role_en')
                                                     ->label(__('admin.col.role_en'))
-                                                    ->maxLength(255),
-                                                Textarea::make('bio_en')
-                                                    ->label(__('admin.col.bio_en'))
-                                                    ->rows(4)
+                                                    ->maxLength(255)
                                                     ->columnSpanFull(),
                                             ]),
                                     ])
@@ -116,8 +115,6 @@ class EditProfile extends BaseEditProfile
             $data['board_profile'] = [
                 'role_da' => $boardMember->role_da,
                 'role_en' => $boardMember->role_en,
-                'bio_da'  => $boardMember->bio_da,
-                'bio_en'  => $boardMember->bio_en,
                 'photo'   => $boardMember->photo,
             ];
         }
