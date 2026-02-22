@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\UnsubscribeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
@@ -32,6 +33,10 @@ Route::post('/kontakt', [ContactController::class, 'store'])->name('contact.stor
 
 // Mailing list
 Route::post('/mailing-list', [MailingListController::class, 'store'])->name('mailing-list.store');
+
+// Unsubscribe
+Route::get('/afmeld', [UnsubscribeController::class, 'confirm'])->name('unsubscribe.confirm');
+Route::post('/afmeld', [UnsubscribeController::class, 'process'])->name('unsubscribe.process');
 
 // Static / content pages
 Route::get('/om-klubben', [PageController::class, 'about'])->name('about');

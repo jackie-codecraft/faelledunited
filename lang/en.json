@@ -206,6 +206,8 @@
     "email.mailing.expect_3": "Results and stories from the teams",
     "email.mailing.no_spam": "We only send emails when there is something important to share - no spam.",
     "email.mailing.unsubscribe": "To unsubscribe, please contact us at :email.",
+    "email.mailing.unsubscribe_prompt": "You are receiving this email because you signed up on faelledunited.dk.",
+    "email.mailing.unsubscribe_link": "Unsubscribe from this list",
     "email.registration.subject": "Registration received - :name · Fælled United",
     "email.registration.heading": "Registration received!",
     "email.registration.intro": "Thank you, :parent_name! We have received the registration for :player_name. We will contact you as soon as possible to confirm the spot.",

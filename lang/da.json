@@ -206,6 +206,8 @@
     "email.mailing.expect_3": "Resultater og historier fra holdene",
     "email.mailing.no_spam": "Vi sender kun e-mails når der er noget vigtigt at dele — ingen spam.",
     "email.mailing.unsubscribe": "Ønsker du at afmelde dig, kan du kontakte os på :email.",
+    "email.mailing.unsubscribe_prompt": "Du modtager denne e-mail, fordi du tilmeldte dig på faelledunited.dk.",
+    "email.mailing.unsubscribe_link": "Afmeld nyhedsbrev",
     "email.registration.subject": "Tilmelding modtaget — :name · Fælled United",
     "email.registration.heading": "Tilmelding modtaget!",
     "email.registration.intro": "Tak, :parent_name! Vi har modtaget tilmeldingen for :player_name. Vi kontakter dig hurtigst muligt for at bekræfte pladsen.",

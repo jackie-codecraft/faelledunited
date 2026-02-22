@@ -34,10 +34,17 @@
     <tr><td style="border-top:1px solid #eeeeee"></td></tr>
 </table>
 
-<p style="margin:0 0 16px;font-size:14px;color:#555555;line-height:1.6">{{ trans('email.mailing.no_spam', [], $locale) }}</p>
+<p style="margin:0 0 24px;font-size:14px;color:#555555;line-height:1.6">{{ trans('email.mailing.no_spam', [], $locale) }}</p>
 
-<p style="margin:0;font-size:13px;color:#aaaaaa;line-height:1.5">
-    {!! trans('email.mailing.unsubscribe', ['email' => '<a href="mailto:info@faelledunited.dk" style="color:#1a472a;text-decoration:none">info@faelledunited.dk</a>'], $locale) !!}
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px">
+    <tr><td style="border-top:1px solid #eeeeee"></td></tr>
+</table>
+
+<p style="margin:0;font-size:12px;color:#aaaaaa;line-height:1.6;text-align:center">
+    {{ trans('email.mailing.unsubscribe_prompt', [], $locale) }}<br>
+    <a href="{{ $unsubscribeUrl }}" style="color:#888888;text-decoration:underline;font-size:12px">
+        {{ trans('email.mailing.unsubscribe_link', [], $locale) }}
+    </a>
 </p>
 
 @endsection

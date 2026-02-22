@@ -31,9 +31,14 @@ class MailingListWelcome extends Mailable
 
     public function content(): Content
     {
+        $unsubscribeUrl = route('unsubscribe.confirm', ['token' => $this->subscriber->token]);
+
         return new Content(
             view: 'emails.mailing-list-welcome',
-            with: ['locale' => $this->userLocale],
+            with: [
+                'locale'         => $this->userLocale,
+                'unsubscribeUrl' => $unsubscribeUrl,
+            ],
         );
     }
 }
