@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactInquiryConfirmation;
 use App\Models\ContactInquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -27,7 +29,14 @@ class ContactController extends Controller
             'message.required' => 'Besked er påkrævet.',
         ]);
 
-        ContactInquiry::create($validated);
+        $inquiry = ContactInquiry::create($validated);
+
+        try {
+            Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry));
+        } catch (\Exception $e) {
+            // Mail failure should not block the user — log silently
+            logger()->error('ContactInquiry confirmation mail failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('contact')
             ->with('success', 'Tak for din besked! Vi vender tilbage til dig hurtigst muligt.');

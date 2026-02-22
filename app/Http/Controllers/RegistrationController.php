@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegistrationConfirmation;
 use App\Models\AgeGroup;
 use App\Models\Department;
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -46,7 +48,7 @@ class RegistrationController extends Controller
             'gdpr_consent.accepted'  => 'Du skal acceptere behandlingen af persondata for at fortsætte.',
         ]);
 
-        Registration::create([
+        $registration = Registration::create([
             'player_name'             => $validated['player_name'],
             'date_of_birth'           => $validated['date_of_birth'],
             'department_id'           => $validated['department_id'],
@@ -61,6 +63,12 @@ class RegistrationController extends Controller
             'photo_consent'           => $request->boolean('photo_consent'),
             'status'                  => 'new',
         ]);
+
+        try {
+            Mail::to($registration->parent_email)->send(new RegistrationConfirmation($registration));
+        } catch (\Exception $e) {
+            logger()->error('Registration confirmation mail failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('registration.create')
             ->with('success', 'Tusind tak for din tilmelding! Vi glæder os til at byde ' . $validated['player_name'] . ' velkommen. Vi kontakter dig hurtigst muligt på ' . $validated['parent_email'] . '.');
