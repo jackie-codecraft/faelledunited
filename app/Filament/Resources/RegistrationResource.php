@@ -32,7 +32,7 @@ class RegistrationResource extends Resource
                 Forms\Components\Section::make('Sign-up Details')
                     ->schema([
                         Forms\Components\Select::make('department_id')
-                            ->label('Department')
+                            ->label(__('admin.col.department'))
                             ->relationship('department', 'name_da')
                             ->required(),
                         Forms\Components\Select::make('age_group_id')
@@ -40,7 +40,7 @@ class RegistrationResource extends Resource
                             ->relationship('ageGroup', 'label_da')
                             ->required(),
                         Forms\Components\TextInput::make('status')
-                            ->label('Status')
+                            ->label(__('admin.col.status'))
                             ->required(),
                     ])->columns(3),
 
@@ -59,10 +59,10 @@ class RegistrationResource extends Resource
                 Forms\Components\Section::make('Parent / Guardian')
                     ->schema([
                         Forms\Components\TextInput::make('parent_name')
-                            ->label('Name')
+                            ->label(__('admin.col.name'))
                             ->required(),
                         Forms\Components\TextInput::make('parent_email')
-                            ->label('Email')
+                            ->label(__('admin.col.email'))
                             ->email()
                             ->required(),
                         Forms\Components\TextInput::make('phone')
@@ -97,34 +97,34 @@ class RegistrationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('department.name_da')
-                    ->label('Department')
+                    ->label(__('admin.col.department'))
                     ->badge()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ageGroup.label_da')
-                    ->label('Team')
+                    ->label(__('admin.col.team'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('player_name')
-                    ->label('Child')
+                    ->label(__('admin.col.child'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_of_birth')
-                    ->label('Born')
+                    ->label(__('admin.col.born'))
                     ->date('d/m/Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('parent_name')
-                    ->label('Parent')
+                    ->label(__('admin.col.parent'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent_email')
-                    ->label('Email')
+                    ->label(__('admin.col.email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('admin.col.status'))
                     ->badge()
                     ->searchable(),
                 Tables\Columns\IconColumn::make('gdpr_consent')
-                    ->label('GDPR')
+                    ->label(__('admin.col.gdpr'))
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Submitted')
+                    ->label(__('admin.col.submitted'))
                     ->dateTime('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

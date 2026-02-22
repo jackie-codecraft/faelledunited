@@ -31,12 +31,12 @@ class NewsPostResource extends Resource
                 Forms\Components\Section::make('Publishing')
                     ->schema([
                         Forms\Components\Select::make('news_category_id')
-                            ->label('Category')
+                            ->label(__('admin.col.category'))
                             ->relationship('category', 'name_da')
                             ->searchable()
                             ->preload(),
                         Forms\Components\Toggle::make('is_published')
-                            ->label('Published')
+                            ->label(__('admin.col.published'))
                             ->required(),
                         Forms\Components\DateTimePicker::make('published_at')
                             ->label('Publish Date')
@@ -105,28 +105,28 @@ class NewsPostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title_da')
-                    ->label('Title')
+                    ->label(__('admin.col.title'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name_da')
-                    ->label('Category')
+                    ->label(__('admin.col.category'))
                     ->badge()
                     ->color('success'),
                 Tables\Columns\IconColumn::make('is_published')
-                    ->label('Published')
+                    ->label(__('admin.col.published'))
                     ->boolean(),
                 Tables\Columns\TextColumn::make('published_at')
-                    ->label('Date')
+                    ->label(__('admin.col.date'))
                     ->dateTime('d/m/Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created')
+                    ->label(__('admin.col.created'))
                     ->dateTime('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('is_published')->label('Published'),
+                Tables\Filters\TernaryFilter::make('is_published')->label(__('admin.col.published')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

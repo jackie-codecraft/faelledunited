@@ -28,7 +28,7 @@ class AgeGroupResource extends Resource
 
             Forms\Components\Section::make('Basic Info')->schema([
                 Forms\Components\Select::make('department_id')
-                    ->label('Department')
+                    ->label(__('admin.col.department'))
                     ->relationship('department', 'name_da')
                     ->required()
                     ->searchable(),
@@ -51,7 +51,7 @@ class AgeGroupResource extends Resource
                     ->required(),
 
                 Forms\Components\TextInput::make('birth_year')
-                    ->label('Birth Year')
+                    ->label(__('admin.col.birth_year'))
                     ->numeric()
                     ->minValue(2000)
                     ->maxValue(2025),
@@ -62,7 +62,7 @@ class AgeGroupResource extends Resource
                     ->default(0),
 
                 Forms\Components\Toggle::make('is_active')
-                    ->label('Active')
+                    ->label(__('admin.col.active'))
                     ->required(),
             ])->columns(2),
 
@@ -103,11 +103,11 @@ class AgeGroupResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('department.name_da')
-                    ->label('Department')
+                    ->label(__('admin.col.department'))
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('label_da')
-                    ->label('Name (DA)')
+                    ->label(__('admin.col.name_da'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('gender')
                     ->badge()
@@ -117,12 +117,12 @@ class AgeGroupResource extends Resource
                         default => 'warning',
                     }),
                 Tables\Columns\TextColumn::make('birth_year')
-                    ->label('Birth Year')
+                    ->label(__('admin.col.birth_year'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('admin.col.active'))
                     ->boolean(),
             ])
             ->defaultSort('sort_order')

@@ -35,15 +35,15 @@ class BoardMemberResource extends Resource
                             ->label('Full Name')
                             ->required(),
                         Forms\Components\TextInput::make('email')
-                            ->label('Email')
+                            ->label(__('admin.col.email'))
                             ->email(),
                         Forms\Components\TextInput::make('sort_order')
-                            ->label('Sort Order')
+                            ->label(__('admin.col.sort_order'))
                             ->required()
                             ->numeric()
                             ->default(0),
                         Forms\Components\Toggle::make('is_active')
-                            ->label('Active')
+                            ->label(__('admin.col.active'))
                             ->required(),
                     ])->columns(2),
 
@@ -80,20 +80,20 @@ class BoardMemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('admin.col.name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('role_da')
-                    ->label('Role (DA)')
+                    ->label(__('admin.col.role_da'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('admin.col.email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->label('Order')
+                    ->label(__('admin.col.order'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('admin.col.active'))
                     ->boolean(),
             ])
             ->filters([

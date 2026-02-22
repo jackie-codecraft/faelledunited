@@ -48,11 +48,11 @@ class DepartmentResource extends Resource
                             ->maxLength(255)
                             ->unique(Department::class, 'slug', ignoreRecord: true),
                         Forms\Components\TextInput::make('sort_order')
-                            ->label('Sort Order')
+                            ->label(__('admin.col.sort_order'))
                             ->numeric()
                             ->default(0),
                         Forms\Components\Toggle::make('is_active')
-                            ->label('Active')
+                            ->label(__('admin.col.active'))
                             ->required(),
                     ])->columns(2),
 
@@ -83,16 +83,16 @@ class DepartmentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name_da')
-                    ->label('Name')
+                    ->label(__('admin.col.name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
-                    ->label('Slug'),
+                    ->label(__('admin.col.slug')),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->label('Sort Order')
+                    ->label(__('admin.col.sort_order'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('admin.col.active'))
                     ->boolean(),
             ])
             ->actions([
