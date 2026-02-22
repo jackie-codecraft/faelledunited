@@ -32,14 +32,18 @@ class ContactInquiryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\TextInput::make('subject')
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 Forms\Components\Textarea::make('message')
-                    ->required()
+                    ->disabled()
+                    ->dehydrated(false)
                     ->columnSpanFull(),
                 Forms\Components\Select::make('status')
                     ->options([
