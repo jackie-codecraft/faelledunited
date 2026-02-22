@@ -92,35 +92,41 @@
                 @endif
 
                 {{-- Training schedule --}}
-                @if($ageGroup->training_schedule && !empty($ageGroup->training_schedule))
+                @php
+                    $sessions = collect($ageGroup->training_schedule ?? [])
+                        ->filter(fn($s) => is_array($s) && !empty($s['day']));
+                @endphp
+                @if($sessions->isNotEmpty())
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
                     <h2 class="text-xl font-bold text-[#1a472a] mb-5 flex items-center gap-2">
                         <span>📅</span>
                         {{ __('Træningstider') }}
                     </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        @if(!empty($ageGroup->training_schedule['days']))
-                        <div class="bg-gray-50 rounded-xl p-4">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Dage') }}</p>
-                            <p class="font-semibold text-gray-800">{{ $ageGroup->training_schedule['days'] }}</p>
+                    <div class="divide-y divide-gray-100">
+                        @foreach($sessions as $session)
+                        <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Dag') }}</p>
+                                <p class="font-semibold text-gray-800">{{ __('days.' . $session['day']) }}</p>
+                            </div>
+                            @if(!empty($session['time']))
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Tid') }}</p>
+                                <p class="font-semibold text-gray-800">{{ $session['time'] }}</p>
+                            </div>
+                            @endif
+                            @if(!empty($session['location']))
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Sted') }}</p>
+                                <p class="font-semibold text-gray-800">{{ $session['location'] }}</p>
+                            </div>
+                            @endif
+                            @if(!empty($session['notes']))
+                            <p class="sm:col-span-3 text-gray-500 text-sm italic px-1">{{ $session['notes'] }}</p>
+                            @endif
                         </div>
-                        @endif
-                        @if(!empty($ageGroup->training_schedule['time']))
-                        <div class="bg-gray-50 rounded-xl p-4">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Tid') }}</p>
-                            <p class="font-semibold text-gray-800">{{ $ageGroup->training_schedule['time'] }}</p>
-                        </div>
-                        @endif
-                        @if(!empty($ageGroup->training_schedule['location']))
-                        <div class="bg-gray-50 rounded-xl p-4">
-                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{{ __('Sted') }}</p>
-                            <p class="font-semibold text-gray-800">{{ $ageGroup->training_schedule['location'] }}</p>
-                        </div>
-                        @endif
+                        @endforeach
                     </div>
-                    @if(!empty($ageGroup->training_schedule['notes']))
-                    <p class="mt-4 text-gray-500 text-sm italic">{{ $ageGroup->training_schedule['notes'] }}</p>
-                    @endif
                 </div>
                 @endif
 
