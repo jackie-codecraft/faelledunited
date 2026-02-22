@@ -72,28 +72,23 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.club'))
-                    ->icon('heroicon-o-building-office-2')
-                    ->sort(1),
+                    ->icon('heroicon-o-building-office-2'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.members'))
-                    ->icon('heroicon-o-users')
-                    ->sort(2),
+                    ->icon('heroicon-o-users'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.communications'))
-                    ->icon('heroicon-o-chat-bubble-left-right')
-                    ->sort(3),
+                    ->icon('heroicon-o-chat-bubble-left-right'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.news'))
-                    ->icon('heroicon-o-newspaper')
-                    ->sort(4),
+                    ->icon('heroicon-o-newspaper'),
 
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.administration'))
-                    ->icon('heroicon-o-cog-6-tooth')
-                    ->sort(5),
+                    ->icon('heroicon-o-cog-6-tooth'),
             ])
 
             // ── Resources / pages / widgets ──────────────────────────────
