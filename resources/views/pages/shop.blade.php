@@ -111,7 +111,21 @@
 
             {{-- Card 1: Club kits --}}
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center hover:shadow-md transition-shadow">
-                <div class="text-5xl mb-4">🎽</div>
+                {{-- Football jersey SVG --}}
+                <div class="flex justify-center mb-4">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-16 h-16">
+                        <!-- Jersey body with sleeves -->
+                        <path d="M37 10 Q50 20 63 10 L82 20 L94 42 L76 48 L74 88 L26 88 L24 48 L6 42 L18 20 Z"
+                              fill="#1a472a"/>
+                        <!-- V-neck collar -->
+                        <path d="M37 10 L50 30 L63 10"
+                              fill="none" stroke="white" stroke-width="3.5"
+                              stroke-linejoin="round" stroke-linecap="round"/>
+                        <!-- Thin white shoulder stripe -->
+                        <path d="M18 20 L24 48" stroke="white" stroke-width="1.5" stroke-opacity="0.25"/>
+                        <path d="M82 20 L76 48" stroke="white" stroke-width="1.5" stroke-opacity="0.25"/>
+                    </svg>
+                </div>
                 <h3 class="font-[family-name:var(--font-display)] text-2xl text-[#1a472a] mb-3 tracking-wide">
                     @if(app()->getLocale() === 'en')
                         Club kits with logo
