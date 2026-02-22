@@ -269,7 +269,6 @@
     "admin.col.no_account": "No account",
     "admin.col.has_account": "Account",
     "admin.col.board_member": "Board member",
-
     "admin.inquiry.status.new": "New",
     "admin.inquiry.status.in_progress": "In progress",
     "admin.inquiry.status.resolved": "Resolved",
@@ -282,7 +281,6 @@
     "admin.inquiry.field.subject": "Subject",
     "admin.inquiry.field.received": "Received",
     "admin.inquiry.field.message": "Message",
-
     "email.inquiry_notification.subject": "New inquiry from :name — Fælled United",
     "email.inquiry_notification.heading": "New contact inquiry",
     "email.inquiry_notification.intro": "You have received a new inquiry via the contact form. See the details below and use the button to reply.",
@@ -290,13 +288,11 @@
     "email.inquiry_notification.submitted_at": "Received",
     "email.inquiry_notification.reply_button": "Reply to :name",
     "email.inquiry_notification.link_hint": "Or copy this link and open in browser:",
-
     "email.inquiry_reply.subject": "Reply from Fælled United",
     "email.inquiry_reply.heading": "Hi :name,",
     "email.inquiry_reply.intro": "Thank you for your enquiry. We have now replied to your message — see the reply below.",
     "email.inquiry_reply.reply_label": "Reply from Fælled United",
     "email.inquiry_reply.your_original": "Your original enquiry",
-
     "admin.nav.newsletter": "Newsletters",
     "admin.model.newsletter": "Newsletter",
     "admin.model.newsletters": "Newsletters",
@@ -320,5 +316,20 @@
     "admin.newsletter.save_and_preview": "Save Draft & Preview",
     "admin.newsletter.draft_notice_title": "This is just a draft — nothing will be sent yet.",
     "admin.newsletter.draft_notice_body": "Fill in the subject and content, then save as a draft. You can preview the newsletter and send it to recipients in the next step.",
-    "email.newsletter.footer": "You are receiving this email because you are subscribed to the Fælled United newsletter. Write to :email to unsubscribe."
+    "email.newsletter.footer": "You are receiving this email because you are subscribed to the Fælled United newsletter. Write to :email to unsubscribe.",
+    "admin.dashboard.open_inquiries": "Open inquiries",
+    "admin.dashboard.new_registrations": "New registrations",
+    "admin.dashboard.mailing_list": "Mailing list subscribers",
+    "admin.dashboard.total_registrations": "Total registrations",
+    "admin.dashboard.all_clear_inquiries": "No open inquiries",
+    "admin.dashboard.all_clear_registrations": "No new registrations",
+    "admin.dashboard.view_all": "View all",
+    "admin.dashboard.stat_desc.inquiries_pending": "Need a reply",
+    "admin.dashboard.stat_desc.registrations_pending": "Pending review",
+    "admin.dashboard.stat_desc.all_clear": "You're all clear!",
+    "admin.dashboard.stat_desc.confirmed_subscribers": "Confirmed subscribers",
+    "admin.dashboard.stat_desc.all_time": "All time",
+    "admin.dashboard.empty_desc.all_caught_up": "You're all caught up!",
+    "admin.dashboard.empty_desc.no_recent_regs": "No new registrations in the last 30 days",
+    "admin.action.view": "View"
 }
