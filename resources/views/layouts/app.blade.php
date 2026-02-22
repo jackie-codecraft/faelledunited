@@ -184,7 +184,7 @@
                     </a>
                 </div>
                 <div class="text-right space-y-0.5">
-                    <p>{{ app()->getLocale() === 'en' ? 'Administered with love by volunteers' : 'Drevet med kærlighed af frivillige' }}</p>
+                    <p>{{ app()->getLocale() === 'en' ? 'Administered with ❤️ by volunteers' : 'Drevet med ❤️ af frivillige' }}</p>
                     <p>Built by <a href="https://sc-codecraft.com" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">SC CodeCraft</a></p>
                 </div>
             </div>
