@@ -32,12 +32,13 @@ class NewsletterSubscriberResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
-                Forms\Components\TextInput::make('locale')
+                Forms\Components\Select::make('locale')
+                    ->options(['da' => 'Dansk', 'en' => 'English'])
+                    ->default('da')
                     ->required(),
                 Forms\Components\Toggle::make('confirmed')
-                    ->required(),
+                    ->default(true),
                 Forms\Components\DateTimePicker::make('confirmed_at'),
-                Forms\Components\TextInput::make('token'),
             ]);
     }
 

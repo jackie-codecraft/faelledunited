@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactInquiryReplyController;
+use App\Http\Controllers\NewsletterPreviewController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\UnsubscribeController;
 use App\Http\Controllers\DepartmentController;
@@ -55,3 +56,8 @@ Route::get('/language/{locale}', function (string $locale) {
     }
     return redirect()->back()->withInput();
 })->name('language.switch');
+
+// Newsletter preview (admin-auth protected)
+Route::get('/admin/newsletters/{newsletter}/preview', [NewsletterPreviewController::class, 'show'])
+    ->name('newsletters.preview')
+    ->middleware(['auth']);
