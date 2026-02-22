@@ -18,11 +18,12 @@ class NewsCategoryResource extends Resource
     protected static ?string $model = NewsCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    protected static ?string $navigationLabel = 'Categories';
-    protected static ?string $navigationGroup = 'News';
     protected static ?int    $navigationSort = 2;
-    protected static ?string $modelLabel = 'Category';
-    protected static ?string $pluralModelLabel = 'Categories';
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.news'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.categories'); }
+    public static function getModelLabel(): string         { return __('admin.model.category'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.categories'); }
 
     public static function form(Form $form): Form
     {

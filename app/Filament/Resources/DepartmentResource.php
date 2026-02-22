@@ -16,11 +16,12 @@ class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'Departments';
-    protected static ?string $navigationGroup = 'Club';
     protected static ?int    $navigationSort = 1;
-    protected static ?string $modelLabel = 'Department';
-    protected static ?string $pluralModelLabel = 'Departments';
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.club'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.departments'); }
+    public static function getModelLabel(): string         { return __('admin.model.department'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.departments'); }
 
     public static function form(Form $form): Form
     {

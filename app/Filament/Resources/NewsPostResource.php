@@ -17,11 +17,12 @@ class NewsPostResource extends Resource
 {
     protected static ?string $model = NewsPost::class;
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'Posts';
-    protected static ?string $navigationGroup = 'News';
     protected static ?int    $navigationSort = 1;
-    protected static ?string $modelLabel = 'Post';
-    protected static ?string $pluralModelLabel = 'Posts';
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.news'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.posts'); }
+    public static function getModelLabel(): string         { return __('admin.model.post'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.posts'); }
 
     public static function form(Form $form): Form
     {

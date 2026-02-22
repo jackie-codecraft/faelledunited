@@ -18,11 +18,12 @@ class NewsletterSubscriberResource extends Resource
     protected static ?string $model = NewsletterSubscriber::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static ?string $navigationLabel = 'Mailing List';
-    protected static ?string $navigationGroup = 'Communications';
     protected static ?int    $navigationSort = 2;
-    protected static ?string $modelLabel = 'Subscriber';
-    protected static ?string $pluralModelLabel = 'Mailing List Subscribers';
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.communications'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.mailing_list'); }
+    public static function getModelLabel(): string         { return __('admin.model.subscriber'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.mailing_list_subscribers'); }
 
     public static function form(Form $form): Form
     {

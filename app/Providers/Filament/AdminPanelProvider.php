@@ -71,19 +71,19 @@ class AdminPanelProvider extends PanelProvider
             // ── Navigation groups (ordered) ──────────────────────────────
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label('Club')
+                    ->label(fn () => __('admin.nav_group.club'))
                     ->icon('heroicon-o-building-office-2'),
 
                 NavigationGroup::make()
-                    ->label('News')
+                    ->label(fn () => __('admin.nav_group.news'))
                     ->icon('heroicon-o-newspaper'),
 
                 NavigationGroup::make()
-                    ->label('Members')
+                    ->label(fn () => __('admin.nav_group.members'))
                     ->icon('heroicon-o-users'),
 
                 NavigationGroup::make()
-                    ->label('Communications')
+                    ->label(fn () => __('admin.nav_group.communications'))
                     ->icon('heroicon-o-chat-bubble-left-right'),
             ])
 

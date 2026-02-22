@@ -18,9 +18,12 @@ class BoardMemberResource extends Resource
     protected static ?string $model = BoardMember::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
-    protected static ?string $navigationLabel = 'Board Members';
-    protected static ?string $navigationGroup = 'Club';
     protected static ?int    $navigationSort = 3;
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.club'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.board_members'); }
+    public static function getModelLabel(): string         { return __('admin.model.board_member'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.board_members'); }
 
     public static function form(Form $form): Form
     {

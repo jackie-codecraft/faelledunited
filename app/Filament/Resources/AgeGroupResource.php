@@ -15,9 +15,12 @@ class AgeGroupResource extends Resource
 {
     protected static ?string $model = AgeGroup::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $navigationLabel = 'Age Groups & Teams';
-    protected static ?string $navigationGroup = 'Club';
     protected static ?int    $navigationSort = 2;
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.club'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.age_groups'); }
+    public static function getModelLabel(): string         { return __('admin.model.age_group'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.age_groups'); }
 
     public static function form(Form $form): Form
     {

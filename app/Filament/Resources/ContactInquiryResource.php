@@ -18,11 +18,12 @@ class ContactInquiryResource extends Resource
     protected static ?string $model = ContactInquiry::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
-    protected static ?string $navigationLabel = 'Contact Inquiries';
-    protected static ?string $navigationGroup = 'Communications';
     protected static ?int    $navigationSort = 1;
-    protected static ?string $modelLabel = 'Inquiry';
-    protected static ?string $pluralModelLabel = 'Contact Inquiries';
+
+    public static function getNavigationGroup(): ?string   { return __('admin.nav_group.communications'); }
+    public static function getNavigationLabel(): string    { return __('admin.nav.contact_inquiries'); }
+    public static function getModelLabel(): string         { return __('admin.model.inquiry'); }
+    public static function getPluralModelLabel(): string   { return __('admin.model.contact_inquiries'); }
 
     public static function form(Form $form): Form
     {
