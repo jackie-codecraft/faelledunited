@@ -22,3 +22,17 @@
     /* Tertiary — saturated gold, sparingly for category badges / special labels only */
     --color-tertiary: #fbbf24;
 }
+
+/* ── Tighter prose spacing ─────────────────────────────────────────────────
+   Typography plugin uses :where() (zero specificity), so .prose h2 wins cleanly.
+   These values are ~30% tighter than the prose-lg defaults.
+   ────────────────────────────────────────────────────────────────────────── */
+.prose h1 { margin-top: 0;      margin-bottom: 0.5em; }
+.prose h2 { margin-top: 1.4em;  margin-bottom: 0.35em; }
+.prose h3 { margin-top: 1.25em; margin-bottom: 0.35em; }
+.prose h4 { margin-top: 1em;    margin-bottom: 0.3em; }
+.prose p  { margin-top: 0.8em;  margin-bottom: 0.8em; }
+.prose ul,
+.prose ol { margin-top: 0.8em;  margin-bottom: 0.8em; }
+.prose li { margin-top: 0.25em; margin-bottom: 0.25em; }
+.prose hr { margin-top: 2em;    margin-bottom: 2em; }
