@@ -289,5 +289,6 @@
     "admin.newsletter.send_confirm": "Are you sure you want to send this newsletter to :count subscribers? This action cannot be undone.",
     "admin.newsletter.send_success": "The newsletter has been queued for delivery.",
     "admin.newsletter.save_draft": "Save Draft",
+    "admin.newsletter.save_and_preview": "Save Draft & Preview",
     "email.newsletter.footer": "You are receiving this email because you are subscribed to the Fælled United newsletter. Write to :email to unsubscribe."
 }

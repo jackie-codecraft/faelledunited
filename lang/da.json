@@ -289,5 +289,6 @@
     "admin.newsletter.send_confirm": "Er du sikker på, at du vil sende dette nyhedsbrev til :count abonnenter? Handlingen kan ikke fortrydes.",
     "admin.newsletter.send_success": "Nyhedsbrevet er sat i kø til afsendelse.",
     "admin.newsletter.save_draft": "Gem kladde",
+    "admin.newsletter.save_and_preview": "Gem kladde og forhåndsvis",
     "email.newsletter.footer": "Du modtager denne e-mail, fordi du er tilmeldt Fælled Uniteds nyhedsbrev. Skriv til :email for at afmelde dig."
 }

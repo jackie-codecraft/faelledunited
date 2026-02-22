@@ -10,16 +10,41 @@ class CreateNewsletter extends CreateRecord
 {
     protected static string $resource = NewsletterResource::class;
 
+    // Tracks whether preview should open after save
+    public bool $previewAfterSave = false;
+
     // Redirect to edit page after creation so Preview + Send are immediately available
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
     }
 
-    // Rename "Create" to "Save Draft" to make clear it doesn't send anything
-    protected function getCreateFormAction(): Action
+    protected function getFormActions(): array
     {
-        return parent::getCreateFormAction()
-            ->label(__('admin.newsletter.save_draft'));
+        return [
+            // "Save Draft" — default create button
+            $this->getCreateFormAction()
+                ->label(__('admin.newsletter.save_draft')),
+
+            // "Save Draft & Preview" — saves then opens preview in new tab
+            Action::make('saveAndPreview')
+                ->label(__('admin.newsletter.save_and_preview'))
+                ->icon('heroicon-o-eye')
+                ->color('gray')
+                ->action(function () {
+                    $this->previewAfterSave = true;
+                    $this->create();
+                }),
+
+            $this->getCancelFormAction(),
+        ];
+    }
+
+    protected function afterCreate(): void
+    {
+        if ($this->previewAfterSave) {
+            $previewUrl = route('newsletters.preview', $this->getRecord());
+            $this->js("window.open('" . $previewUrl . "', '_blank')");
+        }
     }
 }
