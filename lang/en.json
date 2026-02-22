@@ -241,5 +241,12 @@
     "admin.col.language": "Language",
     "admin.col.assigned_to": "Assigned to",
     "admin.col.unassigned": "Unassigned",
-    "admin.users.cannot_delete_self": "You cannot delete your own account."
+    "admin.users.cannot_delete_self": "You cannot delete your own account.",
+
+    "admin.section.user_account": "User Account",
+    "admin.section.user_account_hint": "Link this board member to an admin user account. Optional — not all board members need one.",
+    "admin.col.linked_user": "Linked user account",
+    "admin.col.no_account": "No account",
+    "admin.col.has_account": "Account",
+    "admin.col.board_member": "Board member"
 }

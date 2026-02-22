@@ -241,5 +241,12 @@
     "admin.col.language": "Sprog",
     "admin.col.assigned_to": "Tildelt til",
     "admin.col.unassigned": "Ikke tildelt",
-    "admin.users.cannot_delete_self": "Du kan ikke slette din egen konto."
+    "admin.users.cannot_delete_self": "Du kan ikke slette din egen konto.",
+
+    "admin.section.user_account": "Brugerkonto",
+    "admin.section.user_account_hint": "Kæd dette bestyrelsesmedlem sammen med en admin-brugerkonto. Valgfrit — ikke alle bestyrelsesmedlemmer behøver en konto.",
+    "admin.col.linked_user": "Tilknyttet brugerkonto",
+    "admin.col.no_account": "Ingen konto",
+    "admin.col.has_account": "Konto",
+    "admin.col.board_member": "Bestyrelsesmedlem"
 }

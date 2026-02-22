@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BoardMemberResource\Pages;
 use App\Filament\Resources\BoardMemberResource\RelationManagers;
 use App\Models\BoardMember;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,6 +30,22 @@ class BoardMemberResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Section::make(__('admin.section.user_account'))
+                    ->description(__('admin.section.user_account_hint'))
+                    ->schema([
+                        Forms\Components\Select::make('user_id')
+                            ->label(__('admin.col.linked_user'))
+                            ->options(fn (?BoardMember $record) => User::orderBy('name')
+                                ->get()
+                                ->filter(fn ($user) => ! $user->boardMember || $user->boardMember->id === $record?->id)
+                                ->pluck('email', 'id')
+                                ->prepend('— ' . __('admin.col.no_account') . ' —', '')
+                            )
+                            ->searchable()
+                            ->nullable()
+                            ->columnSpanFull(),
+                    ]),
+
                 Forms\Components\Section::make('Person')
                     ->schema([
                         Forms\Components\TextInput::make('name')
@@ -108,6 +125,14 @@ class BoardMemberResource extends Resource
                 Tables\Columns\IconColumn::make('is_active')
                     ->label(__('admin.col.active'))
                     ->boolean(),
+                Tables\Columns\IconColumn::make('user_id')
+                    ->label(__('admin.col.has_account'))
+                    ->boolean()
+                    ->trueIcon('heroicon-o-user-circle')
+                    ->falseIcon('heroicon-o-user')
+                    ->trueColor('success')
+                    ->falseColor('gray')
+                    ->tooltip(fn ($record) => $record->user?->email),
             ])
             ->filters([
                 //

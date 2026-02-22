@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use App\Models\BoardMember;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -90,6 +91,15 @@ class UserResource extends Resource
                     ->label(__('admin.col.language'))
                     ->formatStateUsing(fn ($state) => $state === 'en' ? '🇬🇧 English' : '🇩🇰 Dansk')
                     ->color('success'),
+
+                Tables\Columns\IconColumn::make('boardMember.id')
+                    ->label(__('admin.col.board_member'))
+                    ->boolean()
+                    ->trueIcon('heroicon-o-identification')
+                    ->falseIcon('heroicon-o-minus')
+                    ->trueColor('success')
+                    ->falseColor('gray')
+                    ->tooltip(fn ($record) => $record->boardMember?->role_da),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('admin.col.created'))
