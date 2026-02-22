@@ -103,8 +103,13 @@
                 <a href="{{ route('departments.show', $dept->slug) }}"
                    class="group relative rounded-2xl overflow-hidden min-h-[300px] flex flex-col justify-end">
                     {{-- Photo background --}}
+                    @php
+                        $deptHero = $dept->hero_image
+                            ? \Illuminate\Support\Facades\Storage::disk('public')->url($dept->hero_image)
+                            : asset('images/departments/' . $dept->slug . '.jpg');
+                    @endphp
                     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]"
-                         style="background-image: url('{{ asset('images/departments/' . $dept->slug . '.jpg') }}')"></div>
+                         style="background-image: url('{{ $deptHero }}')"></div>
                     {{-- Gradient overlay --}}
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/90 via-[#0a1a0f]/30 to-transparent"></div>
                     {{-- Content --}}

@@ -5,8 +5,16 @@
 @section('content')
 
     {{-- Department header --}}
-    <div class="bg-gradient-to-br from-[#0f2718] via-[#1a472a] to-[#0d2014] text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    @php
+        $deptHero = $department->hero_image
+            ? \Illuminate\Support\Facades\Storage::disk('public')->url($department->hero_image)
+            : asset('images/departments/' . $department->slug . '.jpg');
+    @endphp
+    <div class="relative text-white py-12 overflow-hidden"
+         style="background-image: url('{{ $deptHero }}'); background-size: cover; background-position: center;">
+        {{-- Dark overlay so text stays readable --}}
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0f2718]/90 via-[#1a472a]/80 to-[#0d2014]/90"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="text-sm text-gray-400 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">{{ __('Hjem') }}</a>
                 <span class="mx-2">/</span>

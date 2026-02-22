@@ -18,8 +18,13 @@
                 @foreach($departments as $dept)
                 <div class="bg-[#171f1a] border border-[#1e2e22] rounded-2xl overflow-hidden hover:border-white/20 transition-all group">
                     {{-- Header --}}
+                    @php
+                        $deptHero = $dept->hero_image
+                            ? \Illuminate\Support\Facades\Storage::disk('public')->url($dept->hero_image)
+                            : asset('images/departments/' . $dept->slug . '.jpg');
+                    @endphp
                     <div class="relative h-56 overflow-hidden"
-                         style="background-image: url('{{ asset('images/departments/' . $dept->slug . '.jpg') }}'); background-size: cover; background-position: center;">
+                         style="background-image: url('{{ $deptHero }}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a1a0f]/90 via-[#0a1a0f]/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6">
                             <span class="text-xs font-bold tracking-widest uppercase text-white/50 block mb-1">

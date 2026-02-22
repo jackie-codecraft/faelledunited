@@ -73,7 +73,11 @@ class DepartmentResource extends Resource
                         Forms\Components\FileUpload::make('hero_image')
                             ->label('Hero Image')
                             ->image()
-                            ->directory('departments'),
+                            ->disk('public')
+                            ->directory('departments')
+                            ->imageEditor()
+                            ->maxSize(4096)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
