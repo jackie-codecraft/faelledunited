@@ -33,18 +33,35 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->profile(EditProfile::class)
             ->brandName('Fælled United')
-            ->brandLogo(fn () => new HtmlString(
-                '<div style="display:flex;align-items:center;gap:0.65rem;min-width:0">'
-                . '<img src="' . asset('images/logo.jpg') . '" '
-                . 'style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2);flex-shrink:0" '
-                . 'alt="Fælled United">'
-                . '<span x-show="$store.sidebar.isOpen" x-transition.opacity '
-                . 'style="font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.04em;line-height:1;white-space:nowrap;overflow:hidden">'
-                . 'Fælled United'
-                . '</span>'
-                . '</div>'
-            ))
-            ->brandLogoHeight('2.25rem')
+            ->brandLogo(function () {
+                // Login page — large prominent branding block
+                if (request()->routeIs('filament.admin.auth.*')) {
+                    return new HtmlString(
+                        '<div style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:0.5rem 0 0.25rem">'
+                        . '<img src="' . asset('images/logo.jpg') . '" '
+                        . 'style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid #1a472a;box-shadow:0 4px 20px rgba(26,71,42,0.25)" '
+                        . 'alt="Fælled United">'
+                        . '<div style="text-align:center">'
+                        . '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:#0f2718;letter-spacing:0.08em;line-height:1">FÆLLED UNITED</div>'
+                        . '<div style="font-size:0.75rem;color:#6b7280;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem">Administration</div>'
+                        . '</div>'
+                        . '</div>'
+                    );
+                }
+                // Sidebar — compact version
+                return new HtmlString(
+                    '<div style="display:flex;align-items:center;gap:0.65rem;min-width:0">'
+                    . '<img src="' . asset('images/logo.jpg') . '" '
+                    . 'style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.2);flex-shrink:0" '
+                    . 'alt="Fælled United">'
+                    . '<span x-show="$store.sidebar.isOpen" x-transition.opacity '
+                    . 'style="font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.04em;line-height:1;white-space:nowrap;overflow:hidden">'
+                    . 'Fælled United'
+                    . '</span>'
+                    . '</div>'
+                );
+            })
+            ->brandLogoHeight('auto')
             ->renderHook(
                 'panels::sidebar.nav.start',
                 fn () => new HtmlString(
