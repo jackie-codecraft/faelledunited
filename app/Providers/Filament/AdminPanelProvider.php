@@ -85,6 +85,10 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label(fn () => __('admin.nav_group.communications'))
                     ->icon('heroicon-o-chat-bubble-left-right'),
+
+                NavigationGroup::make()
+                    ->label(fn () => __('admin.nav_group.administration'))
+                    ->icon('heroicon-o-cog-6-tooth'),
             ])
 
             // ── Resources / pages / widgets ──────────────────────────────
