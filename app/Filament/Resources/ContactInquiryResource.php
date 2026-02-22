@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactInquiryResource\Pages;
 use App\Filament\Resources\ContactInquiryResource\RelationManagers;
 use App\Models\ContactInquiry;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -41,8 +42,12 @@ class ContactInquiryResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('status')
                     ->required(),
-                Forms\Components\TextInput::make('assigned_to')
-                    ->numeric(),
+                Forms\Components\Select::make('assigned_to')
+                    ->label(__('admin.col.assigned_to'))
+                    ->options(fn () => User::orderBy('name')->pluck('name', 'id'))
+                    ->searchable()
+                    ->placeholder('— ' . __('admin.col.unassigned') . ' —')
+                    ->nullable(),
                 Forms\Components\Textarea::make('internal_notes')
                     ->columnSpanFull(),
             ]);
@@ -60,8 +65,9 @@ class ContactInquiryResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('assigned_to')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('assignedUser.name')
+                    ->label(__('admin.col.assigned_to'))
+                    ->default('—')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

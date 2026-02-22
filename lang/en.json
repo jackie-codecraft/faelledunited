@@ -228,5 +228,18 @@
     "admin.nav.privacy_policy": "Privacy Policy",
     "admin.page.privacy_policy": "Edit Privacy Policy",
     "admin.privacy_policy.saved": "Privacy policy saved",
-    "admin.privacy_policy.save_button": "Save privacy policy"
+    "admin.privacy_policy.save_button": "Save privacy policy",
+
+    "admin.nav_group.settings": "Settings",
+    "admin.nav.users": "Users",
+    "admin.model.user": "User",
+    "admin.model.users": "Users",
+    "admin.section.account": "Account details",
+    "admin.section.password": "Password",
+    "admin.section.password_edit_hint": "Leave blank to keep the current password.",
+    "admin.col.password": "Password",
+    "admin.col.language": "Language",
+    "admin.col.assigned_to": "Assigned to",
+    "admin.col.unassigned": "Unassigned",
+    "admin.users.cannot_delete_self": "You cannot delete your own account."
 }

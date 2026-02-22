@@ -228,5 +228,18 @@
     "admin.nav.privacy_policy": "Privatlivspolitik",
     "admin.page.privacy_policy": "Rediger privatlivspolitik",
     "admin.privacy_policy.saved": "Privatlivspolitik gemt",
-    "admin.privacy_policy.save_button": "Gem privatlivspolitik"
+    "admin.privacy_policy.save_button": "Gem privatlivspolitik",
+
+    "admin.nav_group.settings": "Indstillinger",
+    "admin.nav.users": "Brugere",
+    "admin.model.user": "Bruger",
+    "admin.model.users": "Brugere",
+    "admin.section.account": "Kontooplysninger",
+    "admin.section.password": "Adgangskode",
+    "admin.section.password_edit_hint": "Lad feltet stå tomt for at beholde den nuværende adgangskode.",
+    "admin.col.password": "Adgangskode",
+    "admin.col.language": "Sprog",
+    "admin.col.assigned_to": "Tildelt til",
+    "admin.col.unassigned": "Ikke tildelt",
+    "admin.users.cannot_delete_self": "Du kan ikke slette din egen konto."
 }
