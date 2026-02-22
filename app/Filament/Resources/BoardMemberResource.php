@@ -72,14 +72,7 @@ class BoardMemberResource extends Resource
                         Forms\Components\TextInput::make('role_en')
                             ->label('Role (English)')
                             ->required(),
-                        Forms\Components\Textarea::make('bio_da')
-                            ->label('Bio (Danish)')
-                            ->rows(3)
-                            ->columnSpanFull(),
-                        Forms\Components\Textarea::make('bio_en')
-                            ->label('Bio (English)')
-                            ->rows(3)
-                            ->columnSpanFull(),
+                        // bio_da / bio_en hidden for now; columns kept in DB
                     ])->columns(2),
 
                 Forms\Components\Section::make('Photo')
