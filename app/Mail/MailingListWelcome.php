@@ -14,13 +14,16 @@ class MailingListWelcome extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public readonly NewsletterSubscriber $subscriber
-    ) {}
+        public readonly NewsletterSubscriber $subscriber,
+        string $locale = 'da',
+    ) {
+        $this->locale($locale);
+    }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Velkommen til Fælled Uniteds mailliste',
+            subject: __('email.mailing.subject'),
         );
     }
 

@@ -28,7 +28,7 @@ class MailingListController extends Controller
             ]);
 
             try {
-                Mail::to($subscriber->email)->send(new MailingListWelcome($subscriber));
+                Mail::to($subscriber->email)->send(new MailingListWelcome($subscriber, app()->getLocale()));
             } catch (\Exception $e) {
                 logger()->error('MailingList welcome mail failed: ' . $e->getMessage());
             }

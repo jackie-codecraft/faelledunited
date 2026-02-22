@@ -14,15 +14,17 @@ class RegistrationConfirmation extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public readonly Registration $registration
+        public readonly Registration $registration,
+        string $locale = 'da',
     ) {
+        $this->locale($locale);
         $this->registration->loadMissing(['department', 'ageGroup']);
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Tilmelding modtaget — ' . $this->registration->player_name . ' · Fælled United',
+            subject: __('email.registration.subject', ['name' => $this->registration->player_name]),
         );
     }
 

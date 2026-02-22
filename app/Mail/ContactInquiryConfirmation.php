@@ -14,13 +14,16 @@ class ContactInquiryConfirmation extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public readonly ContactInquiry $inquiry
-    ) {}
+        public readonly ContactInquiry $inquiry,
+        string $locale = 'da',
+    ) {
+        $this->locale($locale);
+    }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Vi har modtaget din besked — Fælled United',
+            subject: __('email.contact.subject'),
         );
     }
 

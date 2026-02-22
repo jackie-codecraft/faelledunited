@@ -65,7 +65,7 @@ class RegistrationController extends Controller
         ]);
 
         try {
-            Mail::to($registration->parent_email)->send(new RegistrationConfirmation($registration));
+            Mail::to($registration->parent_email)->send(new RegistrationConfirmation($registration, app()->getLocale()));
         } catch (\Exception $e) {
             logger()->error('Registration confirmation mail failed: ' . $e->getMessage());
         }

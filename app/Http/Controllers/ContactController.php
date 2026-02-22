@@ -32,7 +32,7 @@ class ContactController extends Controller
         $inquiry = ContactInquiry::create($validated);
 
         try {
-            Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry));
+            Mail::to($inquiry->email)->send(new ContactInquiryConfirmation($inquiry, app()->getLocale()));
         } catch (\Exception $e) {
             // Mail failure should not block the user — log silently
             logger()->error('ContactInquiry confirmation mail failed: ' . $e->getMessage());
