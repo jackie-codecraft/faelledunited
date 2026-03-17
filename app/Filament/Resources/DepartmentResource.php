@@ -80,21 +80,21 @@ class DepartmentResource extends Resource
                             ->columnSpanFull(),
                     ]),
 
-                Forms\Components\Section::make(__('admin.section.affiliation', default: 'Affiliation'))
-                    ->description(__('admin.section.affiliation_desc', default: 'Optional association or federation this department is affiliated with.'))
+                Forms\Components\Section::make('Affiliation')
+                    ->description('Optional association or federation this department is affiliated with.')
                     ->schema([
                         Forms\Components\TextInput::make('affiliation_name')
-                            ->label(__('admin.col.affiliation_name', default: 'Organisation Name'))
+                            ->label('Organisation Name')
                             ->placeholder('e.g. Dansk Boldspil-Union')
                             ->maxLength(255),
                         Forms\Components\FileUpload::make('affiliation_logo')
-                            ->label(__('admin.col.affiliation_logo', default: 'Logo'))
+                            ->label('Logo')
                             ->disk('public')
                             ->directory('affiliations')
                             ->acceptedFileTypes(['image/svg+xml', 'image/png', 'image/jpeg', 'image/webp'])
                             ->maxSize(2048),
                         Forms\Components\TextInput::make('affiliation_url')
-                            ->label(__('admin.col.affiliation_url', default: 'Website URL'))
+                            ->label('Website URL')
                             ->placeholder('https://www.dbu.dk')
                             ->url()
                             ->maxLength(255),
