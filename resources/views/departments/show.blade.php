@@ -107,6 +107,24 @@
 
             {{-- Right: CTA sidebar --}}
             <div class="lg:col-span-1">
+                @if($department->slug === 'fodbold')
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 mb-6">
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.dbu.dk" target="_blank" rel="noopener">
+                            <img src="{{ asset('images/dbu-logo.svg') }}" alt="DBU - Dansk Boldspil-Union" class="h-14 w-auto">
+                        </a>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-800">
+                                {{ app()->getLocale() === 'en' ? 'Affiliated with DBU' : 'Tilknyttet DBU' }}
+                            </p>
+                            <p class="text-xs text-gray-500 mt-0.5">
+                                {{ app()->getLocale() === 'en' ? 'Danish Football Association' : 'Dansk Boldspil-Union' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="bg-[#1a472a] text-white rounded-2xl p-8 sticky top-24">
                     <h3 class="text-xl font-bold mb-2">{{ __('Tilmeld dit barn') }}</h3>
                     <div class="w-10 h-1 bg-white/30 rounded-full mb-4"></div>

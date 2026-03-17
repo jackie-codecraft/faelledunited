@@ -177,7 +177,17 @@
                 </div>
             </div>
 
-            <div class="border-t border-[#1a1a1a] mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
+            {{-- Affiliations --}}
+            <div class="border-t border-[#1a1a1a] mt-8 pt-6 pb-6">
+                <p class="text-xs text-gray-600 uppercase tracking-wider mb-3">{{ app()->getLocale() === 'en' ? 'Affiliated with' : 'Medlem af' }}</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://www.dbu.dk" target="_blank" rel="noopener" class="opacity-60 hover:opacity-100 transition-opacity" title="Dansk Boldspil-Union">
+                        <img src="{{ asset('images/dbu-logo.svg') }}" alt="DBU - Dansk Boldspil-Union" class="h-10 w-auto">
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-[#1a1a1a] pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
                 <p>{{ __('footer.copyright', ['year' => date('Y')]) }}</p>
                 <div class="flex items-center gap-4">
                     <a href="{{ route('privacy-policy') }}" class="hover:text-gray-400 transition-colors">
