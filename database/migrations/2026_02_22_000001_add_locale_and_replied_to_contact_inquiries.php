@@ -9,19 +9,27 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('contact_inquiries', function (Blueprint $table) {
-            $table->string('locale', 5)->default('da')->after('message');
+            if (! Schema::hasColumn('contact_inquiries', 'locale')) {
+                $table->string('locale', 5)->default('da')->after('message');
+            }
         });
 
-        // Extend the status enum to include 'replied'
-        DB::statement("ALTER TABLE contact_inquiries MODIFY COLUMN status ENUM('new', 'in_progress', 'resolved', 'replied') NOT NULL DEFAULT 'new'");
+        // Extend the status enum to include 'replied' (MySQL only; SQLite uses string columns)
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement("ALTER TABLE contact_inquiries MODIFY COLUMN status ENUM('new', 'in_progress', 'resolved', 'replied') NOT NULL DEFAULT 'new'");
+        }
     }
 
     public function down(): void
     {
         Schema::table('contact_inquiries', function (Blueprint $table) {
-            $table->dropColumn('locale');
+            if (Schema::hasColumn('contact_inquiries', 'locale')) {
+                $table->dropColumn('locale');
+            }
         });
 
-        DB::statement("ALTER TABLE contact_inquiries MODIFY COLUMN status ENUM('new', 'in_progress', 'resolved') NOT NULL DEFAULT 'new'");
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement("ALTER TABLE contact_inquiries MODIFY COLUMN status ENUM('new', 'in_progress', 'resolved') NOT NULL DEFAULT 'new'");
+        }
     }
 };

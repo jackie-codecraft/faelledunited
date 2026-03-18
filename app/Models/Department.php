@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Department extends Model
 {
-    protected $fillable = ['slug', 'name_da', 'name_en', 'description_da', 'description_en', 'hero_image', 'sort_order', 'is_active'];
+    protected $fillable = ['slug', 'name_da', 'name_en', 'description_da', 'description_en', 'hero_image', 'affiliation_name', 'affiliation_logo', 'affiliation_url', 'sort_order', 'is_active'];
 
     public function ageGroups(): HasMany
     {

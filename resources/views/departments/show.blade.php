@@ -107,6 +107,28 @@
 
             {{-- Right: CTA sidebar --}}
             <div class="lg:col-span-1">
+                @if($department->affiliation_name)
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 mb-6">
+                    <div class="flex items-center gap-4">
+                        @if($department->affiliation_logo)
+                        <a href="{{ $department->affiliation_url ?? '#' }}" target="_blank" rel="noopener">
+                            <img src="{{ Storage::disk('public')->url($department->affiliation_logo) }}" alt="{{ $department->affiliation_name }}" class="h-14 w-auto">
+                        </a>
+                        @endif
+                        <div>
+                            <p class="text-sm font-semibold text-gray-800">
+                                {{ app()->getLocale() === 'en' ? 'Affiliated with' : 'Tilknyttet' }} {{ $department->affiliation_name }}
+                            </p>
+                            @if($department->affiliation_url)
+                            <a href="{{ $department->affiliation_url }}" target="_blank" rel="noopener" class="text-xs text-[#1a472a] hover:underline mt-0.5 inline-block">
+                                {{ parse_url($department->affiliation_url, PHP_URL_HOST) }}
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="bg-[#1a472a] text-white rounded-2xl p-8 sticky top-24">
                     <h3 class="text-xl font-bold mb-2">{{ __('Tilmeld dit barn') }}</h3>
                     <div class="w-10 h-1 bg-white/30 rounded-full mb-4"></div>
