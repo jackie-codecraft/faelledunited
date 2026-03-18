@@ -45,8 +45,8 @@ class AdminPanelProvider extends PanelProvider
                         . 'style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid #1a472a;box-shadow:0 4px 20px rgba(26,71,42,0.25)" '
                         . 'alt="Fælled United">'
                         . '<div style="text-align:center">'
-                        . '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:#0f2718;letter-spacing:0.08em;line-height:1">FÆLLED UNITED</div>'
-                        . '<div style="font-size:0.75rem;color:#6b7280;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem">Administration</div>'
+                        . '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:var(--login-title-color, #0f2718);letter-spacing:0.08em;line-height:1">FÆLLED UNITED</div>'
+                        . '<div style="font-size:0.75rem;color:var(--login-subtitle-color, #6b7280);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem">Administration</div>'
                         . '</div>'
                         . '</div>'
                     );

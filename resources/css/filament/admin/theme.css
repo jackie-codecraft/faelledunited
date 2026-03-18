@@ -8,6 +8,16 @@
 
 @config 'tailwind.config.js';
 
+/* ─── Login page brand text colors ──────────────────────────────────── */
+:root {
+    --login-title-color: #0f2718;
+    --login-subtitle-color: #6b7280;
+}
+.dark {
+    --login-title-color: #ffffff;
+    --login-subtitle-color: #9ca3af;
+}
+
 /* ─── Club green sidebar ────────────────────────────────────────────── */
 
 /* Sidebar + header background — dark green always */

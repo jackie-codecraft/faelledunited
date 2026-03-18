@@ -24,3 +24,7 @@
 .dark .fi-ta-header-cell .fi-ta-header-cell-label{color:unset}
 .dark .fi-wi-stats-overview-stat{border:unset;box-shadow:unset}
 .dark .fi-section{box-shadow:unset}
+
+/* Login page brand text — dark mode support */
+:root{--login-title-color:#0f2718;--login-subtitle-color:#6b7280}
+.dark{--login-title-color:#ffffff;--login-subtitle-color:#9ca3af}
