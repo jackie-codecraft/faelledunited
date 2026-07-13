@@ -116,6 +116,18 @@
 
                 <form action="{{ route('contact.store') }}" method="POST" class="bg-white rounded-2xl shadow-md p-8 space-y-5">
                     @csrf
+                    <input type="hidden" name="form_started_at" value="{{ now()->timestamp }}">
+                    <div class="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                        <label for="contact-website">Website</label>
+                        <input
+                            type="text"
+                            id="contact-website"
+                            name="website"
+                            value=""
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+                    </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
