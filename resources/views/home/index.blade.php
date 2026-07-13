@@ -268,6 +268,7 @@
             <form action="{{ route('mailing-list.store') }}" method="POST"
                   class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 @csrf
+                <x-spam-protection-fields id="mailing-list-home-website" />
                 <input
                     type="email"
                     name="email"

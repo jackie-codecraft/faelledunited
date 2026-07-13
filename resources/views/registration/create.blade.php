@@ -67,6 +67,7 @@
             class="bg-white rounded-2xl shadow-md p-8 space-y-6"
         >
             @csrf
+            <x-spam-protection-fields id="registration-form-website" />
 
             {{-- Section: Barnets oplysninger --}}
             <div>
