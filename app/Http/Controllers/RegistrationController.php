@@ -7,16 +7,21 @@ use App\Models\AgeGroup;
 use App\Models\Department;
 use App\Models\Registration;
 use App\Models\SiteSettings;
+use App\Support\SpamProtection\PublicFormSpamProtection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
+    use PublicFormSpamProtection;
+
+    private const SUCCESS_MESSAGE = 'Tak for din tilmelding. Vi vender tilbage hurtigst muligt.';
+
     public function create()
     {
         $siteSettings = SiteSettings::current();
-        $departments  = Department::where('is_active', true)->orderBy('sort_order')->get();
-        $ageGroups    = AgeGroup::where('is_active', true)->orderBy('sort_order')->get();
+        $departments = Department::where('is_active', true)->orderBy('sort_order')->get();
+        $ageGroups = AgeGroup::where('is_active', true)->orderBy('sort_order')->get();
 
         return view('registration.create', compact('siteSettings', 'departments', 'ageGroups'));
     }
@@ -31,57 +36,89 @@ class RegistrationController extends Controller
         }
 
         $validated = $request->validate([
-            'player_name'             => ['required', 'string', 'max:255'],
-            'date_of_birth'           => ['required', 'date', 'before:today'],
-            'department_id'           => ['required', 'exists:departments,id'],
-            'age_group_id'            => ['required', 'exists:age_groups,id'],
+            'player_name' => ['required', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'date', 'before:today'],
+            'department_id' => ['required', 'exists:departments,id'],
+            'age_group_id' => ['required', 'exists:age_groups,id'],
             'current_club_experience' => ['nullable', 'string', 'max:500'],
-            'parent_name'             => ['required', 'string', 'max:255'],
-            'parent_email'            => ['required', 'email', 'max:255'],
-            'phone'                   => ['required', 'string', 'max:50'],
-            'address'                 => ['required', 'string', 'max:500'],
-            'additional_info'         => ['nullable', 'string', 'max:2000'],
-            'gdpr_consent'            => ['accepted'],
-            'photo_consent'           => ['nullable', 'boolean'],
+            'parent_name' => ['required', 'string', 'max:255'],
+            'parent_email' => ['required', 'email:rfc', 'max:255'],
+            'phone' => ['required', 'string', 'max:50'],
+            'address' => ['required', 'string', 'max:500'],
+            'additional_info' => ['nullable', 'string', 'max:2000'],
+            'gdpr_consent' => ['accepted'],
+            'photo_consent' => ['nullable', 'boolean'],
+            ...$this->spamProtectionValidationRules(),
         ], [
-            'player_name.required'   => 'Barnets navn er påkrævet.',
+            'player_name.required' => 'Barnets navn er påkrævet.',
             'date_of_birth.required' => 'Fødselsdato er påkrævet.',
-            'date_of_birth.before'   => 'Fødselsdato skal være i fortiden.',
+            'date_of_birth.before' => 'Fødselsdato skal være i fortiden.',
             'department_id.required' => 'Vælg en afdeling.',
-            'age_group_id.required'  => 'Vælg en årgang.',
-            'parent_name.required'   => 'Forælderens navn er påkrævet.',
-            'parent_email.required'  => 'E-mail er påkrævet.',
-            'parent_email.email'     => 'Angiv en gyldig e-mailadresse.',
-            'phone.required'         => 'Telefonnummer er påkrævet.',
-            'address.required'       => 'Adresse er påkrævet.',
-            'gdpr_consent.accepted'  => __('reg.gdpr_consent_error'),
+            'age_group_id.required' => 'Vælg en årgang.',
+            'parent_name.required' => 'Forælderens navn er påkrævet.',
+            'parent_email.required' => 'E-mail er påkrævet.',
+            'parent_email.email' => 'Angiv en gyldig e-mailadresse.',
+            'phone.required' => 'Telefonnummer er påkrævet.',
+            'address.required' => 'Adresse er påkrævet.',
+            'gdpr_consent.accepted' => __('reg.gdpr_consent_error'),
         ]);
 
+        $rateLimitKeys = $this->publicFormRateLimitKeys($request, 'registration-form', [
+            'email' => $validated['parent_email'],
+            'phone' => $validated['phone'],
+        ]);
+
+        if ($this->tooManyPublicFormSubmissions($rateLimitKeys)) {
+            return back()
+                ->withInput($request->except('website', 'terms', 'form_started_at'))
+                ->withErrors(['parent_email' => 'Der er sendt for mange tilmeldinger på kort tid. Prøv igen senere.']);
+        }
+
+        $contentFields = $request->only(
+            'player_name',
+            'parent_name',
+            'parent_email',
+            'phone',
+            'address',
+            'current_club_experience',
+            'additional_info'
+        );
+        $spamReasons = $this->publicFormSpamReasons($request, $contentFields);
+
+        if ($spamReasons !== []) {
+            $this->logRejectedPublicFormSubmission($request, 'registration', $contentFields, $spamReasons);
+
+            return redirect()->route('registration.create')
+                ->with('success', self::SUCCESS_MESSAGE);
+        }
+
+        $this->hitPublicFormRateLimits($rateLimitKeys);
+
         $registration = Registration::create([
-            'player_name'             => $validated['player_name'],
-            'date_of_birth'           => $validated['date_of_birth'],
-            'department_id'           => $validated['department_id'],
-            'age_group_id'            => $validated['age_group_id'],
+            'player_name' => $validated['player_name'],
+            'date_of_birth' => $validated['date_of_birth'],
+            'department_id' => $validated['department_id'],
+            'age_group_id' => $validated['age_group_id'],
             'current_club_experience' => $validated['current_club_experience'] ?? null,
-            'parent_name'             => $validated['parent_name'],
-            'parent_email'            => $validated['parent_email'],
-            'phone'                   => $validated['phone'],
-            'address'                 => $validated['address'],
-            'additional_info'         => $validated['additional_info'] ?? null,
-            'gdpr_consent'            => true,
-            'photo_consent'           => $request->boolean('photo_consent'),
-            'status'                  => 'new',
+            'parent_name' => $validated['parent_name'],
+            'parent_email' => $validated['parent_email'],
+            'phone' => $validated['phone'],
+            'address' => $validated['address'],
+            'additional_info' => $validated['additional_info'] ?? null,
+            'gdpr_consent' => true,
+            'photo_consent' => $request->boolean('photo_consent'),
+            'status' => 'new',
         ]);
 
         try {
             Mail::to($registration->parent_email)->send(new RegistrationConfirmation($registration, app()->getLocale()));
         } catch (\Exception $e) {
-            logger()->error('Registration confirmation mail failed: ' . $e->getMessage());
+            logger()->error('Registration confirmation mail failed: '.$e->getMessage());
         }
 
         return redirect()->route('registration.create')
             ->with('success', __('reg.success', [
-                'name'  => $validated['player_name'],
+                'name' => $validated['player_name'],
                 'email' => $validated['parent_email'],
             ]));
     }
